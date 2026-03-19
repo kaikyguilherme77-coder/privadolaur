@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy | Carregando...</title>
+<title>Privacy | Laurinha Oficial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:480px;margin:0 auto;min-height:100vh;}
@@ -67,19 +66,20 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .post-handle{font-size:12px;color:#888;}
 .post-menu-btn{background:none;border:none;cursor:pointer;color:#888;padding:4px;}
 .post-menu-btn svg{width:16px;height:16px;}
-.post-body{position:relative;border-radius:12px;overflow:hidden;background:#e8e8e8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.post-body-img{width:100%;height:100%;object-fit:cover;filter:blur(14px);transform:scale(1.08);}
-.post-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
-.lock-circle{width:52px;height:52px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.post-body{position:relative;border-radius:12px;overflow:hidden;background:#2a1810;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.post-body-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(14px);transform:scale(1.1);}
+.post-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:1;}
+.lock-circle{width:52px;height:52px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);}
 .lock-circle svg{width:24px;height:24px;color:#888;}
 .post-footer{display:flex;align-items:center;gap:16px;margin-top:10px;}
 .post-action{display:flex;align-items:center;gap:5px;font-size:13px;color:#555;background:none;border:none;cursor:pointer;}
 .post-action svg{width:18px;height:18px;}
 .post-bookmark{margin-left:auto;background:none;border:none;cursor:pointer;color:#555;}
 .post-bookmark svg{width:18px;height:18px;}
-.combos-section{background:#fff;margin-top:8px;padding:16px;}
+.combos-section{background:#fff;margin-top:8px;padding:16px;display:none;}
 .combos-btn{width:100%;background:#f97316;color:#fff;border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:space-between;letter-spacing:.5px;transition:background .2s;font-family:'Inter',sans-serif;}
 .combos-btn:hover{background:#ea6c0a;}
+.combos-btn svg{width:24px;height:24px;}
 .testi-section{background:#fff;margin-top:8px;padding:16px;}
 .section-title{font-size:17px;font-weight:700;margin-bottom:14px;text-align:center;}
 .testi-scroll{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;}
@@ -99,13 +99,13 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13px;color:#555;line-height:1.7;}
 .faq-item.open .faq-a{max-height:200px;}
 .faq-a-inner{padding:0 16px 14px;}
-/* TOAST POPUP */
-.toast-popup{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#fff;color:#1a1a1a;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:500;z-index:999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.15);border:1px solid #f0f0f0;display:flex;align-items:center;gap:10px;max-width:90vw;}
+/* POPUP */
+.toast-popup{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#fff;padding:10px 16px;border-radius:30px;font-size:13px;font-weight:500;z-index:999;transition:transform .45s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.15);border:1px solid #f0f0f0;display:flex;align-items:center;gap:10px;max-width:90vw;}
 .toast-popup.show{transform:translateX(-50%) translateY(0);}
-.toast-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0;}
-.toast-info{display:flex;flex-direction:column;}
-.toast-name{font-size:12px;font-weight:700;}
-.toast-action{font-size:11px;color:#888;}
+.popup-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;}
+.popup-info{display:flex;flex-direction:column;}
+.popup-name{font-size:12px;font-weight:700;}
+.popup-action{font-size:11px;color:#888;}
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;align-items:flex-end;z-index:1000;backdrop-filter:blur(4px);}
 .modal-overlay.active{display:flex;}
@@ -139,8 +139,6 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .like-btn.liked svg{fill:#e11d48;stroke:#e11d48;transform:scale(1.2);}
 .like-btn svg{transition:fill .2s,stroke .2s,transform .15s;}
 footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;margin-top:8px;border-top:1px solid #f0f0f0;}
-.skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 </head>
 <body>
@@ -164,8 +162,8 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
 <div class="profile-section">
   <div class="avatar-row">
     <div class="avatar-wrap">
-      <div class="avatar" id="avatar-el"><span id="avatar-letter">L</span></div>
-      <div class="live-badge" id="live-badge">AO VIVO AGORA</div>
+      <div class="avatar" id="avatar-el">L</div>
+      <div class="live-badge" id="live-badge" style="display:none;">AO VIVO AGORA</div>
     </div>
     <div class="profile-actions">
       <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -174,17 +172,23 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </div>
   <div class="profile-info">
     <div class="profile-name-row">
-      <span class="profile-name" id="profile-name">Carregando...</span>
+      <span class="profile-name" id="profile-name">Laurinha Oficial</span>
       <span class="verified-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span>
     </div>
-    <div class="profile-handle" id="profile-handle">@carregando</div>
-    <div class="profile-bio" id="profile-bio"></div>
+    <div class="profile-handle" id="profile-handle">@Laurinha_vip1</div>
+    <div class="profile-bio" id="profile-bio">🔥 Laurinha VIP 🔥<br>Faça sua assinatura agora!</div>
   </div>
 </div>
 
 <div class="subscribe-section">
   <div class="subscribe-title">Assine agora:</div>
-  <div id="plans-container"><div style="height:60px;border-radius:10px;" class="skeleton"></div></div>
+  <div id="plans-container">
+    <button class="main-plan-btn" onclick="openCheckout(999,'Acesso por 1 Mês','plan1')">
+      <div class="popular-badge">MAIS POPULAR 🔥🔥</div>
+      <div class="main-plan-left"><div class="main-plan-name">ACESSO POR 1 MÊS</div><div class="main-plan-extra">+ ACESSO AS LIVES DIÁRIAS!</div></div>
+      <div class="main-plan-price">R$ 9,99</div>
+    </button>
+  </div>
 </div>
 
 <div class="tabs-section">
@@ -193,14 +197,13 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
     <button class="tab" onclick="switchTab(this)">166 mídias</button>
   </div>
   <div class="feed" id="feed-container">
-    <div style="height:200px;margin:12px 16px;border-radius:12px;" class="skeleton"></div>
-    <div style="height:200px;margin:12px 16px;border-radius:12px;" class="skeleton"></div>
+    <!-- Posts carregados pelo JS -->
   </div>
 </div>
 
-<div class="combos-section" id="combos-section" style="display:none;">
-  <button class="combos-btn" id="combos-btn">
-    <span id="combos-text">QUERO TODOS OS COMBOS</span>
+<div class="combos-section" id="combos-section">
+  <button class="combos-btn" id="combos-btn" onclick="openCheckout(4990,'Todos os Combos - Privacy','combos')">
+    QUERO TODOS OS COMBOS — R$ 49,90
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
   </button>
 </div>
@@ -208,27 +211,37 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
 <div class="testi-section">
   <div class="section-title">📢 O que estão dizendo...</div>
   <div class="testi-scroll" id="testi-container">
-    <div style="width:200px;height:110px;flex-shrink:0;border-radius:12px;" class="skeleton"></div>
-    <div style="width:200px;height:110px;flex-shrink:0;border-radius:12px;" class="skeleton"></div>
-    <div style="width:200px;height:110px;flex-shrink:0;border-radius:12px;" class="skeleton"></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">João Henrique, 32 anos</div><div class="testi-text">"Não acreditava que seria tão bom por esse preço. Recomendo!"</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Carlos Silva, 45 anos</div><div class="testi-text">"Conteúdo sem censura, bem melhor que esses sites por aí."</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Marcelo Tavares, 31 anos</div><div class="testi-text">"Tô no grupo VIP, recebo vídeo todo dia de manhã!"</div></div>
   </div>
 </div>
 
-<div class="trust-section" id="trust-container"></div>
+<div class="trust-section" id="trust-container">
+  <div class="trust-item"><span style="font-size:18px;">🔒</span><strong>Seu acesso é 100% seguro com criptografia SSL</strong></div>
+  <div class="trust-item"><span style="font-size:18px;">✅</span><strong>Garantia total: seu dinheiro de volta se não ficar satisfeito</strong></div>
+  <div class="trust-item"><span style="font-size:18px;">🛑</span><strong>Cancele quando quiser, sem burocracia</strong></div>
+  <div class="trust-item"><span style="font-size:18px;">💬</span><strong>Alguma dúvida? Fale conosco</strong></div>
+</div>
 
 <div class="faq-section">
   <div class="section-title" style="text-align:left;">Perguntas Frequentes</div>
-  <div id="faq-container"></div>
+  <div id="faq-container">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O conteúdo é realmente explícito?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Sim! Todo o conteúdo é 100% explícito e sem censura.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O pagamento é seguro e discreto?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Totalmente! Seu pagamento é discreto e ninguém saberá do que se trata.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como vou receber o conteúdo?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Após o pagamento via Pix, você receberá o acesso direto no seu E-mail em até 2 minutos.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">E se eu tiver problemas com o acesso?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Você poderá entrar em contato direto com o suporte no WhatsApp que será enviado junto ao conteúdo.</div></div></div>
+  </div>
 </div>
 
-<footer id="footer">© 2025 Privacy · Carregando...</footer>
+<footer id="footer">© 2025 Privacy · Laurinha Oficial · Todos os direitos reservados</footer>
 
-<!-- POPUP TOAST -->
+<!-- POPUP -->
 <div class="toast-popup" id="toast-popup">
-  <div class="toast-avatar" id="popup-avatar">J</div>
-  <div class="toast-info">
-    <div class="toast-name" id="popup-name">João H.</div>
-    <div class="toast-action" id="popup-action">acabou de assinar o Plano Mensal! 🔥</div>
+  <div class="popup-avatar" id="popup-avatar">J</div>
+  <div class="popup-info">
+    <div class="popup-name" id="popup-name">João H.</div>
+    <div class="popup-action" id="popup-action">acabou de assinar o Plano Mensal! 🔥</div>
   </div>
 </div>
 
@@ -260,139 +273,184 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
 </div>
 
 <script>
+// ── CONFIG ─────────────────────────────────────────────────
 const SUPA_URL='https://paalarevbvupgjhlwgbb.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhYWxhcmV2YnZ1cGdqaGx3Z2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDU1NzksImV4cCI6MjA4OTUyMTU3OX0.PTB03Z7BAoKg5E7lm8Y1MNFIg-HL-xv1-xU_geyfqRI';
-const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
-let BCAT_KEY='',currentOrder={amount:0,title:'',planKey:''};
-let popupList=[];
+let BCAT_KEY='',currentOrder={amount:0,title:'',planKey:''},popupList=[];
+let profileData={name:'Laurinha Oficial',handle:'@Laurinha_vip1'};
 
-async function getConfig(key){const{data}=await sb.from('site_config').select('value').eq('key',key).single();return data?.value??null;}
+// ── SUPABASE FETCH (sem SDK — fetch puro para ser mais rápido) ──
+async function sbGet(table, filters='', select='*'){
+  try{
+    const res=await fetch(`${SUPA_URL}/rest/v1/${table}?select=${select}${filters}`,{
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'}
+    });
+    if(!res.ok)return null;
+    return await res.json();
+  }catch(e){return null;}
+}
+async function sbGetConfig(key){
+  try{
+    const res=await fetch(`${SUPA_URL}/rest/v1/site_config?key=eq.${key}&select=value&limit=1`,{
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}
+    });
+    if(!res.ok)return null;
+    const data=await res.json();
+    return data?.[0]?.value??null;
+  }catch(e){return null;}
+}
+async function sbInsert(table,body){
+  try{
+    await fetch(`${SUPA_URL}/rest/v1/${table}`,{
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(body)
+    });
+  }catch(e){}
+}
+async function sbUpdate(table,body,filter){
+  try{
+    await fetch(`${SUPA_URL}/rest/v1/${table}?${filter}`,{
+      method:'PATCH',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(body)
+    });
+  }catch(e){}
+}
+
+// ── UTILS ──────────────────────────────────────────────────
 function p2i(s){return Math.round(parseFloat((s||'0').replace(',','.'))*100);}
+function switchTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
+function toggleLike(btn){const l=btn.classList.toggle('liked');const s=btn.querySelector('span');if(s)s.textContent=l?+s.textContent+1:+s.textContent-1;}
 
-// ── LOAD ────────────────────────────────────────────────────
-async function loadSite(){
-  const[perfil,planos,combo,testi,faq,trust,apikey,posts,popups]=await Promise.all([
-    getConfig('perfil'),getConfig('planos'),getConfig('combo'),
-    getConfig('testemunhos'),getConfig('faq'),getConfig('trust'),
-    getConfig('apikey_blackcat'),
-    sb.from('posts').select('*').eq('active',true).order('created_at',{ascending:false}),
-    getConfig('popups')
-  ]);
+// ── AVATAR HTML HELPER ─────────────────────────────────────
+function avatarHtml(pf){return pf?.avatar?`<img src="${pf.avatar}" alt="">`:((pf?.name||'L').charAt(0));}
 
-  BCAT_KEY=apikey||'';
-  popupList=popups||[{nome:'João H., 32 anos',plano:'Plano Mensal'},{nome:'Carlos S., 45 anos',plano:'Acesso Vitalício'}];
-
-  // PERFIL
-  if(perfil){
-    document.title=`Privacy | ${perfil.name||''}`;
-    document.getElementById('profile-name').textContent=perfil.name||'';
-    document.getElementById('profile-handle').textContent=perfil.handle||'';
-    document.getElementById('profile-bio').innerHTML=(perfil.bio||'').replace(/\n/g,'<br>');
-    document.getElementById('footer').textContent=`© 2025 Privacy · ${perfil.name} · Todos os direitos reservados`;
-    if(!perfil.live)document.getElementById('live-badge').style.display='none';
-    if(perfil.avatar){document.getElementById('avatar-el').innerHTML=`<img src="${perfil.avatar}" alt="${perfil.name}">`;}
-    else{document.getElementById('avatar-letter').textContent=(perfil.name||'L').charAt(0);}
-    if(perfil.banner){const bw=document.getElementById('banner-wrap');bw.style.backgroundImage=`url('${perfil.banner}')`;bw.style.backgroundSize='cover';bw.style.backgroundPosition='center';}
+// ── LOAD PERFIL (primeiro — mostra conteúdo imediato) ───────
+async function loadPerfil(){
+  const data=await sbGetConfig('perfil');
+  if(!data)return;
+  profileData=data;
+  document.title=`Privacy | ${data.name||'Laurinha'}`;
+  document.getElementById('profile-name').textContent=data.name||'';
+  document.getElementById('profile-handle').textContent=data.handle||'';
+  document.getElementById('profile-bio').innerHTML=(data.bio||'').replace(/\n/g,'<br>');
+  document.getElementById('footer').textContent=`© 2025 Privacy · ${data.name||''} · Todos os direitos reservados`;
+  if(data.live){document.getElementById('live-badge').style.display='block';}
+  if(data.avatar){document.getElementById('avatar-el').innerHTML=`<img src="${data.avatar}" alt="${data.name}" style="width:100%;height:100%;object-fit:cover;">`;}
+  if(data.banner){
+    const bw=document.getElementById('banner-wrap');
+    bw.style.backgroundImage=`url('${data.banner}')`;
+    bw.style.backgroundSize='cover';bw.style.backgroundPosition='center';
   }
+}
 
-  // PLANOS
-  if(planos?.length){
-    const main=planos[0];
-    let html='';
-    if(main?.ativo||main?.active){
-      html+=`<button class="main-plan-btn" onclick="openCheckout(${p2i(main.preco||main.price)},'${(main.nome||main.name||'').replace(/'/g,'\\'')}','plan1')">
-        <div class="popular-badge">${main.badge||''}</div>
-        <div class="main-plan-left">
-          <div class="main-plan-name">${main.nome||main.name||''}</div>
-          ${main.lives?'<div class="main-plan-extra">+ ACESSO AS LIVES DIÁRIAS!</div>':''}
-        </div>
-        <div class="main-plan-price">R$ ${main.preco||main.price||''}</div>
-      </button>`;
-    }
-    const extras=planos.slice(1).filter(p=>p.ativo||p.active);
-    if(extras.length){
-      html+=`<button class="promo-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Ver mais promoções<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="promo-list">`;
-      extras.forEach((pl,i)=>{
-        html+=`<div class="promo-item" onclick="openCheckout(${p2i(pl.preco||pl.price)},'${(pl.nome||pl.name||'').replace(/'/g,'\\'')}','plan${i+2}')">
-          <div class="promo-item-left"><span class="promo-item-name">${pl.nome||pl.name||''}</span><span class="badge">${pl.badge||''}</span>${pl.num?'<span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>':''}</div>
-          <span class="promo-price">R$ ${pl.preco||pl.price||''}</span>
-        </div>`;
-      });
-      html+=`</div>`;
-    }
-    document.getElementById('plans-container').innerHTML=html;
+// ── LOAD PLANOS ─────────────────────────────────────────────
+async function loadPlanos(){
+  const planos=await sbGetConfig('planos');
+  const combo=await sbGetConfig('combo');
+  if(!planos?.length)return;
+
+  const main=planos[0];
+  let html='';
+  if(main?.ativo||main?.active){
+    const preco=main.preco||main.price||'9,99';
+    html+=`<button class="main-plan-btn" onclick="openCheckout(${p2i(preco)},'${(main.nome||main.name||'').replace(/'/g,"\\'")}','plan1')">
+      <div class="popular-badge">${main.badge||'MAIS POPULAR 🔥🔥'}</div>
+      <div class="main-plan-left">
+        <div class="main-plan-name">${main.nome||main.name||''}</div>
+        ${main.lives?'<div class="main-plan-extra">+ ACESSO AS LIVES DIÁRIAS!</div>':''}
+      </div>
+      <div class="main-plan-price">R$ ${preco}</div>
+    </button>`;
   }
+  const extras=planos.slice(1).filter(p=>p.ativo||p.active);
+  if(extras.length){
+    html+=`<button class="promo-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Ver mais promoções<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="promo-list">`;
+    extras.forEach((pl,i)=>{
+      const preco=pl.preco||pl.price||'';
+      html+=`<div class="promo-item" onclick="openCheckout(${p2i(preco)},'${(pl.nome||pl.name||'').replace(/'/g,"\\'")}','plan${i+2}')">
+        <div class="promo-item-left"><span class="promo-item-name">${pl.nome||pl.name||''}</span><span class="badge">${pl.badge||''}</span>${pl.num?'<span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>':''}</div>
+        <span class="promo-price">R$ ${preco}</span>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+  document.getElementById('plans-container').innerHTML=html;
 
-  // COMBO
   if(combo?.mostrar){
-    document.getElementById('combos-section').style.display='block';
-    document.getElementById('combos-text').textContent=combo.texto||'';
-    document.getElementById('combos-btn').querySelector('span').textContent=`${combo.texto||''} — R$ ${combo.preco||''}`;
-    document.getElementById('combos-btn').onclick=()=>openCheckout(p2i(combo.preco),combo.texto+' - Privacy','combos');
+    const sec=document.getElementById('combos-section');
+    sec.style.display='block';
+    const btn=document.getElementById('combos-btn');
+    btn.querySelector('span')?btn.querySelector('span').textContent=`${combo.texto||''} — R$ ${combo.preco||''}`:null;
+    btn.innerHTML=`${combo.texto||'QUERO TODOS OS COMBOS'} — R$ ${combo.preco||'49,90'}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>`;
+    btn.onclick=()=>openCheckout(p2i(combo.preco),combo.texto+' - Privacy','combos');
   }
+}
 
-  // POSTS DO BANCO
-  const postsData=posts?.data||[];
+// ── LOAD POSTS ──────────────────────────────────────────────
+async function loadPosts(){
+  const posts=await sbGet('posts','&active=eq.true&order=created_at.desc');
   const feed=document.getElementById('feed-container');
-  if(postsData.length){
-    const perfData=perfil||{};
-    const avatarHtml=perfData.avatar?`<img src="${perfData.avatar}" alt="">`:(perfData.name?.charAt(0)||'L');
-    feed.innerHTML=postsData.map(p=>{
-      if(p.type==='telegram'){
-        return`<div class="post-item">
-          <div class="post-header"><div class="post-user"><div class="post-avatar">${avatarHtml}</div><div><div class="post-username">${perfData.name||''}</div><div class="post-handle">${perfData.handle||''}</div></div></div></div>
-          <a href="${p.telegram_link||'#'}" target="_blank" style="display:block;text-decoration:none;">
-            <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:14px;padding:22px 18px;border:1.5px solid #f9a8d4;text-align:center;cursor:pointer;">
-              <div style="font-size:34px;margin-bottom:10px;">😈</div>
-              <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">${p.telegram_text||'Meu grupo de amostras grátis bb 👇😈'}</div>
-              <div style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;padding:11px 24px;border-radius:30px;font-size:13px;font-weight:700;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
-                Entrar no grupo grátis
-              </div>
-            </div>
-          </a>
-          <div class="post-footer" style="margin-top:10px;">
-            <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
-            <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
-          </div>
-        </div>`;
-      }
-      // Foto/vídeo bloqueado
-      const planAmt=planos?p2i(planos[0]?.preco||planos[0]?.price||'9,99'):999;
-      const planName=planos?planos[0]?.nome||planos[0]?.name||'Acesso por 1 Mês':'Acesso por 1 Mês';
-      const bg=p.post_bg==='blur'&&p.thumb_url?`background:#111;`:`background:${p.thumb_url?'#111':'#2a1810'};`;
+  if(!posts?.length){feed.innerHTML='<div style="text-align:center;padding:40px;color:#888;">Nenhum post ainda.</div>';return;}
+
+  const pf=profileData;
+  const av=avatarHtml(pf);
+  feed.innerHTML=posts.map(p=>{
+    if(p.type==='telegram'){
       return`<div class="post-item">
-        <div class="post-header"><div class="post-user"><div class="post-avatar">${avatarHtml}</div><div><div class="post-username">${perfData.name||''}</div><div class="post-handle">${perfData.handle||''}</div></div></div>
-        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></div>
-        <div class="post-body" style="${bg}" onclick="openCheckout(${planAmt},'${planName.replace(/'/g,'\\'')}','plan1')">
-          ${p.thumb_url&&p.post_bg==='blur'?`<img class="post-body-img" src="${p.thumb_url}" alt="">`:''} 
-          <div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
-        </div>
-        <div class="post-footer">
+        <div class="post-header"><div class="post-user"><div class="post-avatar">${av}</div><div><div class="post-username">${pf.name||''}</div><div class="post-handle">${pf.handle||''}</div></div></div></div>
+        <a href="${p.telegram_link||'#'}" target="_blank" style="display:block;text-decoration:none;">
+          <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:14px;padding:22px 18px;border:1.5px solid #f9a8d4;text-align:center;">
+            <div style="font-size:34px;margin-bottom:10px;">😈</div>
+            <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">${p.telegram_text||'Meu grupo de amostras grátis bb 👇😈'}</div>
+            <div style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;padding:11px 24px;border-radius:30px;font-size:13px;font-weight:700;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+              Entrar no grupo grátis
+            </div>
+          </div>
+        </a>
+        <div class="post-footer" style="margin-top:10px;">
           <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
           <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
-          <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
         </div>
       </div>`;
-    }).join('');
-  } else {
-    feed.innerHTML='<div style="text-align:center;padding:40px;color:#888;">Nenhum post publicado ainda.</div>';
-  }
+    }
+    // Foto/vídeo bloqueado
+    return`<div class="post-item">
+      <div class="post-header"><div class="post-user"><div class="post-avatar">${av}</div><div><div class="post-username">${pf.name||''}</div><div class="post-handle">${pf.handle||''}</div></div></div>
+      <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></div>
+      <div class="post-body" onclick="openCheckout(999,'Acesso por 1 Mês','plan1')">
+        ${p.thumb_url?`<img class="post-body-img" src="${p.thumb_url}" alt="">`:''}
+        <div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
+      </div>
+      <div class="post-footer">
+        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
+        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
+        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+      </div>
+    </div>`;
+  }).join('');
+}
 
-  // TESTEMUNHOS
+// ── LOAD TEXTOS ─────────────────────────────────────────────
+async function loadTextos(){
+  const[testi,faq,trust,popups,apikey]=await Promise.all([
+    sbGetConfig('testemunhos'),sbGetConfig('faq'),
+    sbGetConfig('trust'),sbGetConfig('popups'),sbGetConfig('apikey_blackcat')
+  ]);
+  if(apikey)BCAT_KEY=apikey;
+  if(popups?.length)popupList=popups;
   if(testi?.length){
     document.getElementById('testi-container').innerHTML=testi.map(t=>`
       <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">${t.nome||t.name||''}</div><div class="testi-text">"${t.texto||t.text||''}"</div></div>`).join('');
   }
-
-  // TRUST
   if(trust?.length){
     document.getElementById('trust-container').innerHTML=trust.map(t=>`
       <div class="trust-item"><span style="font-size:18px;">${t.slice(0,2)}</span><strong>${t.slice(2).trim()}</strong></div>`).join('');
   }
-
-  // FAQ
   if(faq?.length){
     document.getElementById('faq-container').innerHTML=faq.map(f=>`
       <div class="faq-item">
@@ -400,26 +458,16 @@ async function loadSite(){
         <div class="faq-a"><div class="faq-a-inner">${f.a||''}</div></div>
       </div>`).join('');
   }
-
-  // Inicia popup depois de carregar
-  startPopupToast();
+  // Inicia popup após carregar lista
+  if(popupList.length)setTimeout(()=>{showPopup();setInterval(showPopup,25000+Math.random()*15000);},8000);
 }
 
-// ── POPUP TOAST (homens que compraram) ─────────────────────
+// ── POPUP ───────────────────────────────────────────────────
 let popupIdx=0;
-function startPopupToast(){
-  if(!popupList.length)return;
-  setTimeout(()=>{
-    showPopup();
-    setInterval(showPopup, 25000+Math.random()*20000);
-  },8000);
-}
 function showPopup(){
   if(!popupList.length)return;
-  const p=popupList[popupIdx%popupList.length];
-  popupIdx++;
-  const inicial=(p.nome||'?').charAt(0).toUpperCase();
-  document.getElementById('popup-avatar').textContent=inicial;
+  const p=popupList[popupIdx++%popupList.length];
+  document.getElementById('popup-avatar').textContent=(p.nome||'?').charAt(0).toUpperCase();
   document.getElementById('popup-name').textContent=p.nome||'Usuário';
   document.getElementById('popup-action').textContent=`acabou de assinar o ${p.plano||'Plano'}! 🔥`;
   const el=document.getElementById('toast-popup');
@@ -427,22 +475,7 @@ function showPopup(){
   setTimeout(()=>el.classList.remove('show'),4000);
 }
 
-// ── UI ─────────────────────────────────────────────────────
-function switchTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
-function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
-function toggleLike(btn){const liked=btn.classList.toggle('liked');const span=btn.querySelector('span');if(span)span.textContent=liked?+span.textContent+1:+span.textContent-1;}
-
-// ── EMAIL AUTOCOMPLETE ─────────────────────────────────────
-document.getElementById('custEmail').addEventListener('input',function(){
-  const val=this.value,dl=document.getElementById('emailSuggestions');dl.innerHTML='';
-  if(val&&!val.includes('@')){const o=document.createElement('option');o.value=val+'@gmail.com';dl.appendChild(o);}
-});
-
-// ── CPF MASK ───────────────────────────────────────────────
-function fmtCPF(v){v=v.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length<=3)return v;if(v.length<=6)return v.slice(0,3)+'.'+v.slice(3);if(v.length<=9)return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9,11);}
-document.getElementById('custDoc').addEventListener('input',e=>{e.target.value=fmtCPF(e.target.value);});
-
-// ── MODAL ──────────────────────────────────────────────────
+// ── MODAL ───────────────────────────────────────────────────
 document.getElementById('modalClose').onclick=()=>document.getElementById('modalOverlay').classList.remove('active');
 document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay'))document.getElementById('modalOverlay').classList.remove('active');});
 function openCheckout(amount,title,planKey=''){
@@ -456,7 +489,15 @@ function openCheckout(amount,title,planKey=''){
   document.getElementById('modalOverlay').classList.add('active');
 }
 
-// ── CHECKOUT ───────────────────────────────────────────────
+// ── CPF ─────────────────────────────────────────────────────
+function fmtCPF(v){v=v.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length<=3)return v;if(v.length<=6)return v.slice(0,3)+'.'+v.slice(3);if(v.length<=9)return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9,11);}
+document.getElementById('custDoc').addEventListener('input',e=>{e.target.value=fmtCPF(e.target.value);});
+document.getElementById('custEmail').addEventListener('input',function(){
+  const v=this.value,dl=document.getElementById('emailSuggestions');dl.innerHTML='';
+  if(v&&!v.includes('@')){const o=document.createElement('option');o.value=v+'@gmail.com';dl.appendChild(o);}
+});
+
+// ── CHECKOUT ────────────────────────────────────────────────
 async function processOrder(){
   const name=document.getElementById('custName').value.trim();
   const email=document.getElementById('custEmail').value.trim();
@@ -468,8 +509,7 @@ async function processOrder(){
   document.getElementById('errorBox').style.display='none';
   document.getElementById('formStep').style.display='none';
   document.getElementById('loadingStep').style.display='block';
-  // Registra pedido
-  await sb.from('pedidos').insert({name,email,cpf:doc,plan:currentOrder.title,plan_key:currentOrder.planKey,amount:(currentOrder.amount/100),status:'pending'});
+  await sbInsert('pedidos',{name,email,cpf:doc,plan:currentOrder.title,plan_key:currentOrder.planKey,amount:(currentOrder.amount/100),status:'pending'});
   const apiKey=BCAT_KEY||'sk_live_d34cb247f44c5759743402f875b0998dcd6004d51470a8cc8e73f54e2ecfd71a';
   try{
     const res=await fetch('https://api.blackcatpagamentos.online/api/sales/create-sale',{
@@ -493,19 +533,25 @@ async function processOrder(){
           setTimeout(()=>btn.textContent='📋 COPIAR CÓDIGO PIX',2500);
         });
       };
-      await sb.from('pedidos').update({status:'paid',pix_code:pix.copyPaste}).eq('email',email).eq('status','pending');
+      await sbUpdate('pedidos',{status:'paid',pix_code:pix.copyPaste},`email=eq.${encodeURIComponent(email)}&status=eq.pending`);
     }else{throw new Error(result.message||'Erro na API');}
   }catch(err){
     document.getElementById('loadingStep').style.display='none';
     document.getElementById('formStep').style.display='block';
     document.getElementById('errorBox').innerText='Erro ao gerar PIX: '+err.message;
     document.getElementById('errorBox').style.display='block';
-    await sb.from('pedidos').update({status:'failed'}).eq('email',email).eq('status','pending');
+    await sbUpdate('pedidos',{status:'failed'},`email=eq.${encodeURIComponent(email)}&status=eq.pending`);
   }
 }
 document.getElementById('generateBtn').onclick=processOrder;
 
-loadSite();
+// ── INIT — CARREGAMENTO PROGRESSIVO ─────────────────────────
+// Carrega perfil primeiro (aparece imediato), depois o resto em paralelo
+loadPerfil().then(()=>{
+  loadPosts(); // depende do perfil para mostrar avatar
+});
+loadPlanos();    // independente
+loadTextos();    // independente
 </script>
 </body>
 </html>
