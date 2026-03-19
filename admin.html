@@ -10,7 +10,7 @@
 :root{--bg:#0d0d0f;--surface:#16161a;--surface2:#1e1e24;--border:#2a2a32;--accent:#f97316;--accent2:#fb923c;--danger:#ef4444;--success:#22c55e;--text:#f0f0f4;--muted:#6b6b7a;--font-head:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;display:flex;}
-.sidebar{width:240px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;transition:transform .3s;}
+.sidebar{width:240px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;}
 .sidebar-logo{padding:28px 24px 20px;font-family:var(--font-head);font-size:18px;font-weight:800;letter-spacing:-.5px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
 .logo-dot{color:var(--accent);font-size:22px;}
 .sidebar-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:20px 24px 8px;}
@@ -19,7 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-hei
 .nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(249,115,22,.08);}
 .nav-item svg{width:18px;height:18px;flex-shrink:0;}
 .sidebar-bottom{margin-top:auto;padding:16px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
-.conn-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0;transition:background .3s;}
+.conn-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0;}
 .conn-dot.ok{background:var(--success);}
 .conn-dot.err{background:var(--danger);}
 .main{margin-left:240px;flex:1;padding:32px;min-height:100vh;}
@@ -30,6 +30,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-hei
 .btn{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:var(--font-body);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
 .btn-primary{background:var(--accent);color:#fff;}.btn-primary:hover{background:var(--accent2);}
 .btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border);}.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-danger{background:var(--danger);color:#fff;}
 .cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;}
 .stat-label{font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
@@ -45,10 +46,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-hei
 .field select option{background:var(--surface2);}
 .upload-zone{border:2px dashed var(--border);border-radius:12px;padding:32px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
 .upload-zone:hover{border-color:var(--accent);background:rgba(249,115,22,.04);}
-.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-top:14px;}
-.preview-item{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.preview-item{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;}
 .preview-item img,.preview-item video{width:100%;height:100%;object-fit:cover;}
+.preview-remove{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);border:none;border-radius:50%;width:22px;height:22px;color:#fff;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .table-wrap{overflow-x:auto;}
 table{width:100%;border-collapse:collapse;font-size:13px;}
 th{text-align:left;padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);}
@@ -79,7 +81,7 @@ tr:hover td{background:rgba(255,255,255,.02);}
 .banner-upload:hover{border-color:var(--accent);}
 .posts-list{display:flex;flex-direction:column;gap:10px;}
 .post-row{display:flex;align-items:center;gap:14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
-.post-thumb{width:48px;height:48px;border-radius:8px;background:var(--border);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.post-thumb{width:56px;height:56px;border-radius:8px;background:var(--border);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:22px;}
 .post-thumb img{width:100%;height:100%;object-fit:cover;}
 .post-info{flex:1;}
 .post-info-name{font-size:13px;font-weight:600;}
@@ -88,14 +90,18 @@ tr:hover td{background:rgba(255,255,255,.02);}
 .icon-btn:hover{color:var(--accent);border-color:var(--accent);}
 .icon-btn svg{width:15px;height:15px;display:block;}
 .sep{height:1px;background:var(--border);margin:20px 0;}
-.toast-notif{position:fixed;top:24px;right:24px;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;transform:translateY(-80px);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);z-index:9999;background:var(--success);color:#fff;}
+.toast-notif{position:fixed;top:24px;right:24px;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;transform:translateY(-80px);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);z-index:9999;background:var(--success);color:#fff;max-width:320px;}
 .toast-notif.err{background:var(--danger);}
 .toast-notif.show{transform:translateY(0);opacity:1;}
 .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:9998;flex-direction:column;gap:16px;font-size:15px;color:#fff;}
 .loading-overlay.show{display:flex;}
 .spinner-lg{width:48px;height:48px;border:3px solid rgba(255,255,255,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-@media(max-width:900px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.main{margin-left:0;padding:20px 16px;}.cards-grid{grid-template-columns:1fr 1fr;}.plans-grid{grid-template-columns:1fr;}.form-grid{grid-template-columns:1fr;}}
+.post-type-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.type-foto{background:rgba(249,115,22,.15);color:var(--accent);}
+.type-video{background:rgba(59,130,246,.15);color:#3b82f6;}
+.type-telegram{background:rgba(42,171,238,.15);color:#2AABEE;}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);}.main{margin-left:0;padding:20px 16px;}.cards-grid{grid-template-columns:1fr 1fr;}.plans-grid{grid-template-columns:1fr;}.form-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -133,6 +139,7 @@ tr:hover td{background:rgba(255,255,255,.02);}
 </nav>
 
 <main class="main">
+
   <!-- DASHBOARD -->
   <div class="page active" id="page-dashboard">
     <div class="topbar">
@@ -176,32 +183,76 @@ tr:hover td{background:rgba(255,255,255,.02);}
       <div><div class="page-title">Posts & Mídias</div><div class="page-sub">Gerencie o feed</div></div>
       <button class="btn btn-primary" onclick="toggleNewPostForm()">+ Novo Post</button>
     </div>
+
+    <!-- NOVO POST FORM -->
     <div class="card" id="new-post-form" style="display:none;">
       <div class="card-title">Novo Post</div>
-      <div class="upload-zone">
-        <input type="file" id="post-files" accept="image/*,video/*" multiple onchange="handlePostFiles(this)">
-        <div style="font-size:32px;margin-bottom:10px;">📁</div>
-        <div style="font-size:14px;color:var(--muted);"><strong style="color:var(--accent);">Clique ou arraste</strong> fotos e vídeos</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px;">JPG, PNG, MP4 · Máx 4MB por arquivo</div>
+
+      <!-- TIPO DE POST -->
+      <div class="field" style="margin-bottom:16px;">
+        <label>Tipo de post</label>
+        <select id="post-type" onchange="onPostTypeChange()" style="background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--text);font-family:var(--font-body);outline:none;">
+          <option value="foto">📷 Foto / Vídeo (bloqueado com cadeado)</option>
+          <option value="telegram">💬 Post com Link do Telegram</option>
+        </select>
       </div>
-      <div class="preview-grid" id="post-preview"></div>
-      <div class="sep"></div>
-      <div class="form-grid">
-        <div class="field"><label>Plano necessário para ver</label>
-          <select id="post-plan"><option value="all">Todos (grátis)</option><option value="1mes">1 Mês+</option><option value="3meses">3 Meses+</option><option value="vitalicio">Vitalício</option></select>
+
+      <!-- UPLOAD (só aparece para foto/video) -->
+      <div id="upload-area">
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="post-files" accept="image/*,video/*" multiple onchange="handlePostFiles(this)">
+          <div style="font-size:32px;margin-bottom:10px;">📁</div>
+          <div style="font-size:14px;color:var(--muted);"><strong style="color:var(--accent);">Clique ou arraste</strong> fotos e vídeos aqui</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:6px;">JPG, PNG, MP4 — a imagem ficará borrada/bloqueada no feed</div>
         </div>
-        <div class="field"><label>Tipo</label>
-          <select id="post-type"><option value="foto">Foto</option><option value="video">Vídeo</option><option value="album">Álbum</option></select>
+        <div class="preview-grid" id="post-preview"></div>
+        <div class="sep"></div>
+        <div class="form-grid">
+          <div class="field">
+            <label>Plano necessário para ver</label>
+            <select id="post-plan">
+              <option value="all">Todos (grátis)</option>
+              <option value="1mes">Plano 1 Mês+</option>
+              <option value="3meses">Plano 3 Meses+</option>
+              <option value="vitalicio">Vitalício</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Estilo do post bloqueado</label>
+            <select id="post-bg">
+              <option value="dark">🌑 Fundo escuro</option>
+              <option value="blur">🌫️ Imagem borrada</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div style="display:flex;gap:10px;margin-top:16px;">
-        <button class="btn btn-primary" onclick="savePost()">✓ Publicar</button>
+
+      <!-- TELEGRAM CONFIG (só aparece para telegram) -->
+      <div id="telegram-area" style="display:none;">
+        <div class="field">
+          <label>Link do Telegram</label>
+          <input type="text" id="post-telegram-link" placeholder="https://t.me/+...">
+        </div>
+        <div class="field" style="margin-top:12px;">
+          <label>Texto do botão</label>
+          <input type="text" id="post-telegram-text" value="Meu grupo de amostras grátis bb 👇😈">
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:18px;">
+        <button class="btn btn-primary" onclick="savePost()">✓ Publicar Post</button>
         <button class="btn btn-ghost" onclick="toggleNewPostForm()">Cancelar</button>
       </div>
     </div>
+
+    <!-- LISTA DE POSTS -->
     <div class="card">
-      <div class="card-title">Posts (<span id="posts-count">0</span>)</div>
-      <div class="posts-list" id="posts-list"><div style="text-align:center;padding:40px;color:var(--muted);">Carregando...</div></div>
+      <div class="card-title" style="justify-content:space-between;">
+        <span>Posts no Feed (<span id="posts-count">0</span>)</span>
+      </div>
+      <div class="posts-list" id="posts-list">
+        <div style="text-align:center;padding:40px;color:var(--muted);">Carregando...</div>
+      </div>
     </div>
   </div>
 
@@ -226,10 +277,7 @@ tr:hover td{background:rgba(255,255,255,.02);}
           <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;">Banner (Capa)</div>
           <div class="banner-upload" onclick="document.getElementById('banner-input').click()">
             <input type="file" id="banner-input" accept="image/*" onchange="handleBanner(this)" style="display:none">
-            <div id="banner-placeholder" style="text-align:center;color:var(--muted);">
-              <div style="font-size:24px;">🖼️</div>
-              <div style="font-size:11px;margin-top:4px;">Clique para upload</div>
-            </div>
+            <div id="banner-placeholder" style="text-align:center;color:var(--muted);"><div style="font-size:24px;">🖼️</div><div style="font-size:11px;margin-top:4px;">Clique para upload do banner</div></div>
             <img id="banner-preview" src="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:10px;">
           </div>
         </div>
@@ -275,8 +323,8 @@ Faça sua assinatura agora!</textarea>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">🔑 API Key · Blackcat Pagamentos</div>
-      <div class="field"><label>Chave de API (salva no Supabase, não no HTML)</label>
+      <div class="card-title">🔑 API Key · Blackcat</div>
+      <div class="field"><label>Chave (salva no Supabase, não no HTML)</label>
         <input type="password" id="api-key" placeholder="sk_live_...">
       </div>
       <button class="btn btn-primary" style="margin-top:12px;" onclick="saveApiKey()">✓ Salvar API Key</button>
@@ -289,10 +337,19 @@ Faça sua assinatura agora!</textarea>
       <div><div class="page-title">Textos do Site</div><div class="page-sub">Depoimentos, FAQ e confiança</div></div>
       <button class="btn btn-primary" onclick="saveTextos()">✓ Salvar Textos</button>
     </div>
+
+    <!-- POPUP DE COMPRADORES -->
+    <div class="card">
+      <div class="card-title">🔔 Popup "Homem que Comprou"</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;">Nomes que aparecem no popup de notificação de assinatura. Um aleatório é exibido a cada 30s.</div>
+      <div id="popup-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+      <button class="btn btn-ghost" style="margin-top:12px;" onclick="addPopup()">+ Adicionar nome</button>
+    </div>
+
     <div class="card">
       <div class="card-title">📢 Depoimentos</div>
       <div id="testi-list" style="display:flex;flex-direction:column;gap:10px;"></div>
-      <button class="btn btn-ghost" style="margin-top:12px;" onclick="addTesti()">+ Adicionar depoimento</button>
+      <button class="btn btn-ghost" style="margin-top:12px;" onclick="addTesti()">+ Adicionar</button>
     </div>
     <div class="card">
       <div class="card-title">❓ FAQ</div>
@@ -304,6 +361,7 @@ Faça sua assinatura agora!</textarea>
       <div id="trust-list" style="display:flex;flex-direction:column;gap:8px;"></div>
     </div>
   </div>
+
 </main>
 
 <div class="toast-notif" id="toast"></div>
@@ -313,134 +371,129 @@ Faça sua assinatura agora!</textarea>
 </div>
 
 <script>
-// ─── SUPABASE INIT ────────────────────────────────────────
 const SUPA_URL = 'https://paalarevbvupgjhlwgbb.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhYWxhcmV2YnZ1cGdqaGx3Z2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDU1NzksImV4cCI6MjA4OTUyMTU3OX0.PTB03Z7BAoKg5E7lm8Y1MNFIg-HL-xv1-xU_geyfqRI';
 const sb = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-let localPlanos = [], localTesti = [], localFaq = [], localTrust = [];
-let avatarB64 = null, bannerB64 = null, postFiles = [];
+let localPlanos=[], localTesti=[], localFaq=[], localTrust=[], localPopups=[];
+let avatarB64=null, bannerB64=null, postFiles=[];
 
-// ─── UTILS ───────────────────────────────────────────────
-function toast(msg, err=false) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = 'toast-notif' + (err ? ' err' : '');
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3200);
-}
-function loading(show, msg='Salvando...') {
-  document.getElementById('loading-msg').textContent = msg;
-  document.getElementById('loading-overlay').style.display = show ? 'flex' : 'none';
-}
-function fmt(d) { return d ? new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—'; }
-function p2i(s) { return Math.round(parseFloat((s||'0').replace(',','.'))*100); }
-function inputStyle() { return 'background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:var(--font-body);outline:none;'; }
+// ── UTILS ──────────────────────────────────────────────────
+function toast(msg,err=false){const el=document.getElementById('toast');el.textContent=msg;el.className='toast-notif'+(err?' err':'');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),3200);}
+function loading(show,msg='Salvando...'){document.getElementById('loading-msg').textContent=msg;document.getElementById('loading-overlay').style.display=show?'flex':'none';}
+function fmt(d){return d?new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';}
+function p2i(s){return Math.round(parseFloat((s||'0').replace(',','.'))*100);}
+function is_(s){return 'background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:var(--font-body);outline:none;';}
 
-// ─── CONFIG HELPERS ───────────────────────────────────────
-async function getConfig(key) {
-  const { data } = await sb.from('site_config').select('value').eq('key',key).single();
-  return data?.value ?? null;
-}
-async function setConfig(key, value) {
-  const { error } = await sb.from('site_config').upsert({ key, value, updated_at: new Date().toISOString() });
-  if (error) console.error('setConfig error:', key, error);
-  return !error;
+async function getConfig(key){const{data}=await sb.from('site_config').select('value').eq('key',key).single();return data?.value??null;}
+async function setConfig(key,value){const{error}=await sb.from('site_config').upsert({key,value,updated_at:new Date().toISOString()});if(error)console.error('setConfig',key,error);return!error;}
+
+// ── CONNECTION ─────────────────────────────────────────────
+async function checkConn(){
+  const{error}=await sb.from('site_config').select('key').limit(1);
+  const dot=document.getElementById('conn-dot'),s=document.getElementById('conn-status');
+  if(error){dot.className='conn-dot err';s.textContent='Erro de conexão';}
+  else{dot.className='conn-dot ok';s.textContent='Supabase conectado';}
 }
 
-// ─── CONNECTION ───────────────────────────────────────────
-async function checkConn() {
-  const { error } = await sb.from('site_config').select('key').limit(1);
-  const dot = document.getElementById('conn-dot');
-  const status = document.getElementById('conn-status');
-  if (error) { dot.className='conn-dot err'; status.textContent='Erro de conexão'; }
-  else { dot.className='conn-dot ok'; status.textContent='Supabase conectado'; }
-}
-
-// ─── NAVIGATION ──────────────────────────────────────────
-function showPage(id, btn) {
+// ── NAV ────────────────────────────────────────────────────
+function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  if(btn) btn.classList.add('active');
-  const fns = {dashboard:loadDashboard,pedidos:loadPedidos,posts:loadPosts,perfil:loadPerfil,planos:loadPlanos,textos:loadTextos};
-  if(fns[id]) fns[id]();
+  if(btn)btn.classList.add('active');
+  ({dashboard:loadDashboard,pedidos:loadPedidos,posts:loadPosts,perfil:loadPerfil,planos:loadPlanos,textos:loadTextos})[id]?.();
 }
 
-// ─── DASHBOARD ───────────────────────────────────────────
-async function loadDashboard() {
-  loading(true,'Carregando dados...');
-  const hoje = new Date(); hoje.setHours(0,0,0,0);
-  const [{ data: ped }, { data: postsData }, { data: pagos }] = await Promise.all([
+// ── DASHBOARD ──────────────────────────────────────────────
+async function loadDashboard(){
+  loading(true,'Carregando...');
+  const hoje=new Date();hoje.setHours(0,0,0,0);
+  const[{data:ped},{data:pos},{data:pagos}]=await Promise.all([
     sb.from('pedidos').select('*').order('created_at',{ascending:false}),
-    sb.from('posts').select('id').eq('ativo',true),
-    sb.from('pedidos').select('valor').eq('status','paid')
+    sb.from('posts').select('id').eq('active',true),
+    sb.from('pedidos').select('amount').eq('status','paid')
   ]);
   loading(false);
-  const hojeN = (ped||[]).filter(p=>new Date(p.created_at)>=hoje).length;
-  const rec = (pagos||[]).reduce((s,p)=>s+(parseFloat(p.valor)||0),0);
-  document.getElementById('stat-total').textContent = (ped||[]).filter(p=>p.status==='paid').length;
-  document.getElementById('stat-receita').textContent = 'R$ '+rec.toFixed(2).replace('.',',');
-  document.getElementById('stat-hoje').textContent = hojeN;
-  document.getElementById('stat-posts').textContent = (postsData||[]).length;
+  const rec=(pagos||[]).reduce((s,p)=>s+(parseFloat(p.amount)||0),0);
+  document.getElementById('stat-total').textContent=(ped||[]).filter(p=>p.status==='paid').length;
+  document.getElementById('stat-receita').textContent='R$ '+rec.toFixed(2).replace('.',',');
+  document.getElementById('stat-hoje').textContent=(ped||[]).filter(p=>new Date(p.created_at)>=hoje).length;
+  document.getElementById('stat-posts').textContent=(pos||[]).length;
   renderTable('dash-table',(ped||[]).slice(0,8));
 }
 
-function renderTable(elId, orders) {
-  const el = document.getElementById(elId);
-  if (!orders.length) { el.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);">Nenhum pedido ainda.</div>'; return; }
+function renderTable(elId,orders){
+  const el=document.getElementById(elId);
+  if(!orders.length){el.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);">Nenhum pedido ainda.</div>';return;}
   el.innerHTML=`<table><thead><tr><th>Nome</th><th>Plano</th><th>Valor</th><th>Status</th><th>Data</th></tr></thead><tbody>
     ${orders.map(o=>`<tr>
-      <td><strong>${o.nome||'—'}</strong><br><span style="color:var(--muted);font-size:11px;">${o.email||''}</span></td>
-      <td>${o.plano||'—'}</td>
-      <td style="color:var(--accent);font-weight:700;">R$ ${(parseFloat(o.valor)||0).toFixed(2).replace('.',',')}</td>
+      <td><strong>${o.name||o.nome||'—'}</strong><br><span style="color:var(--muted);font-size:11px;">${o.email||''}</span></td>
+      <td>${o.plan||o.plano||'—'}</td>
+      <td style="color:var(--accent);font-weight:700;">R$ ${(parseFloat(o.amount||o.valor)||0).toFixed(2).replace('.',',')}</td>
       <td>${o.status==='paid'?'<span class="badge badge-green">✓ Pago</span>':o.status==='pending'?'<span class="badge badge-yellow">⏳ Pendente</span>':'<span class="badge badge-red">✗ Falhou</span>'}</td>
       <td style="color:var(--muted);">${fmt(o.created_at)}</td>
     </tr>`).join('')}
   </tbody></table>`;
 }
 
-// ─── PEDIDOS ─────────────────────────────────────────────
-async function loadPedidos() {
-  let q = sb.from('pedidos').select('*').order('created_at',{ascending:false});
-  const fs = document.getElementById('filter-status').value;
-  if(fs) q=q.eq('status',fs);
-  const { data } = await q;
-  renderTable('pedidos-table', data||[]);
+// ── PEDIDOS ────────────────────────────────────────────────
+async function loadPedidos(){
+  let q=sb.from('pedidos').select('*').order('created_at',{ascending:false});
+  const fs=document.getElementById('filter-status').value;
+  if(fs)q=q.eq('status',fs);
+  const{data}=await q;
+  renderTable('pedidos-table',data||[]);
 }
-async function exportCSV() {
-  const { data } = await sb.from('pedidos').select('*').order('created_at',{ascending:false});
+async function exportCSV(){
+  const{data}=await sb.from('pedidos').select('*').order('created_at',{ascending:false});
   if(!data?.length){toast('Nenhum pedido',true);return;}
   const rows=[['Nome','Email','CPF','Plano','Valor','Status','Data']];
-  data.forEach(o=>rows.push([o.nome||'',o.email||'',o.cpf||'',o.plano||'',o.valor||'',o.status||'',fmt(o.created_at)]));
+  data.forEach(o=>rows.push([o.name||o.nome||'',o.email||'',o.cpf||'',o.plan||o.plano||'',o.amount||o.valor||'',o.status||'',fmt(o.created_at)]));
   const csv=rows.map(r=>r.map(c=>`"${c}"`).join(',')).join('\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='pedidos.csv';a.click();
   toast('⬇ CSV exportado!');
 }
 
-// ─── POSTS ───────────────────────────────────────────────
-function toggleNewPostForm() {
+// ── POSTS ──────────────────────────────────────────────────
+function toggleNewPostForm(){
   const f=document.getElementById('new-post-form');
   f.style.display=f.style.display==='none'?'block':'none';
+  if(f.style.display==='block'){postFiles=[];document.getElementById('post-preview').innerHTML='';document.getElementById('post-files').value='';}
 }
-async function loadPosts() {
-  const { data } = await sb.from('posts').select('*').order('created_at',{ascending:false});
+
+function onPostTypeChange(){
+  const type=document.getElementById('post-type').value;
+  document.getElementById('upload-area').style.display=type==='telegram'?'none':'block';
+  document.getElementById('telegram-area').style.display=type==='telegram'?'block':'none';
+}
+
+async function loadPosts(){
+  const{data,error}=await sb.from('posts').select('*').order('created_at',{ascending:false});
+  if(error){toast('Erro ao carregar posts: '+error.message,true);return;}
   const list=document.getElementById('posts-list');
   document.getElementById('posts-count').textContent=(data||[]).length;
-  if(!data?.length){list.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);">Nenhum post ainda.</div>';return;}
-  list.innerHTML=data.map(p=>`
-    <div class="post-row">
-      <div class="post-thumb">${p.thumb_url?`<img src="${p.thumb_url}">`:(p.tipo==='video'?'🎬':'🖼️')}</div>
+  if(!data?.length){list.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);">Nenhum post ainda. Clique em "+ Novo Post" para adicionar.</div>';return;}
+  list.innerHTML=data.map(p=>{
+    const isTg=p.type==='telegram';
+    const thumb=p.thumb_url?`<img src="${p.thumb_url}" alt="">`:(isTg?'💬':(p.type==='video'?'🎬':'🖼️'));
+    const typeBadge=isTg?'<span class="post-type-badge type-telegram">Telegram</span>':(p.type==='video'?'<span class="post-type-badge type-video">Vídeo</span>':'<span class="post-type-badge type-foto">Foto</span>');
+    return`<div class="post-row">
+      <div class="post-thumb">${thumb}</div>
       <div class="post-info">
-        <div class="post-info-name">${p.tipo||'foto'} · Plano: ${p.plano_necessario||'all'}</div>
-        <div class="post-info-meta">${fmt(p.created_at)} · ❤️ ${p.likes||0} · 💬 ${p.comentarios||0}</div>
+        <div class="post-info-name">${typeBadge} · Plano: ${p.plan_required||'all'}</div>
+        <div class="post-info-meta">${fmt(p.created_at)} · ❤️ ${p.likes||0} · 💬 ${p.comments||0}${p.telegram_link?` · <a href="${p.telegram_link}" target="_blank" style="color:var(--accent);">Ver link</a>`:''}</div>
       </div>
-      <button class="icon-btn" title="Excluir" onclick="deletePost('${p.id}')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-      </button>
-    </div>`).join('');
+      <div style="display:flex;gap:8px;">
+        <button class="icon-btn" title="Excluir" onclick="deletePost('${p.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+        </button>
+      </div>
+    </div>`;
+  }).join('');
 }
-function handlePostFiles(input) {
+
+function handlePostFiles(input){
   postFiles=[];
   const preview=document.getElementById('post-preview');preview.innerHTML='';
   Array.from(input.files).forEach(file=>{
@@ -448,39 +501,57 @@ function handlePostFiles(input) {
     reader.onload=e=>{
       postFiles.push({name:file.name,data:e.target.result,type:file.type});
       const d=document.createElement('div');d.className='preview-item';
-      d.innerHTML=file.type.startsWith('video/')?`<video src="${e.target.result}"></video>`:`<img src="${e.target.result}">`;
+      d.innerHTML=(file.type.startsWith('video/')?`<video src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;"></video>`:`<img src="${e.target.result}" alt="">`);
       preview.appendChild(d);
     };
     reader.readAsDataURL(file);
   });
 }
-async function savePost() {
+
+async function savePost(){
+  const type=document.getElementById('post-type').value;
   loading(true,'Publicando post...');
-  const { error } = await sb.from('posts').insert({
-    tipo:document.getElementById('post-type').value,
-    plano_necessario:document.getElementById('post-plan').value,
-    thumb_url:postFiles.length?postFiles[0].data:null,
+
+  let insertData={
+    type,
+    active:true,
     likes:Math.floor(Math.random()*500)+100,
-    comentarios:Math.floor(Math.random()*80)+10,
-    ativo:true
-  });
+    comments:Math.floor(Math.random()*80)+10,
+  };
+
+  if(type==='telegram'){
+    const link=document.getElementById('post-telegram-link').value.trim();
+    const text=document.getElementById('post-telegram-text').value.trim();
+    if(!link){loading(false);toast('Insira o link do Telegram',true);return;}
+    insertData.telegram_link=link;
+    insertData.telegram_text=text;
+    insertData.plan_required='all';
+  } else {
+    if(!postFiles.length){loading(false);toast('Selecione pelo menos uma imagem ou vídeo',true);return;}
+    insertData.thumb_url=postFiles[0].data;
+    insertData.plan_required=document.getElementById('post-plan').value;
+    insertData.post_bg=document.getElementById('post-bg').value;
+  }
+
+  const{error}=await sb.from('posts').insert(insertData);
   loading(false);
   if(error){toast('Erro: '+error.message,true);return;}
   toggleNewPostForm();
-  postFiles=[];document.getElementById('post-preview').innerHTML='';
-  document.getElementById('post-files').value='';
+  postFiles=[];
   toast('✓ Post publicado!');
   loadPosts();
 }
-async function deletePost(id) {
+
+async function deletePost(id){
   if(!confirm('Excluir este post?'))return;
-  await sb.from('posts').delete().eq('id',id);
+  const{error}=await sb.from('posts').delete().eq('id',id);
+  if(error){toast('Erro ao excluir: '+error.message,true);return;}
   toast('🗑 Post excluído');
   loadPosts();
 }
 
-// ─── PERFIL ──────────────────────────────────────────────
-async function loadPerfil() {
+// ── PERFIL ─────────────────────────────────────────────────
+async function loadPerfil(){
   loading(true,'Carregando perfil...');
   const data=await getConfig('perfil');
   loading(false);
@@ -493,60 +564,39 @@ async function loadPerfil() {
   if(data.avatar){avatarB64=data.avatar;showImg('avatar-preview','avatar-placeholder',data.avatar);}
   if(data.banner){bannerB64=data.banner;showImg('banner-preview','banner-placeholder',data.banner);}
 }
-function showImg(previewId, placeholderId, src) {
-  const prev=document.getElementById(previewId);
-  const plac=document.getElementById(placeholderId);
-  prev.src=src;prev.style.display='block';plac.style.display='none';
-}
-function handleAvatar(input) {
-  const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{avatarB64=e.target.result;showImg('avatar-preview','avatar-placeholder',e.target.result);};
-  reader.readAsDataURL(file);
-}
-function handleBanner(input) {
-  const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{bannerB64=e.target.result;showImg('banner-preview','banner-placeholder',e.target.result);};
-  reader.readAsDataURL(file);
-}
-async function savePerfil() {
+function showImg(pid,plid,src){const p=document.getElementById(pid),pl=document.getElementById(plid);p.src=src;p.style.display='block';pl.style.display='none';}
+function handleAvatar(input){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{avatarB64=e.target.result;showImg('avatar-preview','avatar-placeholder',e.target.result);};r.readAsDataURL(f);}
+function handleBanner(input){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{bannerB64=e.target.result;showImg('banner-preview','banner-placeholder',e.target.result);};r.readAsDataURL(f);}
+async function savePerfil(){
   loading(true,'Salvando perfil...');
-  const perfil={
+  const ok=await setConfig('perfil',{
     name:document.getElementById('profile-name').value,
     handle:document.getElementById('profile-handle').value,
     bio:document.getElementById('profile-bio').value,
     telegram:document.getElementById('profile-telegram').value,
     live:document.getElementById('profile-live').value==='true',
-    avatar:avatarB64||null,
-    banner:bannerB64||null,
-  };
-  const ok=await setConfig('perfil',perfil);
+    avatar:avatarB64||null,banner:bannerB64||null,
+  });
   loading(false);
-  ok?toast('✓ Perfil salvo! Site atualizado em tempo real.'):toast('Erro ao salvar',true);
+  ok?toast('✓ Perfil salvo! Site atualizado.'):toast('Erro ao salvar',true);
 }
 
-// ─── PLANOS ──────────────────────────────────────────────
-async function loadPlanos() {
-  loading(true,'Carregando planos...');
-  const [planos,combo,apikey]=await Promise.all([getConfig('planos'),getConfig('combo'),getConfig('apikey_blackcat')]);
+// ── PLANOS ─────────────────────────────────────────────────
+async function loadPlanos(){
+  loading(true,'Carregando...');
+  const[planos,combo,apikey]=await Promise.all([getConfig('planos'),getConfig('combo'),getConfig('apikey_blackcat')]);
   loading(false);
-  localPlanos=planos||[];
-  renderPlanos();
-  if(combo){
-    document.getElementById('combo-text').value=combo.texto||'';
-    document.getElementById('combo-price').value=combo.preco||'';
-    document.getElementById('combo-show').value=combo.mostrar?'true':'false';
-  }
-  if(apikey) document.getElementById('api-key').value=apikey;
+  localPlanos=planos||[];renderPlanos();
+  if(combo){document.getElementById('combo-text').value=combo.texto||'';document.getElementById('combo-price').value=combo.preco||'';document.getElementById('combo-show').value=combo.mostrar?'true':'false';}
+  if(apikey)document.getElementById('api-key').value=apikey;
 }
-function renderPlanos() {
+function renderPlanos(){
   const grid=document.getElementById('plans-grid');
-  if(!localPlanos.length){grid.innerHTML='<div style="color:var(--muted);padding:40px;grid-column:1/-1;text-align:center;">Carregando...</div>';return;}
+  if(!localPlanos.length){grid.innerHTML='<div style="color:var(--muted);padding:40px;grid-column:1/-1;text-align:center;">Sem planos</div>';return;}
   const labels=['Principal','Promoção','Melhor Oferta'];
   grid.innerHTML=localPlanos.map((p,i)=>`
-    <div class="plan-card ${p.ativo?'active-plan':''}" id="plan-card-${i}">
-      <div class="plan-toggle"><label class="toggle"><input type="checkbox" ${p.ativo?'checked':''} onchange="localPlanos[${i}].ativo=this.checked;document.getElementById('plan-card-${i}').className='plan-card '+(this.checked?'active-plan':'')"><span class="toggle-slider"></span></label></div>
+    <div class="plan-card ${p.ativo||p.active?'active-plan':''}" id="pcard-${i}">
+      <div class="plan-toggle"><label class="toggle"><input type="checkbox" ${(p.ativo||p.active)?'checked':''} onchange="localPlanos[${i}].ativo=this.checked;document.getElementById('pcard-${i}').className='plan-card '+(this.checked?'active-plan':'')"><span class="toggle-slider"></span></label></div>
       <div style="font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">${labels[i]||''}</div>
       <input class="plan-name-input" value="${p.nome||p.name||''}" oninput="localPlanos[${i}].nome=this.value" placeholder="Nome do plano">
       <input class="plan-price-input" value="${p.preco||p.price||''}" oninput="localPlanos[${i}].preco=this.value" placeholder="0,00">
@@ -557,51 +607,64 @@ function renderPlanos() {
       </div>
       <div style="margin-top:12px;">
         <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;">Badge</div>
-        <input type="text" value="${p.badge||''}" oninput="localPlanos[${i}].badge=this.value" style="${inputStyle()}width:100%;font-size:13px;">
+        <input type="text" value="${p.badge||''}" oninput="localPlanos[${i}].badge=this.value" style="${is_()}width:100%;font-size:13px;">
       </div>
     </div>`).join('');
 }
-async function savePlanos() {
+async function savePlanos(){
   loading(true,'Salvando planos...');
-  const combo={
-    texto:document.getElementById('combo-text').value,
-    preco:document.getElementById('combo-price').value,
-    mostrar:document.getElementById('combo-show').value==='true'
-  };
-  const [ok1,ok2]=await Promise.all([setConfig('planos',localPlanos),setConfig('combo',combo)]);
+  const combo={texto:document.getElementById('combo-text').value,preco:document.getElementById('combo-price').value,mostrar:document.getElementById('combo-show').value==='true'};
+  const[ok1,ok2]=await Promise.all([setConfig('planos',localPlanos),setConfig('combo',combo)]);
   loading(false);
   (ok1&&ok2)?toast('✓ Planos salvos! Site atualizado na hora.'):toast('Erro ao salvar',true);
 }
-async function saveApiKey() {
+async function saveApiKey(){
   const key=document.getElementById('api-key').value.trim();
   if(!key){toast('Insira a API key',true);return;}
-  loading(true);
-  const ok=await setConfig('apikey_blackcat',key);
-  loading(false);
-  ok?toast('✓ API Key salva com segurança!'):toast('Erro',true);
+  loading(true);const ok=await setConfig('apikey_blackcat',key);loading(false);
+  ok?toast('✓ API Key salva!'):toast('Erro',true);
 }
 
-// ─── TEXTOS ──────────────────────────────────────────────
-async function loadTextos() {
+// ── TEXTOS ─────────────────────────────────────────────────
+async function loadTextos(){
   loading(true,'Carregando textos...');
-  const [t,f,tr]=await Promise.all([getConfig('testemunhos'),getConfig('faq'),getConfig('trust')]);
+  const[t,f,tr,pop]=await Promise.all([getConfig('testemunhos'),getConfig('faq'),getConfig('trust'),getConfig('popups')]);
   loading(false);
   localTesti=t||[];localFaq=f||[];localTrust=tr||[];
+  localPopups=pop||[
+    {nome:'João H., 32 anos',plano:'Plano Mensal'},
+    {nome:'Carlos S., 45 anos',plano:'Acesso Vitalício'},
+    {nome:'Marcos R., 28 anos',plano:'3 Meses'},
+    {nome:'Fernando M., 51 anos',plano:'Todos os Combos'},
+    {nome:'Rafael T., 38 anos',plano:'Plano Mensal'},
+  ];
   renderTextos();
 }
-function renderTextos() {
-  const is=inputStyle();
+function renderTextos(){
+  const is=is_();
+  // Popups
+  document.getElementById('popup-list').innerHTML=localPopups.map((p,i)=>`
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <input type="text" value="${(p.nome||'').replace(/"/g,'&quot;')}" oninput="localPopups[${i}].nome=this.value" placeholder="Ex: João H., 32 anos" style="${is}">
+        <input type="text" value="${(p.plano||'').replace(/"/g,'&quot;')}" oninput="localPopups[${i}].plano=this.value" placeholder="Ex: Plano Mensal" style="${is}">
+      </div>
+      <button class="icon-btn" onclick="localPopups.splice(${i},1);renderTextos()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>`).join('');
+  // Testemunhos
   document.getElementById('testi-list').innerHTML=localTesti.map((t,i)=>`
     <div style="display:flex;gap:8px;align-items:center;">
       <div style="flex:1;display:grid;grid-template-columns:1fr 2fr;gap:8px;">
-        <input type="text" value="${(t.nome||'').replace(/"/g,'&quot;')}" oninput="localTesti[${i}].nome=this.value" placeholder="Nome" style="${is}">
-        <input type="text" value="${(t.texto||'').replace(/"/g,'&quot;')}" oninput="localTesti[${i}].texto=this.value" placeholder="Depoimento" style="${is}">
+        <input type="text" value="${(t.nome||t.name||'').replace(/"/g,'&quot;')}" oninput="localTesti[${i}].nome=this.value" placeholder="Nome" style="${is}">
+        <input type="text" value="${(t.texto||t.text||'').replace(/"/g,'&quot;')}" oninput="localTesti[${i}].texto=this.value" placeholder="Depoimento" style="${is}">
       </div>
       <button class="icon-btn" onclick="localTesti.splice(${i},1);renderTextos()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>`).join('');
-
+  // FAQ
   document.getElementById('faq-list').innerHTML=localFaq.map((f,i)=>`
     <div style="display:flex;gap:8px;align-items:flex-start;">
       <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
@@ -612,22 +675,26 @@ function renderTextos() {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>`).join('');
-
+  // Trust
   document.getElementById('trust-list').innerHTML=localTrust.map((t,i)=>`
     <div style="display:flex;gap:8px;">
       <input type="text" value="${(t||'').replace(/"/g,'&quot;')}" oninput="localTrust[${i}]=this.value" style="${is}flex:1;">
     </div>`).join('');
 }
+function addPopup(){localPopups.push({nome:'Novo usuário, 30 anos',plano:'Plano Mensal'});renderTextos();}
 function addTesti(){localTesti.push({nome:'Novo usuário',texto:'Excelente conteúdo!'});renderTextos();}
 function addFaq(){localFaq.push({q:'Nova pergunta?',a:'Resposta.'});renderTextos();}
-async function saveTextos() {
+async function saveTextos(){
   loading(true,'Salvando textos...');
-  const [ok1,ok2,ok3]=await Promise.all([setConfig('testemunhos',localTesti),setConfig('faq',localFaq),setConfig('trust',localTrust)]);
+  const[ok1,ok2,ok3,ok4]=await Promise.all([
+    setConfig('testemunhos',localTesti),setConfig('faq',localFaq),
+    setConfig('trust',localTrust),setConfig('popups',localPopups)
+  ]);
   loading(false);
-  (ok1&&ok2&&ok3)?toast('✓ Textos salvos! Site atualizado.'):toast('Erro ao salvar',true);
+  (ok1&&ok2&&ok3&&ok4)?toast('✓ Textos e popups salvos!'):toast('Erro ao salvar',true);
 }
 
-// ─── INIT ────────────────────────────────────────────────
+// ── INIT ───────────────────────────────────────────────────
 checkConn();
 loadDashboard();
 </script>
