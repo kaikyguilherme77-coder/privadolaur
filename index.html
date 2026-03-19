@@ -68,7 +68,7 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .post-menu-btn{background:none;border:none;cursor:pointer;color:#888;padding:4px;}
 .post-menu-btn svg{width:16px;height:16px;}
 .post-body{position:relative;border-radius:12px;overflow:hidden;background:#e8e8e8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.post-body-img{width:100%;height:100%;object-fit:cover;filter:blur(12px);transform:scale(1.05);}
+.post-body-img{width:100%;height:100%;object-fit:cover;filter:blur(14px);transform:scale(1.08);}
 .post-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
 .lock-circle{width:52px;height:52px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);}
 .lock-circle svg{width:24px;height:24px;color:#888;}
@@ -80,7 +80,6 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .combos-section{background:#fff;margin-top:8px;padding:16px;}
 .combos-btn{width:100%;background:#f97316;color:#fff;border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:space-between;letter-spacing:.5px;transition:background .2s;font-family:'Inter',sans-serif;}
 .combos-btn:hover{background:#ea6c0a;}
-.combos-btn svg{width:24px;height:24px;}
 .testi-section{background:#fff;margin-top:8px;padding:16px;}
 .section-title{font-size:17px;font-weight:700;margin-bottom:14px;text-align:center;}
 .testi-scroll{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;}
@@ -100,8 +99,14 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13px;color:#555;line-height:1.7;}
 .faq-item.open .faq-a{max-height:200px;}
 .faq-a-inner{padding:0 16px 14px;}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#fff;color:#1a1a1a;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:500;z-index:999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.15);border:1px solid #f0f0f0;}
-.toast.show{transform:translateX(-50%) translateY(0);}
+/* TOAST POPUP */
+.toast-popup{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#fff;color:#1a1a1a;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:500;z-index:999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.15);border:1px solid #f0f0f0;display:flex;align-items:center;gap:10px;max-width:90vw;}
+.toast-popup.show{transform:translateX(-50%) translateY(0);}
+.toast-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0;}
+.toast-info{display:flex;flex-direction:column;}
+.toast-name{font-size:12px;font-weight:700;}
+.toast-action{font-size:11px;color:#888;}
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;align-items:flex-end;z-index:1000;backdrop-filter:blur(4px);}
 .modal-overlay.active{display:flex;}
 .modal{background:#fff;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;position:relative;animation:slide-up .35s cubic-bezier(.34,1.2,.64,1);}
@@ -134,7 +139,7 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:4
 .like-btn.liked svg{fill:#e11d48;stroke:#e11d48;transform:scale(1.2);}
 .like-btn svg{transition:fill .2s,stroke .2s,transform .15s;}
 footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;margin-top:8px;border-top:1px solid #f0f0f0;}
-.skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+.skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 </head>
@@ -147,7 +152,6 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </div>
 </div>
 
-<!-- BANNER -->
 <div class="banner-wrap" id="banner-wrap">
   <div class="banner-overlay"></div>
   <div class="banner-stats">
@@ -157,7 +161,6 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </div>
 </div>
 
-<!-- PROFILE -->
 <div class="profile-section">
   <div class="avatar-row">
     <div class="avatar-wrap">
@@ -179,80 +182,22 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </div>
 </div>
 
-<!-- SUBSCRIBE -->
 <div class="subscribe-section">
   <div class="subscribe-title">Assine agora:</div>
-  <div id="plans-container"><div style="height:60px;" class="skeleton"></div></div>
+  <div id="plans-container"><div style="height:60px;border-radius:10px;" class="skeleton"></div></div>
 </div>
 
-<!-- TABS + FEED -->
 <div class="tabs-section">
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this)">93 postagens</button>
     <button class="tab" onclick="switchTab(this)">166 mídias</button>
   </div>
   <div class="feed" id="feed-container">
-    <!-- Posts dinâmicos -->
-    <div class="post-item">
-      <div class="post-header">
-        <div class="post-user">
-          <div class="post-avatar" id="post-avatar-1"><span id="post-letter-1">L</span></div>
-          <div><div class="post-username" id="post-name-1">Carregando...</div><div class="post-handle" id="post-handle-1">@...</div></div>
-        </div>
-        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
-      </div>
-      <div class="post-body" id="post-body-1">
-        <div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
-      </div>
-      <div class="post-footer">
-        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>574</span></button>
-        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>78</button>
-        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
-      </div>
-    </div>
-
-    <!-- POST TELEGRAM -->
-    <div class="post-item">
-      <div class="post-header">
-        <div class="post-user">
-          <div class="post-avatar" id="post-avatar-tg"><span id="post-letter-tg">L</span></div>
-          <div><div class="post-username" id="post-name-tg">Carregando...</div><div class="post-handle" id="post-handle-tg">@...</div></div>
-        </div>
-        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
-      </div>
-      <a id="telegram-link" href="#" target="_blank" style="display:block;text-decoration:none;">
-        <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:14px;padding:22px 18px;border:1.5px solid #f9a8d4;text-align:center;cursor:pointer;">
-          <div style="font-size:34px;margin-bottom:10px;">😈</div>
-          <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">Meu grupo de amostras grátis bb 👇😈</div>
-          <div style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;padding:11px 24px;border-radius:30px;font-size:13px;font-weight:700;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
-            Entrar no grupo grátis
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="post-item">
-      <div class="post-header">
-        <div class="post-user">
-          <div class="post-avatar" id="post-avatar-2"><span id="post-letter-2">L</span></div>
-          <div><div class="post-username" id="post-name-2">Carregando...</div><div class="post-handle" id="post-handle-2">@...</div></div>
-        </div>
-        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
-      </div>
-      <div class="post-body" style="background:#2a1810;" id="post-body-2">
-        <div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
-      </div>
-      <div class="post-footer">
-        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>312</span></button>
-        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>45</button>
-        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
-      </div>
-    </div>
+    <div style="height:200px;margin:12px 16px;border-radius:12px;" class="skeleton"></div>
+    <div style="height:200px;margin:12px 16px;border-radius:12px;" class="skeleton"></div>
   </div>
 </div>
 
-<!-- COMBOS -->
 <div class="combos-section" id="combos-section" style="display:none;">
   <button class="combos-btn" id="combos-btn">
     <span id="combos-text">QUERO TODOS OS COMBOS</span>
@@ -260,20 +205,17 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </button>
 </div>
 
-<!-- TESTIMONIALS -->
 <div class="testi-section">
   <div class="section-title">📢 O que estão dizendo...</div>
   <div class="testi-scroll" id="testi-container">
-    <div style="width:200px;height:100px;" class="skeleton"></div>
-    <div style="width:200px;height:100px;" class="skeleton"></div>
-    <div style="width:200px;height:100px;" class="skeleton"></div>
+    <div style="width:200px;height:110px;flex-shrink:0;border-radius:12px;" class="skeleton"></div>
+    <div style="width:200px;height:110px;flex-shrink:0;border-radius:12px;" class="skeleton"></div>
+    <div style="width:200px;height:110px;flex-shrink:0;border-radius:12px;" class="skeleton"></div>
   </div>
 </div>
 
-<!-- TRUST -->
 <div class="trust-section" id="trust-container"></div>
 
-<!-- FAQ -->
 <div class="faq-section">
   <div class="section-title" style="text-align:left;">Perguntas Frequentes</div>
   <div id="faq-container"></div>
@@ -281,8 +223,14 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
 
 <footer id="footer">© 2025 Privacy · Carregando...</footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<!-- POPUP TOAST -->
+<div class="toast-popup" id="toast-popup">
+  <div class="toast-avatar" id="popup-avatar">J</div>
+  <div class="toast-info">
+    <div class="toast-name" id="popup-name">João H.</div>
+    <div class="toast-action" id="popup-action">acabou de assinar o Plano Mensal! 🔥</div>
+  </div>
+</div>
 
 <!-- MODAL CHECKOUT -->
 <div class="modal-overlay" id="modalOverlay">
@@ -312,74 +260,48 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
 </div>
 
 <script>
-// ─── SUPABASE ─────────────────────────────────────────────
-const SUPA_URL = 'https://paalarevbvupgjhlwgbb.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhYWxhcmV2YnZ1cGdqaGx3Z2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDU1NzksImV4cCI6MjA4OTUyMTU3OX0.PTB03Z7BAoKg5E7lm8Y1MNFIg-HL-xv1-xU_geyfqRI';
-const sb = supabase.createClient(SUPA_URL, SUPA_KEY);
+const SUPA_URL='https://paalarevbvupgjhlwgbb.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhYWxhcmV2YnZ1cGdqaGx3Z2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDU1NzksImV4cCI6MjA4OTUyMTU3OX0.PTB03Z7BAoKg5E7lm8Y1MNFIg-HL-xv1-xU_geyfqRI';
+const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
-let BLACKCAT_KEY = '';
-let currentOrder = { amount:0, title:'', planKey:'' };
+let BCAT_KEY='',currentOrder={amount:0,title:'',planKey:''};
+let popupList=[];
 
-async function getConfig(key) {
-  const { data } = await sb.from('site_config').select('value').eq('key',key).single();
-  return data?.value ?? null;
-}
+async function getConfig(key){const{data}=await sb.from('site_config').select('value').eq('key',key).single();return data?.value??null;}
+function p2i(s){return Math.round(parseFloat((s||'0').replace(',','.'))*100);}
 
-function p2i(s) { return Math.round(parseFloat((s||'0').replace(',','.'))*100); }
-
-// ─── LOAD ALL DATA ────────────────────────────────────────
-async function loadSite() {
-  const [perfil, planos, combo, testi, faq, trust, apikey] = await Promise.all([
-    getConfig('perfil'), getConfig('planos'), getConfig('combo'),
-    getConfig('testemunhos'), getConfig('faq'), getConfig('trust'),
-    getConfig('apikey_blackcat')
+// ── LOAD ────────────────────────────────────────────────────
+async function loadSite(){
+  const[perfil,planos,combo,testi,faq,trust,apikey,posts,popups]=await Promise.all([
+    getConfig('perfil'),getConfig('planos'),getConfig('combo'),
+    getConfig('testemunhos'),getConfig('faq'),getConfig('trust'),
+    getConfig('apikey_blackcat'),
+    sb.from('posts').select('*').eq('active',true).order('created_at',{ascending:false}),
+    getConfig('popups')
   ]);
 
-  BLACKCAT_KEY = apikey || '';
+  BCAT_KEY=apikey||'';
+  popupList=popups||[{nome:'João H., 32 anos',plano:'Plano Mensal'},{nome:'Carlos S., 45 anos',plano:'Acesso Vitalício'}];
 
   // PERFIL
-  if (perfil) {
-    document.title = `Privacy | ${perfil.name||''}`;
-    document.getElementById('profile-name').textContent = perfil.name || '';
-    document.getElementById('profile-handle').textContent = perfil.handle || '';
-    document.getElementById('profile-bio').innerHTML = (perfil.bio||'').replace(/\n/g,'<br>');
-    document.getElementById('footer').textContent = `© 2025 Privacy · ${perfil.name} · Todos os direitos reservados`;
-    if (perfil.telegram) document.getElementById('telegram-link').href = perfil.telegram;
-    // Live badge
-    if (!perfil.live) document.getElementById('live-badge').style.display='none';
-    // Avatar
-    if (perfil.avatar) {
-      const avatarEl = document.getElementById('avatar-el');
-      avatarEl.innerHTML = `<img src="${perfil.avatar}" alt="${perfil.name}">`;
-    } else {
-      document.getElementById('avatar-letter').textContent = (perfil.name||'L').charAt(0);
-    }
-    // Banner
-    if (perfil.banner) {
-      document.getElementById('banner-wrap').style.backgroundImage = `url('${perfil.banner}')`;
-      document.getElementById('banner-wrap').style.backgroundSize = 'cover';
-      document.getElementById('banner-wrap').style.backgroundPosition = 'center';
-    }
-    // Post avatars
-    ['1','2','tg'].forEach(id => {
-      const el = document.getElementById(`post-avatar-${id}`);
-      const letterEl = document.getElementById(`post-letter-${id}`);
-      const nameEl = document.getElementById(`post-name-${id}`);
-      const handleEl = document.getElementById(`post-handle-${id}`);
-      if (perfil.avatar) el.innerHTML = `<img src="${perfil.avatar}" alt="">`;
-      else if (letterEl) letterEl.textContent = (perfil.name||'L').charAt(0);
-      if (nameEl) nameEl.textContent = perfil.name||'';
-      if (handleEl) handleEl.textContent = perfil.handle||'';
-    });
+  if(perfil){
+    document.title=`Privacy | ${perfil.name||''}`;
+    document.getElementById('profile-name').textContent=perfil.name||'';
+    document.getElementById('profile-handle').textContent=perfil.handle||'';
+    document.getElementById('profile-bio').innerHTML=(perfil.bio||'').replace(/\n/g,'<br>');
+    document.getElementById('footer').textContent=`© 2025 Privacy · ${perfil.name} · Todos os direitos reservados`;
+    if(!perfil.live)document.getElementById('live-badge').style.display='none';
+    if(perfil.avatar){document.getElementById('avatar-el').innerHTML=`<img src="${perfil.avatar}" alt="${perfil.name}">`;}
+    else{document.getElementById('avatar-letter').textContent=(perfil.name||'L').charAt(0);}
+    if(perfil.banner){const bw=document.getElementById('banner-wrap');bw.style.backgroundImage=`url('${perfil.banner}')`;bw.style.backgroundSize='cover';bw.style.backgroundPosition='center';}
   }
 
   // PLANOS
-  if (planos?.length) {
-    const main = planos[0];
-    const extras = planos.slice(1).filter(p=>p.ativo);
-    let html = '';
-    if (main?.ativo) {
-      html += `<button class="main-plan-btn" onclick="openCheckout(${p2i(main.preco||main.price)},'${main.nome||main.name}','plan1')">
+  if(planos?.length){
+    const main=planos[0];
+    let html='';
+    if(main?.ativo||main?.active){
+      html+=`<button class="main-plan-btn" onclick="openCheckout(${p2i(main.preco||main.price)},'${(main.nome||main.name||'').replace(/'/g,'\\'')}','plan1')">
         <div class="popular-badge">${main.badge||''}</div>
         <div class="main-plan-left">
           <div class="main-plan-name">${main.nome||main.name||''}</div>
@@ -387,91 +309,143 @@ async function loadSite() {
         </div>
         <div class="main-plan-price">R$ ${main.preco||main.price||''}</div>
       </button>`;
-      // Wire post bodies to main plan
-      document.getElementById('post-body-1').onclick = () => openCheckout(p2i(main.preco||main.price), main.nome||main.name, 'plan1');
     }
-    if (extras.length) {
-      html += `<button class="promo-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Ver mais promoções<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-      <div class="promo-list">`;
-      extras.forEach((pl,i) => {
-        html += `<div class="promo-item" onclick="openCheckout(${p2i(pl.preco||pl.price)},'${pl.nome||pl.name}','plan${i+2}')">
-          <div class="promo-item-left">
-            <span class="promo-item-name">${pl.nome||pl.name||''}</span>
-            <span class="badge">${pl.badge||''}</span>
-            ${pl.num?'<span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>':''}
-          </div>
+    const extras=planos.slice(1).filter(p=>p.ativo||p.active);
+    if(extras.length){
+      html+=`<button class="promo-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Ver mais promoções<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="promo-list">`;
+      extras.forEach((pl,i)=>{
+        html+=`<div class="promo-item" onclick="openCheckout(${p2i(pl.preco||pl.price)},'${(pl.nome||pl.name||'').replace(/'/g,'\\'')}','plan${i+2}')">
+          <div class="promo-item-left"><span class="promo-item-name">${pl.nome||pl.name||''}</span><span class="badge">${pl.badge||''}</span>${pl.num?'<span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>':''}</div>
           <span class="promo-price">R$ ${pl.preco||pl.price||''}</span>
         </div>`;
       });
-      html += `</div>`;
-      // Wire post-body-2 to first extra plan
-      if (extras[0]) document.getElementById('post-body-2').onclick = () => openCheckout(p2i(extras[0].preco||extras[0].price), extras[0].nome||extras[0].name, 'plan2');
+      html+=`</div>`;
     }
-    document.getElementById('plans-container').innerHTML = html;
+    document.getElementById('plans-container').innerHTML=html;
   }
 
   // COMBO
-  if (combo?.mostrar) {
-    const sec = document.getElementById('combos-section');
-    sec.style.display='block';
-    document.getElementById('combos-text').textContent = combo.texto||'QUERO TODOS OS COMBOS';
-    document.getElementById('combos-btn').onclick = () => openCheckout(p2i(combo.preco), combo.texto+' - Privacy', 'combos');
-    document.getElementById('combos-btn').querySelector('span').textContent = `${combo.texto} — R$ ${combo.preco}`;
+  if(combo?.mostrar){
+    document.getElementById('combos-section').style.display='block';
+    document.getElementById('combos-text').textContent=combo.texto||'';
+    document.getElementById('combos-btn').querySelector('span').textContent=`${combo.texto||''} — R$ ${combo.preco||''}`;
+    document.getElementById('combos-btn').onclick=()=>openCheckout(p2i(combo.preco),combo.texto+' - Privacy','combos');
+  }
+
+  // POSTS DO BANCO
+  const postsData=posts?.data||[];
+  const feed=document.getElementById('feed-container');
+  if(postsData.length){
+    const perfData=perfil||{};
+    const avatarHtml=perfData.avatar?`<img src="${perfData.avatar}" alt="">`:(perfData.name?.charAt(0)||'L');
+    feed.innerHTML=postsData.map(p=>{
+      if(p.type==='telegram'){
+        return`<div class="post-item">
+          <div class="post-header"><div class="post-user"><div class="post-avatar">${avatarHtml}</div><div><div class="post-username">${perfData.name||''}</div><div class="post-handle">${perfData.handle||''}</div></div></div></div>
+          <a href="${p.telegram_link||'#'}" target="_blank" style="display:block;text-decoration:none;">
+            <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:14px;padding:22px 18px;border:1.5px solid #f9a8d4;text-align:center;cursor:pointer;">
+              <div style="font-size:34px;margin-bottom:10px;">😈</div>
+              <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">${p.telegram_text||'Meu grupo de amostras grátis bb 👇😈'}</div>
+              <div style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;padding:11px 24px;border-radius:30px;font-size:13px;font-weight:700;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+                Entrar no grupo grátis
+              </div>
+            </div>
+          </a>
+          <div class="post-footer" style="margin-top:10px;">
+            <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
+            <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
+          </div>
+        </div>`;
+      }
+      // Foto/vídeo bloqueado
+      const planAmt=planos?p2i(planos[0]?.preco||planos[0]?.price||'9,99'):999;
+      const planName=planos?planos[0]?.nome||planos[0]?.name||'Acesso por 1 Mês':'Acesso por 1 Mês';
+      const bg=p.post_bg==='blur'&&p.thumb_url?`background:#111;`:`background:${p.thumb_url?'#111':'#2a1810'};`;
+      return`<div class="post-item">
+        <div class="post-header"><div class="post-user"><div class="post-avatar">${avatarHtml}</div><div><div class="post-username">${perfData.name||''}</div><div class="post-handle">${perfData.handle||''}</div></div></div>
+        <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></div>
+        <div class="post-body" style="${bg}" onclick="openCheckout(${planAmt},'${planName.replace(/'/g,'\\'')}','plan1')">
+          ${p.thumb_url&&p.post_bg==='blur'?`<img class="post-body-img" src="${p.thumb_url}" alt="">`:''} 
+          <div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
+        </div>
+        <div class="post-footer">
+          <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
+          <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
+          <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+        </div>
+      </div>`;
+    }).join('');
+  } else {
+    feed.innerHTML='<div style="text-align:center;padding:40px;color:#888;">Nenhum post publicado ainda.</div>';
   }
 
   // TESTEMUNHOS
-  if (testi?.length) {
-    document.getElementById('testi-container').innerHTML = testi.map(t=>`
-      <div class="testi-card">
-        <div class="testi-avatar">👨</div>
-        <div class="testi-name">${t.nome||t.name||''}</div>
-        <div class="testi-text">"${t.texto||t.text||''}"</div>
-      </div>`).join('');
+  if(testi?.length){
+    document.getElementById('testi-container').innerHTML=testi.map(t=>`
+      <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">${t.nome||t.name||''}</div><div class="testi-text">"${t.texto||t.text||''}"</div></div>`).join('');
   }
 
   // TRUST
-  if (trust?.length) {
-    document.getElementById('trust-container').innerHTML = trust.map(t=>`
+  if(trust?.length){
+    document.getElementById('trust-container').innerHTML=trust.map(t=>`
       <div class="trust-item"><span style="font-size:18px;">${t.slice(0,2)}</span><strong>${t.slice(2).trim()}</strong></div>`).join('');
   }
 
   // FAQ
-  if (faq?.length) {
-    document.getElementById('faq-container').innerHTML = faq.map(f=>`
+  if(faq?.length){
+    document.getElementById('faq-container').innerHTML=faq.map(f=>`
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">${f.q||''}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
         <div class="faq-a"><div class="faq-a-inner">${f.a||''}</div></div>
       </div>`).join('');
   }
+
+  // Inicia popup depois de carregar
+  startPopupToast();
 }
 
-// ─── UI HELPERS ───────────────────────────────────────────
+// ── POPUP TOAST (homens que compraram) ─────────────────────
+let popupIdx=0;
+function startPopupToast(){
+  if(!popupList.length)return;
+  setTimeout(()=>{
+    showPopup();
+    setInterval(showPopup, 25000+Math.random()*20000);
+  },8000);
+}
+function showPopup(){
+  if(!popupList.length)return;
+  const p=popupList[popupIdx%popupList.length];
+  popupIdx++;
+  const inicial=(p.nome||'?').charAt(0).toUpperCase();
+  document.getElementById('popup-avatar').textContent=inicial;
+  document.getElementById('popup-name').textContent=p.nome||'Usuário';
+  document.getElementById('popup-action').textContent=`acabou de assinar o ${p.plano||'Plano'}! 🔥`;
+  const el=document.getElementById('toast-popup');
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),4000);
+}
+
+// ── UI ─────────────────────────────────────────────────────
 function switchTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
 function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
-function toggleLike(btn){const liked=btn.classList.toggle('liked');const span=btn.querySelector('span');span.textContent=liked?+span.textContent+1:+span.textContent-1;}
+function toggleLike(btn){const liked=btn.classList.toggle('liked');const span=btn.querySelector('span');if(span)span.textContent=liked?+span.textContent+1:+span.textContent-1;}
 
-// ─── TOAST ────────────────────────────────────────────────
-const toastMessages=["⚡ Alguém acabou de <strong>&nbsp;Assinar o Plano Mensal!</strong>","🔥 <strong>João H.</strong>&nbsp;acabou de assinar o plano VIP!","⚡ <strong>Carlos S.</strong>&nbsp;garantiu acesso vitalício!","🚀 Alguém acabou de <strong>&nbsp;Assinar Todos os Combos!</strong>","💥 <strong>Marcelo T.</strong>&nbsp;acaba de entrar no VIP!"];
-let toastIdx=0;
-function showToast(){const t=document.getElementById('toast');t.innerHTML=toastMessages[toastIdx++%toastMessages.length];t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
-setTimeout(()=>{showToast();setInterval(()=>showToast(),30000+Math.random()*30000);},6000);
-
-// ─── EMAIL AUTOCOMPLETE ───────────────────────────────────
+// ── EMAIL AUTOCOMPLETE ─────────────────────────────────────
 document.getElementById('custEmail').addEventListener('input',function(){
-  const val=this.value,dl=document.getElementById('emailSuggestions');
-  dl.innerHTML='';
+  const val=this.value,dl=document.getElementById('emailSuggestions');dl.innerHTML='';
   if(val&&!val.includes('@')){const o=document.createElement('option');o.value=val+'@gmail.com';dl.appendChild(o);}
 });
 
-// ─── CPF MASK ─────────────────────────────────────────────
-function formatCPF(v){v=v.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length<=3)return v;if(v.length<=6)return v.slice(0,3)+'.'+v.slice(3);if(v.length<=9)return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9,11);}
-document.getElementById('custDoc').addEventListener('input',e=>{e.target.value=formatCPF(e.target.value);});
+// ── CPF MASK ───────────────────────────────────────────────
+function fmtCPF(v){v=v.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length<=3)return v;if(v.length<=6)return v.slice(0,3)+'.'+v.slice(3);if(v.length<=9)return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9,11);}
+document.getElementById('custDoc').addEventListener('input',e=>{e.target.value=fmtCPF(e.target.value);});
 
-// ─── MODAL ────────────────────────────────────────────────
+// ── MODAL ──────────────────────────────────────────────────
 document.getElementById('modalClose').onclick=()=>document.getElementById('modalOverlay').classList.remove('active');
 document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay'))document.getElementById('modalOverlay').classList.remove('active');});
-
-function openCheckout(amount, title, planKey='') {
+function openCheckout(amount,title,planKey=''){
   currentOrder={amount,title,planKey};
   document.getElementById('modalTitle').innerText=title;
   document.getElementById('modalPrice').innerText='R$ '+(amount/100).toFixed(2).replace('.',',');
@@ -482,7 +456,8 @@ function openCheckout(amount, title, planKey='') {
   document.getElementById('modalOverlay').classList.add('active');
 }
 
-async function processOrder() {
+// ── CHECKOUT ───────────────────────────────────────────────
+async function processOrder(){
   const name=document.getElementById('custName').value.trim();
   const email=document.getElementById('custEmail').value.trim();
   const doc=document.getElementById('custDoc').value.replace(/\D/g,'');
@@ -493,23 +468,15 @@ async function processOrder() {
   document.getElementById('errorBox').style.display='none';
   document.getElementById('formStep').style.display='none';
   document.getElementById('loadingStep').style.display='block';
-
-  // Registrar pedido no Supabase
-  await sb.from('pedidos').insert({
-    nome:name, email, cpf:doc, plano:currentOrder.title,
-    plano_key:currentOrder.planKey, valor:(currentOrder.amount/100), status:'pending'
-  });
-
-  const apiKey = BLACKCAT_KEY || 'sk_live_d34cb247f44c5759743402f875b0998dcd6004d51470a8cc8e73f54e2ecfd71a';
-  const payload={
-    amount:currentOrder.amount, currency:'BRL', paymentMethod:'pix',
-    items:[{title:currentOrder.title,unitPrice:currentOrder.amount,quantity:1,tangible:false}],
-    customer:{name,email,phone:'',document:{number:doc,type:'cpf'}},
-    pix:{expiresInDays:1}
-  };
-  try {
+  // Registra pedido
+  await sb.from('pedidos').insert({name,email,cpf:doc,plan:currentOrder.title,plan_key:currentOrder.planKey,amount:(currentOrder.amount/100),status:'pending'});
+  const apiKey=BCAT_KEY||'sk_live_d34cb247f44c5759743402f875b0998dcd6004d51470a8cc8e73f54e2ecfd71a';
+  try{
     const res=await fetch('https://api.blackcatpagamentos.online/api/sales/create-sale',{
-      method:'POST',headers:{'Content-Type':'application/json','X-API-Key':apiKey},body:JSON.stringify(payload)
+      method:'POST',headers:{'Content-Type':'application/json','X-API-Key':apiKey},
+      body:JSON.stringify({amount:currentOrder.amount,currency:'BRL',paymentMethod:'pix',
+        items:[{title:currentOrder.title,unitPrice:currentOrder.amount,quantity:1,tangible:false}],
+        customer:{name,email,phone:'',document:{number:doc,type:'cpf'}},pix:{expiresInDays:1}})
     });
     const result=await res.json();
     if(result.success&&result.data?.paymentData){
@@ -522,15 +489,13 @@ async function processOrder() {
       document.getElementById('pixStep').style.display='block';
       document.getElementById('copyBtn').onclick=()=>{
         navigator.clipboard.writeText(pix.copyPaste).then(()=>{
-          const btn=document.getElementById('copyBtn');
-          btn.textContent='✅ CÓDIGO COPIADO!';
+          const btn=document.getElementById('copyBtn');btn.textContent='✅ CÓDIGO COPIADO!';
           setTimeout(()=>btn.textContent='📋 COPIAR CÓDIGO PIX',2500);
         });
       };
-      // Atualiza status no Supabase
       await sb.from('pedidos').update({status:'paid',pix_code:pix.copyPaste}).eq('email',email).eq('status','pending');
-    } else { throw new Error(result.message||'Erro na API'); }
-  } catch(err) {
+    }else{throw new Error(result.message||'Erro na API');}
+  }catch(err){
     document.getElementById('loadingStep').style.display='none';
     document.getElementById('formStep').style.display='block';
     document.getElementById('errorBox').innerText='Erro ao gerar PIX: '+err.message;
@@ -540,7 +505,6 @@ async function processOrder() {
 }
 document.getElementById('generateBtn').onclick=processOrder;
 
-// ─── LOAD ─────────────────────────────────────────────────
 loadSite();
 </script>
 </body>
