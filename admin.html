@@ -735,11 +735,29 @@ function loadState() {
       const parsed = JSON.parse(saved);
       state = { ...state, ...parsed };
     }
-  } catch(e) {}
+    // Imagens salvas separadamente (podem ser grandes)
+    const avatar = localStorage.getItem('laurinha_admin_avatar');
+    if (avatar) state.avatar = avatar;
+    const banner = localStorage.getItem('laurinha_admin_banner');
+    if (banner) state.banner = banner;
+  } catch(e) { console.warn('loadState error', e); }
 }
 
 function saveState() {
-  localStorage.setItem('laurinha_admin_state', JSON.stringify(state));
+  try {
+    // Salvar imagens separadamente
+    if (state.avatar) localStorage.setItem('laurinha_admin_avatar', state.avatar);
+    if (state.banner) localStorage.setItem('laurinha_admin_banner', state.banner);
+    // Salvar o resto sem imagens (evita limite de 5MB)
+    const stateToSave = Object.assign({}, state);
+    delete stateToSave.avatar;
+    delete stateToSave.banner;
+    // Remove thumbnails dos posts para economizar espaço
+    stateToSave.posts = (state.posts||[]).map(p => { const c = Object.assign({},p); delete c.thumb; return c; });
+    localStorage.setItem('laurinha_admin_state', JSON.stringify(stateToSave));
+  } catch(e) {
+    console.warn('saveState error (storage cheio?)', e);
+  }
 }
 
 // ─── NAVIGATION ──────────────────────────────────────────
@@ -962,9 +980,12 @@ function handleAvatarUpload(input) {
   const reader = new FileReader();
   reader.onload = (e) => {
     state.avatar = e.target.result;
+    // Salva imediatamente no localStorage
+    try { localStorage.setItem('laurinha_admin_avatar', e.target.result); } catch(err) { console.warn('Avatar muito grande?', err); }
     document.getElementById('avatar-preview').src = e.target.result;
     document.getElementById('avatar-preview').style.display = 'block';
     document.getElementById('avatar-placeholder').style.display = 'none';
+    showToast('✓ Foto de perfil carregada! Clique em Salvar.');
   };
   reader.readAsDataURL(file);
 }
@@ -975,16 +996,23 @@ function handleBannerUpload(input) {
   const reader = new FileReader();
   reader.onload = (e) => {
     state.banner = e.target.result;
+    // Salva imediatamente no localStorage
+    try { localStorage.setItem('laurinha_admin_banner', e.target.result); } catch(err) { console.warn('Banner muito grande?', err); }
     document.getElementById('banner-preview').src = e.target.result;
     document.getElementById('banner-preview').style.display = 'block';
     document.getElementById('banner-placeholder').style.display = 'none';
+    showToast('✓ Banner carregado! Clique em Salvar.');
   };
   reader.readAsDataURL(file);
 }
 
 function saveProfileImages() {
+  if (!state.avatar && !state.banner) {
+    showToast('⚠️ Nenhuma imagem carregada ainda');
+    return;
+  }
   saveState();
-  showToast('✓ Imagens salvas!');
+  showToast('✓ Imagens salvas! Exporte o HTML para aplicar no site.');
 }
 
 function saveProfile() {
@@ -1155,8 +1183,11 @@ function exportHTML() {
   const trustHTML = state.trust.map(t => `  <div class="trust-item"><span class="trust-emoji">${t.slice(0,2)}</span><strong>${t.slice(2).trim()}</strong></div>`).join('\n');
 
   const prof = state.profile;
-  const avatarSrc = state.avatar ? `src="${state.avatar}"` : '';
-  const bannerStyle = state.banner ? `style="background:url('${state.banner}') center/cover no-repeat;"` : '';
+  // Busca imagens: primeiro da memória, depois do localStorage (fallback)
+  const avatarData = state.avatar || localStorage.getItem('laurinha_admin_avatar') || '';
+  const bannerData = state.banner || localStorage.getItem('laurinha_admin_banner') || '';
+  const avatarSrc = avatarData ? `src="${avatarData}"` : '';
+  const bannerStyle = bannerData ? `style="background:url('${bannerData}') center/cover no-repeat;"` : '';
 
   const finalHTML = generateSiteHTML({ mainPlanHTML, promoPlans, comboBtn, testiHTML, faqHTML, trustHTML, prof, avatarSrc, bannerStyle, apikey: state.apikey, planos: p });
 
