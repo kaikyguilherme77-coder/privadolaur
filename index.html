@@ -187,6 +187,11 @@ footer { text-align:center; padding:20px; font-size:12px; color:#aaa; background
 .add-post-btn { width:100%; padding:11px; background:#f1f5f9; border:2px dashed #cbd5e1; border-radius:10px; font-size:13px; font-weight:600; color:#64748b; cursor:pointer; margin-top:4px; transition:all 0.2s; font-family:'Inter',sans-serif; }
 .add-post-btn:hover { border-color:#f97316; color:#f97316; background:#fff7ed; }
 
+.upload-box { border:2px dashed #e5e5e5; border-radius:12px; cursor:pointer; overflow:hidden; transition:border-color 0.2s; }
+.upload-box:hover { border-color:#f97316; }
+.upload-preview { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:20px; min-height:80px; font-size:13px; color:#aaa; font-weight:500; background-size:cover; background-position:center; }
+.upload-preview img { width:100%; height:100%; object-fit:cover; display:block; border-radius:8px; max-height:140px; }
+
 #adminLogin { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
 .login-box { background:#fff; border-radius:20px; padding:32px 28px; width:90%; max-width:340px; text-align:center; }
 .login-box h2 { font-size:20px; font-weight:800; margin-bottom:6px; }
@@ -353,8 +358,26 @@ footer { text-align:center; padding:20px; font-size:12px; color:#aaa; background
       <div class="adm-field"><label>Nome</label><input type="text" id="adm_name"></div>
       <div class="adm-field"><label>Handle (@usuario)</label><input type="text" id="adm_handle"></div>
       <div class="adm-field"><label>Bio / Descrição</label><textarea id="adm_bio"></textarea></div>
-      <div class="adm-field"><label>URL da Foto de Perfil</label><input type="text" id="adm_avatar" placeholder="https://...foto.jpg"></div>
-      <div class="adm-field"><label>URL da Foto de Capa</label><input type="text" id="adm_cover" placeholder="https://...capa.jpg"></div>
+      <div class="adm-field"><label>Foto de Perfil</label>
+        <div class="upload-box" onclick="document.getElementById('upAvatar').click()">
+          <div id="upAvatarPreview" class="upload-preview">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Clique para enviar foto de perfil</span>
+          </div>
+        </div>
+        <input type="file" id="upAvatar" accept="image/*" style="display:none" onchange="previewUpload(this,'upAvatarPreview','adm_avatar')">
+        <input type="hidden" id="adm_avatar">
+      </div>
+      <div class="adm-field"><label>Foto de Capa (Banner)</label>
+        <div class="upload-box" onclick="document.getElementById('upCover').click()">
+          <div id="upCoverPreview" class="upload-preview">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Clique para enviar foto de capa</span>
+          </div>
+        </div>
+        <input type="file" id="upCover" accept="image/*" style="display:none" onchange="previewUpload(this,'upCoverPreview','adm_cover')">
+        <input type="hidden" id="adm_cover">
+      </div>
       <button class="adm-save-btn" onclick="saveProfile()">💾 Salvar Perfil</button>
       <div class="adm-saved-msg" id="savedProfile">✅ Salvo com sucesso!</div>
     </div>
@@ -395,7 +418,7 @@ const DEFAULTS = {
     avatar: '', cover: ''
   },
   plans: [
-    { id:1, name:'ACESSO POR 1 MÊS',    extra:'+ ACESSO AS LIVES DIÁRIAS!', price:999,  badge:'',            pink:'',                      main:true,     active:true },
+    { id:1, name:'ACESSO POR 1 MÊS',    extra:'+ ACESSO AS LIVES DIÁRIAS!', price:1000,  badge:'',            pink:'',                      main:true,     active:true },
     { id:2, name:'ACESSO POR 3 MESES',  extra:'',                           price:2990, badge:'Economia',    pink:'+ Nº pessoal de brinde', main:false,    active:true },
     { id:3, name:'ACESSO VITALÍCIO + VÍDEO CHAMADA POR 1 MÊS', extra:'',   price:3990, badge:'Melhor oferta',pink:'+ Nº pessoal de brinde', main:false,    active:true },
     { id:4, name:'TODOS OS COMBOS',      extra:'',                          price:4990, badge:'',            pink:'',                      main:'combos', active:true }
@@ -490,13 +513,29 @@ function checkAdminPw(){ if(document.getElementById('adminPwInput').value===ADMI
 function openAdmin(){ document.getElementById('adminPanel').style.display='block'; document.body.style.overflow='hidden'; loadAdminForm(); }
 function closeAdmin(){ document.getElementById('adminPanel').style.display='none'; document.body.style.overflow=''; }
 
+function previewUpload(input, previewId, hiddenId) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result;
+    document.getElementById(hiddenId).value = base64;
+    const prev = document.getElementById(previewId);
+    prev.innerHTML = `<img src="${base64}" alt="preview">`;
+    prev.style.padding = '0';
+  };
+  reader.readAsDataURL(file);
+}
+
 function loadAdminForm(){
   const p=S.profile;
   document.getElementById('adm_name').value=p.name;
   document.getElementById('adm_handle').value=p.handle;
   document.getElementById('adm_bio').value=p.bio;
-  document.getElementById('adm_avatar').value=p.avatar;
-  document.getElementById('adm_cover').value=p.cover;
+  document.getElementById('adm_avatar').value = p.avatar;
+  document.getElementById('adm_cover').value  = p.cover;
+  if(p.avatar){ const pv=document.getElementById('upAvatarPreview'); pv.innerHTML=`<img src="${p.avatar}" alt="preview">`; pv.style.padding='0'; }
+  if(p.cover){  const pv=document.getElementById('upCoverPreview');  pv.innerHTML=`<img src="${p.cover}"  alt="preview">`; pv.style.padding='0'; }
 
   const pc=document.getElementById('admPlansContainer');
   pc.innerHTML='';
@@ -541,7 +580,15 @@ function renderAdminPosts(){
           </select>
         </div>
         <div id="ps_img_wrap_${i}" ${isText?'style="display:none"':''}>
-          <div class="adm-field"><label>URL da Imagem de Capa (opcional)</label><input type="text" id="ps_img_${i}" value="${post.image||''}" placeholder="https://...imagem.jpg"></div>
+          <div class="adm-field"><label>Imagem de Capa do Post (opcional)</label>
+            <div class="upload-box" onclick="document.getElementById('upPost${i}').click()">
+              <div id="upPost${i}Preview" class="upload-preview" style="${post.image?`background:url('${post.image}') center/cover no-repeat;min-height:100px;`:''}">
+                ${!post.image?`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Clique para enviar imagem</span>`:''}
+              </div>
+            </div>
+            <input type="file" id="upPost${i}" accept="image/*" style="display:none" onchange="previewUpload(this,'upPost${i}Preview','ps_img_${i}')">
+            <input type="hidden" id="ps_img_${i}" value="${post.image||''}">
+          </div>
         </div>
         <div id="ps_txt_wrap_${i}" ${!isText?'style="display:none"':''}>
           <div class="adm-field"><label>Texto do Post</label><textarea id="ps_txt_${i}" placeholder="Escreva aqui...">${post.text||''}</textarea></div>
