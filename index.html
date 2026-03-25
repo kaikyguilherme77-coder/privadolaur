@@ -7,150 +7,210 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#1a1a1a;max-width:480px;margin:0 auto;min-height:100vh;}
-.top-bar{background:#fff;display:flex;align-items:center;justify-content:center;padding:12px 16px;position:sticky;top:0;z-index:100;border-bottom:1px solid #f0f0f0;}
-.logo-text{font-size:20px;font-weight:700;color:#1a1a1a;letter-spacing:-.5px;display:flex;align-items:center;gap:6px;}
-.logo-dot{color:#f97316;font-size:24px;}
-.banner-wrap{width:100%;height:160px;background:linear-gradient(135deg,#2c1810 0%,#5a2a1a 50%,#1a0f0a 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;}
-.banner-stats{position:absolute;top:12px;left:12px;display:flex;gap:12px;}
-.banner-stat{display:flex;align-items:center;gap:4px;font-size:12px;color:rgba(255,255,255,.9);font-weight:500;}
-.banner-stat svg{width:14px;height:14px;}
-.banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.35) 100%);}
-.profile-section{background:#fff;padding-bottom:16px;}
-.avatar-row{display:flex;align-items:flex-end;justify-content:space-between;padding:0 16px;margin-top:-40px;}
-.avatar-wrap{position:relative;display:inline-block;}
-.avatar{width:80px;height:80px;border-radius:50%;border:3px solid #fff;overflow:hidden;background:linear-gradient(135deg,#3d1f28,#2a1015);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.avatar img{width:100%;height:100%;object-fit:cover;}
-.live-badge{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#f97316;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;letter-spacing:.5px;border:2px solid #fff;}
-.profile-actions{display:flex;gap:16px;padding-bottom:8px;}
-.icon-btn{background:none;border:none;cursor:pointer;color:#666;padding:4px;}
-.icon-btn svg{width:22px;height:22px;}
-.profile-info{padding:10px 16px 0;}
-.profile-name-row{display:flex;align-items:center;gap:6px;margin-bottom:2px;}
-.profile-name{font-size:17px;font-weight:700;}
-.verified-icon svg{width:16px;height:16px;fill:#f97316;}
-.profile-handle{font-size:13px;color:#888;margin-bottom:10px;}
-.profile-bio{font-size:13px;color:#333;line-height:1.65;}
-.subscribe-section{background:#fff;margin-top:8px;padding:16px;}
-.subscribe-title{font-size:15px;font-weight:700;margin-bottom:12px;}
-.main-plan-btn{width:100%;background:#f97316;color:#fff;border:none;border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:4px;position:relative;overflow:hidden;transition:background .2s;}
-.main-plan-btn:hover{background:#ea6c0a;}
-.popular-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#c2410c;color:#fff;font-size:9px;font-weight:700;padding:3px 14px;border-radius:0 0 8px 8px;letter-spacing:.5px;white-space:nowrap;}
-.main-plan-left{text-align:left;margin-top:8px;}
-.main-plan-name{font-size:15px;font-weight:800;letter-spacing:.5px;}
-.main-plan-extra{font-size:11px;opacity:.85;margin-top:2px;}
-.main-plan-price{font-size:17px;font-weight:800;flex-shrink:0;}
-.promo-toggle{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;padding:14px 0;cursor:pointer;font-size:14px;font-weight:600;color:#1a1a1a;border-bottom:1px solid #f0f0f0;}
-.promo-toggle svg{transition:transform .3s;color:#888;}
-.promo-toggle.open svg{transform:rotate(180deg);}
-.promo-list{display:none;flex-direction:column;gap:8px;padding-top:10px;}
-.promo-list.open{display:flex;}
-.promo-item{width:100%;background:#fff;border:1.5px solid #e5e5e5;border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .2s;}
-.promo-item:hover{border-color:#f97316;}
-.promo-item-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.promo-item-name{font-size:13px;font-weight:700;letter-spacing:.3px;}
-.badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:#fff3e0;color:#f97316;white-space:nowrap;}
-.promo-price{font-size:15px;font-weight:800;color:#f97316;flex-shrink:0;}
-.tabs-section{background:#fff;margin-top:8px;}
-.tabs{display:flex;border-bottom:1.5px solid #f0f0f0;}
-.tab{flex:1;padding:13px;text-align:center;font-size:13px;font-weight:600;color:#888;cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;transition:all .2s;}
-.tab.active{color:#f97316;border-bottom-color:#f97316;}
-.feed{background:#fff;}
-.post-item{border-bottom:1px solid #f5f5f5;padding:12px 16px;}
-.post-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.post-user{display:flex;align-items:center;gap:10px;}
-.post-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#3d1f28,#2a1015);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;overflow:hidden;flex-shrink:0;}
-.post-avatar img{width:100%;height:100%;object-fit:cover;}
-.post-username{font-size:13px;font-weight:600;}
-.post-handle{font-size:12px;color:#888;}
-.post-menu-btn{background:none;border:none;cursor:pointer;color:#888;padding:4px;}
-.post-menu-btn svg{width:16px;height:16px;}
-.post-body{position:relative;border-radius:12px;overflow:hidden;background:#2a1810;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.post-body-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(14px);transform:scale(1.1);}
-.post-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:1;}
-.lock-circle{width:52px;height:52px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);}
-.lock-circle svg{width:24px;height:24px;color:#888;}
-.post-footer{display:flex;align-items:center;gap:16px;margin-top:10px;}
-.post-action{display:flex;align-items:center;gap:5px;font-size:13px;color:#555;background:none;border:none;cursor:pointer;}
-.post-action svg{width:18px;height:18px;}
-.post-bookmark{margin-left:auto;background:none;border:none;cursor:pointer;color:#555;}
-.post-bookmark svg{width:18px;height:18px;}
-.combos-section{background:#fff;margin-top:8px;padding:16px;display:none;}
-.combos-btn{width:100%;background:#f97316;color:#fff;border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:space-between;letter-spacing:.5px;transition:background .2s;font-family:'Inter',sans-serif;}
-.combos-btn:hover{background:#ea6c0a;}
-.combos-btn svg{width:24px;height:24px;}
-.testi-section{background:#fff;margin-top:8px;padding:16px;}
-.section-title{font-size:17px;font-weight:700;margin-bottom:14px;text-align:center;}
-.testi-scroll{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;}
-.testi-scroll::-webkit-scrollbar{display:none;}
-.testi-card{flex:0 0 200px;background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center;}
-.testi-avatar{width:60px;height:60px;border-radius:50%;background:#f0f0f0;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px;}
-.testi-name{font-size:13px;font-weight:700;margin-bottom:6px;}
-.testi-text{font-size:12px;color:#555;line-height:1.6;}
-.trust-section{background:#fff;margin-top:8px;padding:16px;}
-.trust-item{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:13px;font-weight:500;border-bottom:1px solid #f5f5f5;justify-content:center;text-align:center;}
-.trust-item:last-child{border-bottom:none;}
-.faq-section{background:#fff;margin-top:8px;padding:16px;}
-.faq-item{border:1px solid #f0f0f0;border-radius:10px;margin-bottom:10px;overflow:hidden;}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;font-size:14px;font-weight:600;cursor:pointer;background:#fff;border:none;width:100%;text-align:left;gap:12px;font-family:'Inter',sans-serif;}
-.faq-q svg{flex-shrink:0;color:#888;transition:transform .3s;}
-.faq-item.open .faq-q svg{transform:rotate(45deg);color:#f97316;}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13px;color:#555;line-height:1.7;}
-.faq-item.open .faq-a{max-height:200px;}
-.faq-a-inner{padding:0 16px 14px;}
-/* POPUP */
-.toast-popup{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#fff;padding:10px 16px;border-radius:30px;font-size:13px;font-weight:500;z-index:999;transition:transform .45s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.15);border:1px solid #f0f0f0;display:flex;align-items:center;gap:10px;max-width:90vw;}
-.toast-popup.show{transform:translateX(-50%) translateY(0);}
-.popup-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;}
-.popup-info{display:flex;flex-direction:column;}
-.popup-name{font-size:12px;font-weight:700;}
-.popup-action{font-size:11px;color:#888;}
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;align-items:flex-end;z-index:1000;backdrop-filter:blur(4px);}
-.modal-overlay.active{display:flex;}
-.modal{background:#fff;border-radius:24px 24px 0 0;padding:20px 20px 36px;width:100%;max-width:480px;position:relative;animation:slide-up .35s cubic-bezier(.34,1.2,.64,1);}
-@keyframes slide-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.modal-handle{width:40px;height:4px;background:#e0e0e0;border-radius:2px;margin:0 auto 20px;}
-.modal-close{position:absolute;top:16px;right:16px;width:30px;height:30px;background:#f5f5f5;border:none;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#666;}
-.modal-title{font-size:18px;font-weight:700;margin-bottom:4px;}
-.modal-sub{font-size:13px;color:#888;margin-bottom:20px;}
-.field{margin-bottom:14px;}
-.field label{display:block;font-size:12px;color:#888;font-weight:500;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
-.field input{width:100%;border:1.5px solid #e5e5e5;border-radius:10px;padding:13px 14px;font-size:15px;color:#1a1a1a;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;background:#fafafa;}
-.field input:focus{border-color:#f97316;background:#fff;}
-.field input::placeholder{color:#bbb;}
-.error-box{background:#fff0f0;border:1px solid #ffd0d0;color:#cc0000;font-size:13px;padding:10px 14px;border-radius:10px;margin-bottom:14px;display:none;}
-.submit-btn{width:100%;padding:15px;background:#f97316;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s,transform .1s;margin-top:4px;}
-.submit-btn:hover{background:#ea6c0a;}
-.submit-btn:active{transform:scale(.98);}
-.loading-box{text-align:center;padding:40px 0;display:none;}
-.spinner{width:44px;height:44px;border:3px solid #f0f0f0;border-top-color:#f97316;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.loading-box p{font-size:14px;color:#888;}
-.pix-box{display:none;text-align:center;}
-.qr-wrap{background:#fff;border:2px solid #f0f0f0;border-radius:16px;padding:16px;display:inline-block;margin:12px 0;}
-.qr-wrap img{width:180px;height:180px;display:block;}
-.pix-code-box{background:#f8f8f8;border:1.5px dashed #ddd;border-radius:10px;padding:12px;font-size:11px;font-family:monospace;word-break:break-all;color:#555;text-align:left;max-height:70px;overflow-y:auto;margin-bottom:14px;}
-.copy-btn{width:100%;padding:14px;background:#1a1a1a;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;}
-.copy-btn:hover{background:#333;}
-.await-text{font-size:12px;color:#aaa;margin-top:12px;}
-.like-btn.liked{color:#e11d48!important;}
-.like-btn.liked svg{fill:#e11d48;stroke:#e11d48;transform:scale(1.2);}
-.like-btn svg{transition:fill .2s,stroke .2s,transform .15s;}
-footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;margin-top:8px;border-top:1px solid #f0f0f0;}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:'Inter',sans-serif; background:#f5f5f5; color:#1a1a1a; max-width:480px; margin:0 auto; min-height:100vh; }
+
+.top-bar { background:#fff; display:flex; align-items:center; justify-content:center; padding:12px 16px; position:sticky; top:0; z-index:100; border-bottom:1px solid #f0f0f0; }
+.logo-text { font-size:20px; font-weight:700; color:#1a1a1a; letter-spacing:-0.5px; display:flex; align-items:center; gap:6px; }
+.logo-dot { color:#f97316; font-size:24px; }
+.admin-trigger { position:absolute; right:16px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; padding:6px; color:#ddd; font-size:16px; }
+.admin-trigger:hover { color:#f97316; }
+
+.banner-wrap { width:100%; height:160px; background:linear-gradient(135deg,#2c1810 0%,#5a2a1a 50%,#1a0f0a 100%); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.banner-wrap .cover-img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.banner-stats { position:absolute; top:12px; left:12px; display:flex; gap:12px; z-index:1; }
+.banner-stat { display:flex; align-items:center; gap:4px; font-size:12px; color:rgba(255,255,255,0.9); font-weight:500; }
+.banner-stat svg { width:14px; height:14px; }
+.banner-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.35) 100%); }
+
+.profile-section { background:#fff; padding-bottom:16px; }
+.avatar-row { display:flex; align-items:flex-end; justify-content:space-between; padding:0 16px; margin-top:-40px; }
+.avatar-wrap { position:relative; display:inline-block; }
+.avatar { width:80px; height:80px; border-radius:50%; border:3px solid #fff; overflow:hidden; background:linear-gradient(135deg,#3d1f28,#2a1015); display:flex; align-items:center; justify-content:center; font-size:28px; color:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+.avatar img { width:100%; height:100%; object-fit:cover; }
+.live-badge { position:absolute; bottom:-2px; left:50%; transform:translateX(-50%); background:#f97316; color:#fff; font-size:9px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; letter-spacing:0.5px; border:2px solid #fff; }
+.profile-actions { display:flex; gap:16px; padding-bottom:8px; }
+.icon-btn { background:none; border:none; cursor:pointer; color:#666; padding:4px; }
+.icon-btn svg { width:22px; height:22px; }
+.profile-info { padding:10px 16px 0; }
+.profile-name-row { display:flex; align-items:center; gap:6px; margin-bottom:2px; }
+.profile-name { font-size:17px; font-weight:700; }
+.verified-icon svg { width:16px; height:16px; fill:#f97316; }
+.profile-handle { font-size:13px; color:#888; margin-bottom:10px; }
+.profile-bio { font-size:13px; color:#333; line-height:1.65; }
+
+.subscribe-section { background:#fff; margin-top:8px; padding:16px; }
+.subscribe-title { font-size:15px; font-weight:700; margin-bottom:12px; }
+.main-plan-btn { width:100%; background:#f97316; color:#fff; border:none; border-radius:10px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; margin-bottom:4px; position:relative; overflow:hidden; transition:background 0.2s; font-family:'Inter',sans-serif; }
+.main-plan-btn:hover { background:#ea6c0a; }
+.popular-badge { position:absolute; top:0; left:50%; transform:translateX(-50%); background:#c2410c; color:#fff; font-size:9px; font-weight:700; padding:3px 14px; border-radius:0 0 8px 8px; letter-spacing:0.5px; white-space:nowrap; }
+.main-plan-left { text-align:left; margin-top:8px; }
+.main-plan-name { font-size:15px; font-weight:800; letter-spacing:0.5px; }
+.main-plan-extra { font-size:11px; opacity:0.85; margin-top:2px; }
+.main-plan-price { font-size:17px; font-weight:800; flex-shrink:0; }
+.promo-item { width:100%; background:#fff; border:1.5px solid #e5e5e5; border-radius:10px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; transition:border-color 0.2s; margin-top:8px; font-family:'Inter',sans-serif; border:none; text-align:left; }
+.promo-item:hover { border-color:#f97316; }
+.promo-item { border:1.5px solid #e5e5e5; }
+.promo-item-left { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.promo-item-name { font-size:13px; font-weight:700; letter-spacing:0.3px; }
+.badge { font-size:10px; font-weight:600; padding:2px 8px; border-radius:20px; background:#fff3e0; color:#f97316; white-space:nowrap; }
+.badge-pink { background:#fde8f0; color:#e91e8c; }
+.promo-price { font-size:15px; font-weight:800; color:#f97316; flex-shrink:0; }
+
+.tabs-section { background:#fff; margin-top:8px; }
+.tabs { display:flex; border-bottom:1.5px solid #f0f0f0; }
+.tab { flex:1; padding:13px; text-align:center; font-size:13px; font-weight:600; color:#888; cursor:pointer; border:none; border-bottom:2px solid transparent; background:none; transition:all 0.2s; font-family:'Inter',sans-serif; }
+.tab.active { color:#f97316; border-bottom-color:#f97316; }
+
+.feed { background:#fff; }
+.post-item { border-bottom:1px solid #f5f5f5; padding:12px 16px; }
+.post-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.post-user { display:flex; align-items:center; gap:10px; }
+.post-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#3d1f28,#2a1015); display:flex; align-items:center; justify-content:center; font-size:14px; color:#fff; overflow:hidden; flex-shrink:0; }
+.post-avatar img { width:100%; height:100%; object-fit:cover; }
+.post-username { font-size:13px; font-weight:600; }
+.post-handle { font-size:12px; color:#888; }
+.post-menu-btn { background:none; border:none; cursor:pointer; color:#888; padding:4px; }
+.post-menu-btn svg { width:16px; height:16px; }
+.post-body { position:relative; border-radius:12px; overflow:hidden; background:#e8e8e8; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.post-body img.cover { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.post-lock { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+.lock-circle { width:52px; height:52px; background:rgba(255,255,255,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.lock-circle svg { width:24px; height:24px; color:#888; }
+.post-text-body { background:#fff8f5; border-radius:12px; padding:18px 16px; font-size:14px; color:#1a1a1a; line-height:1.7; border:1.5px solid #fde8d8; }
+.post-footer { display:flex; align-items:center; gap:16px; margin-top:10px; }
+.post-action { display:flex; align-items:center; gap:5px; font-size:13px; color:#555; background:none; border:none; cursor:pointer; font-family:'Inter',sans-serif; }
+.post-action svg { width:18px; height:18px; }
+.post-bookmark { margin-left:auto; background:none; border:none; cursor:pointer; color:#555; }
+.post-bookmark svg { width:18px; height:18px; }
+.like-btn.liked { color:#e11d48 !important; }
+.like-btn.liked svg { fill:#e11d48; stroke:#e11d48; transform:scale(1.2); }
+.like-btn svg { transition:fill 0.2s,stroke 0.2s,transform 0.15s; }
+
+.combos-section { background:#fff; margin-top:8px; padding:16px; }
+.combos-btn { width:100%; background:#f97316; color:#fff; border:none; border-radius:10px; padding:16px; font-size:15px; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:space-between; letter-spacing:0.5px; transition:background 0.2s; font-family:'Inter',sans-serif; }
+.combos-btn:hover { background:#ea6c0a; }
+.combos-btn svg { width:24px; height:24px; flex-shrink:0; }
+
+.testi-section { background:#fff; margin-top:8px; padding:16px; }
+.section-title { font-size:17px; font-weight:700; margin-bottom:14px; text-align:center; }
+.testi-scroll { display:flex; gap:12px; overflow-x:auto; scrollbar-width:none; padding-bottom:4px; }
+.testi-scroll::-webkit-scrollbar { display:none; }
+.testi-card { flex:0 0 200px; background:#fff; border:1px solid #f0f0f0; border-radius:12px; padding:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06); text-align:center; }
+.testi-avatar { width:60px; height:60px; border-radius:50%; background:#f0f0f0; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:24px; }
+.testi-name { font-size:13px; font-weight:700; margin-bottom:6px; }
+.testi-text { font-size:12px; color:#555; line-height:1.6; }
+
+.trust-section { background:#fff; margin-top:8px; padding:16px; }
+.trust-item { display:flex; align-items:center; gap:10px; padding:10px 0; font-size:13px; font-weight:500; border-bottom:1px solid #f5f5f5; justify-content:center; text-align:center; }
+.trust-item:last-child { border-bottom:none; }
+.trust-emoji { font-size:18px; }
+
+.faq-section { background:#fff; margin-top:8px; padding:16px; }
+.faq-item { border:1px solid #f0f0f0; border-radius:10px; margin-bottom:10px; overflow:hidden; }
+.faq-q { display:flex; align-items:center; justify-content:space-between; padding:14px 16px; font-size:14px; font-weight:600; cursor:pointer; background:#fff; border:none; width:100%; text-align:left; gap:12px; font-family:'Inter',sans-serif; }
+.faq-q svg { flex-shrink:0; color:#888; transition:transform 0.3s; }
+.faq-item.open .faq-q svg { transform:rotate(45deg); color:#f97316; }
+.faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; font-size:13px; color:#555; line-height:1.7; }
+.faq-item.open .faq-a { max-height:200px; }
+.faq-a-inner { padding:0 16px 14px; }
+
+.toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px); background:#fff; color:#1a1a1a; padding:12px 20px; border-radius:30px; font-size:13px; font-weight:500; z-index:999; transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space:nowrap; box-shadow:0 4px 20px rgba(0,0,0,0.15); border:1px solid #f0f0f0; }
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; justify-content:center; align-items:flex-end; z-index:1000; backdrop-filter:blur(4px); }
+.modal-overlay.active { display:flex; }
+.modal { background:#fff; border-radius:24px 24px 0 0; padding:20px 20px 36px; width:100%; max-width:480px; position:relative; animation:slide-up 0.35s cubic-bezier(0.34,1.2,0.64,1); }
+@keyframes slide-up { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.modal-handle { width:40px; height:4px; background:#e0e0e0; border-radius:2px; margin:0 auto 20px; }
+.modal-close { position:absolute; top:16px; right:16px; width:30px; height:30px; background:#f5f5f5; border:none; border-radius:50%; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#666; }
+.modal-title { font-size:18px; font-weight:700; margin-bottom:4px; }
+.modal-sub { font-size:13px; color:#888; margin-bottom:20px; }
+.modal-sub strong { color:#f97316; font-size:18px; font-weight:800; }
+.field { margin-bottom:14px; }
+.field label { display:block; font-size:12px; color:#888; font-weight:500; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+.field input { width:100%; border:1.5px solid #e5e5e5; border-radius:10px; padding:13px 14px; font-size:15px; color:#1a1a1a; font-family:'Inter',sans-serif; outline:none; transition:border-color 0.2s; background:#fafafa; }
+.field input:focus { border-color:#f97316; background:#fff; }
+.field input::placeholder { color:#bbb; }
+.error-box { background:#fff0f0; border:1px solid #ffd0d0; color:#cc0000; font-size:13px; padding:10px 14px; border-radius:10px; margin-bottom:14px; display:none; }
+.submit-btn { width:100%; padding:15px; background:#f97316; color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:800; cursor:pointer; font-family:'Inter',sans-serif; transition:background 0.2s,transform 0.1s; margin-top:4px; }
+.submit-btn:hover { background:#ea6c0a; }
+.submit-btn:active { transform:scale(0.98); }
+.loading-box { text-align:center; padding:40px 0; display:none; }
+.spinner { width:44px; height:44px; border:3px solid #f0f0f0; border-top-color:#f97316; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 16px; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.loading-box p { font-size:14px; color:#888; }
+.pix-box { display:none; text-align:center; }
+.qr-wrap { background:#fff; border:2px solid #f0f0f0; border-radius:16px; padding:16px; display:inline-block; margin:12px 0; }
+.qr-wrap img { width:180px; height:180px; display:block; }
+.pix-label { font-size:12px; color:#888; margin-bottom:8px; text-align:left; font-weight:500; text-transform:uppercase; letter-spacing:0.5px; }
+.pix-code-box { background:#f8f8f8; border:1.5px dashed #ddd; border-radius:10px; padding:12px; font-size:11px; font-family:monospace; word-break:break-all; color:#555; text-align:left; max-height:70px; overflow-y:auto; margin-bottom:14px; }
+.copy-btn { width:100%; padding:14px; background:#1a1a1a; color:#fff; border:none; border-radius:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; transition:background 0.2s; }
+.copy-btn:hover { background:#333; }
+.await-text { font-size:12px; color:#aaa; margin-top:12px; }
+
+footer { text-align:center; padding:20px; font-size:12px; color:#aaa; background:#fff; margin-top:8px; border-top:1px solid #f0f0f0; }
+
+/* ═══ ADMIN ═══ */
+#adminPanel { display:none; position:fixed; inset:0; z-index:2000; background:#f1f5f9; overflow-y:auto; font-family:'Inter',sans-serif; }
+.adm-top { background:#1a1a1a; color:#fff; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; }
+.adm-top h1 { font-size:16px; font-weight:700; }
+.adm-close-btn { background:#f97316; border:none; color:#fff; padding:7px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
+.adm-body { padding:16px; max-width:600px; margin:0 auto; }
+.adm-section { background:#fff; border-radius:16px; padding:20px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+.adm-section h2 { font-size:13px; font-weight:700; color:#f97316; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; }
+.adm-field { margin-bottom:14px; }
+.adm-field label { display:block; font-size:11px; color:#888; font-weight:600; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; }
+.adm-field input,.adm-field textarea,.adm-field select { width:100%; border:1.5px solid #e5e5e5; border-radius:10px; padding:10px 12px; font-size:14px; color:#1a1a1a; font-family:'Inter',sans-serif; outline:none; background:#fafafa; transition:border-color 0.2s; }
+.adm-field input:focus,.adm-field textarea:focus { border-color:#f97316; background:#fff; }
+.adm-field textarea { resize:vertical; min-height:80px; line-height:1.6; }
+.adm-save-btn { background:#f97316; color:#fff; border:none; padding:12px 24px; border-radius:10px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; width:100%; transition:background 0.2s; margin-top:4px; }
+.adm-save-btn:hover { background:#ea6c0a; }
+.adm-saved-msg { text-align:center; color:#16a34a; font-size:13px; font-weight:600; margin-top:8px; display:none; }
+
+.plan-row { display:flex; align-items:center; gap:8px; padding:12px; background:#f8f8f8; border-radius:10px; margin-bottom:10px; flex-wrap:wrap; }
+.plan-row input[type="text"],.plan-row input[type="number"] { flex:1; min-width:100px; border:1.5px solid #e5e5e5; border-radius:8px; padding:8px 10px; font-size:13px; font-family:'Inter',sans-serif; outline:none; background:#fff; }
+.plan-row input:focus { border-color:#f97316; }
+.plan-label { font-size:11px; color:#888; font-weight:600; margin-bottom:2px; }
+
+.toggle-switch { position:relative; width:42px; height:24px; flex-shrink:0; }
+.toggle-switch input { opacity:0; width:0; height:0; }
+.toggle-slider { position:absolute; cursor:pointer; inset:0; background:#ccc; border-radius:24px; transition:0.3s; }
+.toggle-slider:before { content:''; position:absolute; width:18px; height:18px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:0.3s; }
+.toggle-switch input:checked + .toggle-slider { background:#f97316; }
+.toggle-switch input:checked + .toggle-slider:before { transform:translateX(18px); }
+
+.post-row { border:1.5px solid #e5e5e5; border-radius:12px; padding:14px; margin-bottom:12px; background:#fafafa; }
+.post-row-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.post-row-title { font-size:13px; font-weight:700; }
+.del-btn { background:#fee2e2; border:none; color:#dc2626; padding:5px 12px; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; }
+.add-post-btn { width:100%; padding:11px; background:#f1f5f9; border:2px dashed #cbd5e1; border-radius:10px; font-size:13px; font-weight:600; color:#64748b; cursor:pointer; margin-top:4px; transition:all 0.2s; font-family:'Inter',sans-serif; }
+.add-post-btn:hover { border-color:#f97316; color:#f97316; background:#fff7ed; }
+
+#adminLogin { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
+.login-box { background:#fff; border-radius:20px; padding:32px 28px; width:90%; max-width:340px; text-align:center; }
+.login-box h2 { font-size:20px; font-weight:800; margin-bottom:6px; }
+.login-box p { font-size:13px; color:#888; margin-bottom:20px; }
+.login-box input { width:100%; border:1.5px solid #e5e5e5; border-radius:10px; padding:13px; font-size:15px; font-family:'Inter',sans-serif; outline:none; margin-bottom:12px; text-align:center; letter-spacing:3px; }
+.login-box input:focus { border-color:#f97316; }
+.login-submit { width:100%; padding:14px; background:#f97316; color:#fff; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; }
+.login-error { color:#dc2626; font-size:13px; margin-top:8px; display:none; }
+.login-cancel { background:none; border:none; color:#888; font-size:13px; cursor:pointer; margin-top:10px; display:block; width:100%; font-family:'Inter',sans-serif; }
 </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
 <div class="top-bar">
   <div class="logo-text">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#f97316"/><path d="M10 8h5c3.5 0 6 2 6 5s-2.5 5-6 5h-2v5h-3V8z" fill="white"/></svg>
     privacy<span class="logo-dot">.</span>
   </div>
+  <button class="admin-trigger" onclick="openAdminLogin()" title="Admin">⚙</button>
 </div>
 
-<div class="banner-wrap" id="banner-wrap">
+<!-- BANNER -->
+<div class="banner-wrap" id="bannerWrap">
   <div class="banner-overlay"></div>
   <div class="banner-stats">
     <div class="banner-stat"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>102</div>
@@ -159,103 +219,99 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </div>
 </div>
 
+<!-- PROFILE -->
 <div class="profile-section">
   <div class="avatar-row">
     <div class="avatar-wrap">
-      <div class="avatar" id="avatar-el">L</div>
-      <div class="live-badge" id="live-badge" style="display:none;">AO VIVO AGORA</div>
+      <div class="avatar" id="avatarEl">L</div>
+      <div class="live-badge">AO VIVO AGORA</div>
     </div>
     <div class="profile-actions">
       <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
       <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
+      <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
     </div>
   </div>
   <div class="profile-info">
     <div class="profile-name-row">
-      <span class="profile-name" id="profile-name">Laurinha Oficial</span>
+      <span class="profile-name" id="profileName">Laurinha Oficial</span>
       <span class="verified-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span>
     </div>
-    <div class="profile-handle" id="profile-handle">@Laurinha_vip1</div>
-    <div class="profile-bio" id="profile-bio">🔥 Laurinha VIP 🔥<br>Faça sua assinatura agora!</div>
+    <div class="profile-handle" id="profileHandle">@Laurinha_vip1</div>
+    <div class="profile-bio" id="profileBio"></div>
   </div>
 </div>
 
+<!-- SUBSCRIBE -->
 <div class="subscribe-section">
   <div class="subscribe-title">Assine agora:</div>
-  <div id="plans-container">
-    <button class="main-plan-btn" onclick="openCheckout(999,'Acesso por 1 Mês','plan1')">
-      <div class="popular-badge">MAIS POPULAR 🔥🔥</div>
-      <div class="main-plan-left"><div class="main-plan-name">ACESSO POR 1 MÊS</div><div class="main-plan-extra">+ ACESSO AS LIVES DIÁRIAS!</div></div>
-      <div class="main-plan-price">R$ 9,99</div>
-    </button>
-  </div>
+  <div id="plansContainer"></div>
 </div>
 
+<!-- TABS + FEED -->
 <div class="tabs-section">
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this)">93 postagens</button>
     <button class="tab" onclick="switchTab(this)">166 mídias</button>
   </div>
-  <div class="feed" id="feed-container">
-    <!-- Posts carregados pelo JS -->
-  </div>
+  <div class="feed" id="feedContainer"></div>
 </div>
 
-<div class="combos-section" id="combos-section">
-  <button class="combos-btn" id="combos-btn" onclick="openCheckout(4990,'Todos os Combos - Privacy','combos')">
+<!-- COMBOS -->
+<div class="combos-section" id="combosSection" style="display:none;">
+  <button class="combos-btn" id="combosBtn">
     QUERO TODOS OS COMBOS — R$ 49,90
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
   </button>
 </div>
 
+<!-- TESTIMONIALS -->
 <div class="testi-section">
   <div class="section-title">📢 O que estão dizendo...</div>
-  <div class="testi-scroll" id="testi-container">
-    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">João Henrique, 32 anos</div><div class="testi-text">"Não acreditava que seria tão bom por esse preço. Recomendo!"</div></div>
-    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Carlos Silva, 45 anos</div><div class="testi-text">"Conteúdo sem censura, bem melhor que esses sites por aí."</div></div>
-    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Marcelo Tavares, 31 anos</div><div class="testi-text">"Tô no grupo VIP, recebo vídeo todo dia de manhã!"</div></div>
+  <div class="testi-scroll">
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">João Henrique, 32 anos</div><div class="testi-text">"Não acreditava que seria tão bom, mas o acesso foi instantâneo. Recomendo!"</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Carlos Silva, 45 anos</div><div class="testi-text">"Conteúdo sem censura, bem melhor que esses sites por aí. Tô dentro"</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Marcelo Tavares, 31 anos</div><div class="testi-text">"Tô no grupo VIP, recebo vídeo todo dia de manhã. Vale cada centavo."</div></div>
+    <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">Fernando, 52 anos</div><div class="testi-text">"Acesso imediato e ainda ganhei pack de boas-vindas."</div></div>
   </div>
 </div>
 
-<div class="trust-section" id="trust-container">
-  <div class="trust-item"><span style="font-size:18px;">🔒</span><strong>Seu acesso é 100% seguro com criptografia SSL</strong></div>
-  <div class="trust-item"><span style="font-size:18px;">✅</span><strong>Garantia total: seu dinheiro de volta se não ficar satisfeito</strong></div>
-  <div class="trust-item"><span style="font-size:18px;">🛑</span><strong>Cancele quando quiser, sem burocracia</strong></div>
-  <div class="trust-item"><span style="font-size:18px;">💬</span><strong>Alguma dúvida? Fale conosco</strong></div>
+<!-- TRUST -->
+<div class="trust-section">
+  <div class="trust-item"><span class="trust-emoji">🔒</span><strong>Seu acesso é 100% seguro com criptografia SSL</strong></div>
+  <div class="trust-item"><span class="trust-emoji">✅</span><strong>Garantia total: seu dinheiro de volta se não ficar satisfeito</strong></div>
+  <div class="trust-item"><span class="trust-emoji">🛑</span><strong>Cancele quando quiser, sem burocracia</strong></div>
+  <div class="trust-item"><span class="trust-emoji">💬</span><strong>Alguma dúvida? Fale conosco</strong></div>
 </div>
 
+<!-- FAQ -->
 <div class="faq-section">
   <div class="section-title" style="text-align:left;">Perguntas Frequentes</div>
-  <div id="faq-container">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O conteúdo é realmente explícito?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Sim! Todo o conteúdo é 100% explícito e sem censura.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O pagamento é seguro e discreto?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Totalmente! Seu pagamento é discreto e ninguém saberá do que se trata.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como vou receber o conteúdo?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Após o pagamento via Pix, você receberá o acesso direto no seu E-mail em até 2 minutos.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">E se eu tiver problemas com o acesso?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Você poderá entrar em contato direto com o suporte no WhatsApp que será enviado junto ao conteúdo.</div></div></div>
-  </div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O conteúdo é realmente explícito?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Sim! Todo o conteúdo é 100% explícito e sem censura.</div></div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O pagamento é seguro e discreto?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Totalmente! Pagamento via PIX discreto. Ninguém saberá do que se trata.</div></div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como vou receber o conteúdo?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Após o PIX confirmado, você recebe acesso no e-mail em até 2 minutos.</div></div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">E se eu tiver problemas com o acesso?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-inner">Suporte via WhatsApp enviado junto ao conteúdo após pagamento.</div></div></div>
 </div>
 
-<footer id="footer">© 2025 Privacy · Laurinha Oficial · Todos os direitos reservados</footer>
+<footer>© 2025 Privacy · Laurinha Oficial · Todos os direitos reservados</footer>
 
-<!-- POPUP -->
-<div class="toast-popup" id="toast-popup">
-  <div class="popup-avatar" id="popup-avatar">J</div>
-  <div class="popup-info">
-    <div class="popup-name" id="popup-name">João H.</div>
-    <div class="popup-action" id="popup-action">acabou de assinar o Plano Mensal! 🔥</div>
-  </div>
-</div>
+<!-- TOAST -->
+<div class="toast" id="toast">⚡ Alguém acabou de <strong>&nbsp;Assinar um Plano!</strong></div>
 
-<!-- MODAL CHECKOUT -->
+<!-- CHECKOUT MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-handle"></div>
     <button class="modal-close" id="modalClose">×</button>
     <div id="formStep">
-      <div class="modal-title">Finalizar Assinatura</div>
-      <div class="modal-sub">Plano: <strong id="modalTitle">—</strong><br>Valor: <strong id="modalPrice" style="color:#f97316;font-size:18px;font-weight:800;">—</strong></div>
+      <div class="modal-title" id="modalTitle">Finalizar Assinatura</div>
+      <div class="modal-sub">Valor: <strong id="modalPrice">—</strong></div>
       <div class="error-box" id="errorBox"></div>
       <div class="field"><label>Nome Completo</label><input type="text" id="custName" placeholder="Seu nome completo"></div>
-      <div class="field"><label>E-mail</label><input type="email" id="custEmail" placeholder="seu@email.com" list="emailSuggestions" autocomplete="off"><datalist id="emailSuggestions"></datalist></div>
+      <div class="field"><label>E-mail</label>
+        <input type="email" id="custEmail" placeholder="seu@email.com" list="emailSuggestions" autocomplete="off">
+        <datalist id="emailSuggestions"></datalist>
+      </div>
       <div class="field"><label>CPF</label><input type="text" id="custDoc" placeholder="000.000.000-00" maxlength="14" inputmode="numeric"></div>
       <button class="submit-btn" id="generateBtn">⚡ GERAR PIX AGORA</button>
     </div>
@@ -264,7 +320,7 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
       <div class="modal-title">Pague via PIX 🔥</div>
       <div style="font-size:13px;color:#888;margin-bottom:4px;">Escaneie o QR Code ou copie o código</div>
       <div class="qr-wrap"><img id="qrCodeImg" src="" alt="QR Code PIX"></div>
-      <div style="font-size:12px;color:#888;margin-bottom:8px;text-align:left;font-weight:500;text-transform:uppercase;letter-spacing:.5px;">Código copia e cola</div>
+      <div class="pix-label">Código copia e cola</div>
       <div class="pix-code-box" id="pixCode"></div>
       <button class="copy-btn" id="copyBtn">📋 COPIAR CÓDIGO PIX</button>
       <div class="await-text">Aguardando confirmação do pagamento…</div>
@@ -272,216 +328,282 @@ footer{text-align:center;padding:20px;font-size:12px;color:#aaa;background:#fff;
   </div>
 </div>
 
+<!-- ADMIN LOGIN -->
+<div id="adminLogin">
+  <div class="login-box">
+    <h2>🔐 Painel Admin</h2>
+    <p>Digite a senha para acessar</p>
+    <input type="password" id="adminPwInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdminPw()">
+    <button class="login-submit" onclick="checkAdminPw()">ENTRAR</button>
+    <div class="login-error" id="loginError">Senha incorreta</div>
+    <button class="login-cancel" onclick="closeAdminLogin()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <div class="adm-top">
+    <h1>⚙️ Painel Admin</h1>
+    <button class="adm-close-btn" onclick="closeAdmin()">✕ Fechar</button>
+  </div>
+  <div class="adm-body">
+
+    <div class="adm-section">
+      <h2>👤 Perfil</h2>
+      <div class="adm-field"><label>Nome</label><input type="text" id="adm_name"></div>
+      <div class="adm-field"><label>Handle (@usuario)</label><input type="text" id="adm_handle"></div>
+      <div class="adm-field"><label>Bio / Descrição</label><textarea id="adm_bio"></textarea></div>
+      <div class="adm-field"><label>URL da Foto de Perfil</label><input type="text" id="adm_avatar" placeholder="https://...foto.jpg"></div>
+      <div class="adm-field"><label>URL da Foto de Capa</label><input type="text" id="adm_cover" placeholder="https://...capa.jpg"></div>
+      <button class="adm-save-btn" onclick="saveProfile()">💾 Salvar Perfil</button>
+      <div class="adm-saved-msg" id="savedProfile">✅ Salvo com sucesso!</div>
+    </div>
+
+    <div class="adm-section">
+      <h2>💳 Planos</h2>
+      <p style="font-size:12px;color:#888;margin-bottom:14px;">Ative/desative e edite nome e preço de cada plano.</p>
+      <div id="admPlansContainer"></div>
+      <button class="adm-save-btn" onclick="savePlans()">💾 Salvar Planos</button>
+      <div class="adm-saved-msg" id="savedPlans">✅ Salvo com sucesso!</div>
+    </div>
+
+    <div class="adm-section">
+      <h2>📸 Posts</h2>
+      <div id="admPostsContainer"></div>
+      <button class="add-post-btn" onclick="addPost()">＋ Adicionar Post</button>
+      <br><br>
+      <button class="adm-save-btn" onclick="savePosts()">💾 Salvar Posts</button>
+      <div class="adm-saved-msg" id="savedPosts">✅ Salvo com sucesso!</div>
+    </div>
+
+  </div>
+</div>
+
 <script>
-// ── CONFIG ─────────────────────────────────────────────────
-const SUPA_URL='https://paalarevbvupgjhlwgbb.supabase.co';
-const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhYWxhcmV2YnZ1cGdqaGx3Z2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDU1NzksImV4cCI6MjA4OTUyMTU3OX0.PTB03Z7BAoKg5E7lm8Y1MNFIg-HL-xv1-xU_geyfqRI';
+// ══════════ API ══════════
+const BLACKCAT_CONFIG = {
+  API_KEY: 'sk_live_d34cb247f44c5759743402f875b0998dcd6004d51470a8cc8e73f54e2ecfd71a',
+  BASE_URL: 'https://api.blackcatpagamentos.online/api',
+  ENDPOINTS: { CREATE_SALE: '/sales/create-sale' }
+};
 
-let BCAT_KEY='',currentOrder={amount:0,title:'',planKey:''},popupList=[];
-let profileData={name:'Laurinha Oficial',handle:'@Laurinha_vip1'};
+// ══════════ DEFAULTS ══════════
+const DEFAULTS = {
+  profile: {
+    name: 'Laurinha Oficial', handle: '@Laurinha_vip1',
+    bio: '🔥 Laurinha VIP 🔥\nApenas 18 aninhos, Laurinha é a mistura perfeita de beleza natural com aquele olhar provocante que prende atenção desde o primeiro segundo.\nVídeos Vazados da Laurinha 👁️\nFaça sua assinatura agora e garanta acesso imediato aos meus melhores vídeos do Privacy 🔥',
+    avatar: '', cover: ''
+  },
+  plans: [
+    { id:1, name:'ACESSO POR 1 MÊS',    extra:'+ ACESSO AS LIVES DIÁRIAS!', price:999,  badge:'',            pink:'',                      main:true,     active:true },
+    { id:2, name:'ACESSO POR 3 MESES',  extra:'',                           price:2990, badge:'Economia',    pink:'+ Nº pessoal de brinde', main:false,    active:true },
+    { id:3, name:'ACESSO VITALÍCIO + VÍDEO CHAMADA POR 1 MÊS', extra:'',   price:3990, badge:'Melhor oferta',pink:'+ Nº pessoal de brinde', main:false,    active:true },
+    { id:4, name:'TODOS OS COMBOS',      extra:'',                          price:4990, badge:'',            pink:'',                      main:'combos', active:true }
+  ],
+  posts: [
+    { id:1, type:'locked', image:'', text:'', likes:574,  comments:78, active:true },
+    { id:2, type:'locked', image:'', text:'', likes:312,  comments:45, active:true }
+  ]
+};
 
-// ── SUPABASE FETCH (sem SDK — fetch puro para ser mais rápido) ──
-async function sbGet(table, filters='', select='*'){
-  try{
-    const res=await fetch(`${SUPA_URL}/rest/v1/${table}?select=${select}${filters}`,{
-      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'}
-    });
-    if(!res.ok)return null;
-    return await res.json();
-  }catch(e){return null;}
-}
-async function sbGetConfig(key){
-  try{
-    const res=await fetch(`${SUPA_URL}/rest/v1/site_config?key=eq.${key}&select=value&limit=1`,{
-      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}
-    });
-    if(!res.ok)return null;
-    const data=await res.json();
-    return data?.[0]?.value??null;
-  }catch(e){return null;}
-}
-async function sbInsert(table,body){
-  try{
-    await fetch(`${SUPA_URL}/rest/v1/${table}`,{
-      method:'POST',
-      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
-      body:JSON.stringify(body)
-    });
-  }catch(e){}
-}
-async function sbUpdate(table,body,filter){
-  try{
-    await fetch(`${SUPA_URL}/rest/v1/${table}?${filter}`,{
-      method:'PATCH',
-      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
-      body:JSON.stringify(body)
-    });
-  }catch(e){}
-}
+// ══════════ STATE ══════════
+function load(k) { try { return JSON.parse(localStorage.getItem('priv_'+k))||null; } catch(e){ return null; } }
+function save(k,v){ localStorage.setItem('priv_'+k, JSON.stringify(v)); }
 
-// ── UTILS ──────────────────────────────────────────────────
-function p2i(s){return Math.round(parseFloat((s||'0').replace(',','.'))*100);}
-function switchTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
-function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
-function toggleLike(btn){const l=btn.classList.toggle('liked');const s=btn.querySelector('span');if(s)s.textContent=l?+s.textContent+1:+s.textContent-1;}
+const S = {
+  profile: load('profile') || JSON.parse(JSON.stringify(DEFAULTS.profile)),
+  plans:   load('plans')   || JSON.parse(JSON.stringify(DEFAULTS.plans)),
+  posts:   load('posts')   || JSON.parse(JSON.stringify(DEFAULTS.posts))
+};
 
-// ── AVATAR HTML HELPER ─────────────────────────────────────
-function avatarHtml(pf){return pf?.avatar?`<img src="${pf.avatar}" alt="">`:((pf?.name||'L').charAt(0));}
+// ══════════ RENDER ══════════
+function renderAll(){ renderProfile(); renderPlans(); renderPosts(); }
 
-// ── LOAD PERFIL (primeiro — mostra conteúdo imediato) ───────
-async function loadPerfil(){
-  const data=await sbGetConfig('perfil');
-  if(!data)return;
-  profileData=data;
-  document.title=`Privacy | ${data.name||'Laurinha'}`;
-  document.getElementById('profile-name').textContent=data.name||'';
-  document.getElementById('profile-handle').textContent=data.handle||'';
-  document.getElementById('profile-bio').innerHTML=(data.bio||'').replace(/\n/g,'<br>');
-  document.getElementById('footer').textContent=`© 2025 Privacy · ${data.name||''} · Todos os direitos reservados`;
-  if(data.live){document.getElementById('live-badge').style.display='block';}
-  if(data.avatar){document.getElementById('avatar-el').innerHTML=`<img src="${data.avatar}" alt="${data.name}" style="width:100%;height:100%;object-fit:cover;">`;}
-  if(data.banner){
-    const bw=document.getElementById('banner-wrap');
-    bw.style.backgroundImage=`url('${data.banner}')`;
-    bw.style.backgroundSize='cover';bw.style.backgroundPosition='center';
-  }
+function renderProfile(){
+  const p = S.profile;
+  document.getElementById('profileName').textContent = p.name;
+  document.getElementById('profileHandle').textContent = p.handle;
+  document.getElementById('profileBio').innerHTML = p.bio.replace(/\n/g,'<br>');
+  document.title = 'Privacy | ' + p.name;
+  const av = document.getElementById('avatarEl');
+  av.innerHTML = p.avatar ? `<img src="${p.avatar}" alt="">` : p.name.charAt(0).toUpperCase();
+  const bw = document.getElementById('bannerWrap');
+  const old = bw.querySelector('.cover-img'); if(old) old.remove();
+  if(p.cover){ const ci=document.createElement('img'); ci.className='cover-img'; ci.src=p.cover; bw.insertBefore(ci,bw.firstChild); }
 }
 
-// ── LOAD PLANOS ─────────────────────────────────────────────
-async function loadPlanos(){
-  const planos=await sbGetConfig('planos');
-  const combo=await sbGetConfig('combo');
-  if(!planos?.length)return;
+function renderPlans(){
+  const c = document.getElementById('plansContainer');
+  const cs = document.getElementById('combosSection');
+  c.innerHTML = ''; cs.style.display='none';
 
-  const main=planos[0];
-  let html='';
-  if(main?.ativo||main?.active){
-    const preco=main.preco||main.price||'9,99';
-    html+=`<button class="main-plan-btn" onclick="openCheckout(${p2i(preco)},'${(main.nome||main.name||'').replace(/'/g,"\\'")}','plan1')">
-      <div class="popular-badge">${main.badge||'MAIS POPULAR 🔥🔥'}</div>
-      <div class="main-plan-left">
-        <div class="main-plan-name">${main.nome||main.name||''}</div>
-        ${main.lives?'<div class="main-plan-extra">+ ACESSO AS LIVES DIÁRIAS!</div>':''}
+  S.plans.forEach(plan => {
+    if(!plan.active) return;
+    if(plan.main === 'combos'){
+      cs.style.display='block';
+      const btn = document.getElementById('combosBtn');
+      btn.innerHTML = `${plan.name} — R$ ${fmt(plan.price)} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>`;
+      btn.onclick = ()=>openCheckout(plan.price, plan.name);
+      return;
+    }
+    if(plan.main === true){
+      const btn = document.createElement('button');
+      btn.className='main-plan-btn';
+      btn.onclick = ()=>openCheckout(plan.price, plan.name);
+      btn.innerHTML=`<div class="popular-badge">MAIS POPULAR 🔥🔥</div><div class="main-plan-left"><div class="main-plan-name">${plan.name}</div>${plan.extra?`<div class="main-plan-extra">${plan.extra}</div>`:''}</div><div class="main-plan-price">R$ ${fmt(plan.price)}</div>`;
+      c.appendChild(btn);
+    } else {
+      const div = document.createElement('button');
+      div.className='promo-item';
+      div.onclick = ()=>openCheckout(plan.price, plan.name);
+      div.innerHTML=`<div class="promo-item-left"><span class="promo-item-name">${plan.name}</span>${plan.badge?`<span class="badge">${plan.badge}</span>`:''} ${plan.pink?`<span class="badge badge-pink">${plan.pink}</span>`:''}</div><span class="promo-price">R$ ${fmt(plan.price)}</span>`;
+      c.appendChild(div);
+    }
+  });
+}
+
+function renderPosts(){
+  const feed = document.getElementById('feedContainer');
+  feed.innerHTML='';
+  S.posts.filter(p=>p.active).forEach(post=>{
+    const avHTML = S.profile.avatar ? `<img src="${S.profile.avatar}" alt="">` : S.profile.name.charAt(0).toUpperCase();
+    const firstPlan = S.plans.find(p=>p.active && p.main===true) || S.plans[0];
+    let bodyHTML = post.type==='text'
+      ? `<div class="post-text-body">${(post.text||'').replace(/\n/g,'<br>')}</div>`
+      : `<div class="post-body" onclick="openCheckout(${firstPlan.price},'${firstPlan.name}')">${post.image?`<img class="cover" src="${post.image}" alt="">`:''}<div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div></div>`;
+    const div = document.createElement('div');
+    div.className='post-item';
+    div.innerHTML=`<div class="post-header"><div class="post-user"><div class="post-avatar">${avHTML}</div><div><div class="post-username">${S.profile.name}</div><div class="post-handle">${S.profile.handle}</div></div></div><button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></div>${bodyHTML}<div class="post-footer"><button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${post.likes}</span></button><button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${post.comments}</button><button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button></div>`;
+    feed.appendChild(div);
+  });
+}
+
+function fmt(cents){ return (cents/100).toFixed(2).replace('.',','); }
+
+// ══════════ ADMIN ══════════
+const ADMIN_PW = 'admin123';
+
+function openAdminLogin(){ document.getElementById('adminLogin').style.display='flex'; document.getElementById('adminPwInput').value=''; document.getElementById('loginError').style.display='none'; setTimeout(()=>document.getElementById('adminPwInput').focus(),100); }
+function closeAdminLogin(){ document.getElementById('adminLogin').style.display='none'; }
+function checkAdminPw(){ if(document.getElementById('adminPwInput').value===ADMIN_PW){ closeAdminLogin(); openAdmin(); } else { document.getElementById('loginError').style.display='block'; } }
+
+function openAdmin(){ document.getElementById('adminPanel').style.display='block'; document.body.style.overflow='hidden'; loadAdminForm(); }
+function closeAdmin(){ document.getElementById('adminPanel').style.display='none'; document.body.style.overflow=''; }
+
+function loadAdminForm(){
+  const p=S.profile;
+  document.getElementById('adm_name').value=p.name;
+  document.getElementById('adm_handle').value=p.handle;
+  document.getElementById('adm_bio').value=p.bio;
+  document.getElementById('adm_avatar').value=p.avatar;
+  document.getElementById('adm_cover').value=p.cover;
+
+  const pc=document.getElementById('admPlansContainer');
+  pc.innerHTML='';
+  S.plans.forEach((plan,i)=>{
+    const div=document.createElement('div');
+    div.className='plan-row';
+    div.innerHTML=`
+      <label class="toggle-switch"><input type="checkbox" id="pl_on_${i}" ${plan.active?'checked':''}><span class="toggle-slider"></span></label>
+      <div style="flex:1;min-width:0;">
+        <div class="plan-label">Nome</div>
+        <input type="text" id="pl_nm_${i}" value="${plan.name}">
       </div>
-      <div class="main-plan-price">R$ ${preco}</div>
-    </button>`;
-  }
-  const extras=planos.slice(1).filter(p=>p.ativo||p.active);
-  if(extras.length){
-    html+=`<button class="promo-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Ver mais promoções<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="promo-list">`;
-    extras.forEach((pl,i)=>{
-      const preco=pl.preco||pl.price||'';
-      html+=`<div class="promo-item" onclick="openCheckout(${p2i(preco)},'${(pl.nome||pl.name||'').replace(/'/g,"\\'")}','plan${i+2}')">
-        <div class="promo-item-left"><span class="promo-item-name">${pl.nome||pl.name||''}</span><span class="badge">${pl.badge||''}</span>${pl.num?'<span class="badge" style="background:#fde8f0;color:#e91e8c;">+ Nº pessoal de brinde</span>':''}</div>
-        <span class="promo-price">R$ ${preco}</span>
+      <div style="min-width:80px;">
+        <div class="plan-label">Preço (R$)</div>
+        <input type="number" id="pl_pr_${i}" value="${plan.price/100}" step="0.01" min="0">
       </div>`;
-    });
-    html+=`</div>`;
-  }
-  document.getElementById('plans-container').innerHTML=html;
+    pc.appendChild(div);
+  });
 
-  if(combo?.mostrar){
-    const sec=document.getElementById('combos-section');
-    sec.style.display='block';
-    const btn=document.getElementById('combos-btn');
-    btn.querySelector('span')?btn.querySelector('span').textContent=`${combo.texto||''} — R$ ${combo.preco||''}`:null;
-    btn.innerHTML=`${combo.texto||'QUERO TODOS OS COMBOS'} — R$ ${combo.preco||'49,90'}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>`;
-    btn.onclick=()=>openCheckout(p2i(combo.preco),combo.texto+' - Privacy','combos');
-  }
+  renderAdminPosts();
 }
 
-// ── LOAD POSTS ──────────────────────────────────────────────
-async function loadPosts(){
-  const posts=await sbGet('posts','&active=eq.true&order=created_at.desc');
-  const feed=document.getElementById('feed-container');
-  if(!posts?.length){feed.innerHTML='<div style="text-align:center;padding:40px;color:#888;">Nenhum post ainda.</div>';return;}
-
-  const pf=profileData;
-  const av=avatarHtml(pf);
-  feed.innerHTML=posts.map(p=>{
-    if(p.type==='telegram'){
-      return`<div class="post-item">
-        <div class="post-header"><div class="post-user"><div class="post-avatar">${av}</div><div><div class="post-username">${pf.name||''}</div><div class="post-handle">${pf.handle||''}</div></div></div></div>
-        <a href="${p.telegram_link||'#'}" target="_blank" style="display:block;text-decoration:none;">
-          <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:14px;padding:22px 18px;border:1.5px solid #f9a8d4;text-align:center;">
-            <div style="font-size:34px;margin-bottom:10px;">😈</div>
-            <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">${p.telegram_text||'Meu grupo de amostras grátis bb 👇😈'}</div>
-            <div style="display:inline-flex;align-items:center;gap:8px;background:#2AABEE;color:#fff;padding:11px 24px;border-radius:30px;font-size:13px;font-weight:700;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
-              Entrar no grupo grátis
-            </div>
+function renderAdminPosts(){
+  const pc=document.getElementById('admPostsContainer');
+  pc.innerHTML='';
+  S.posts.forEach((post,i)=>{
+    const isText = post.type==='text';
+    pc.innerHTML+=`
+      <div class="post-row">
+        <div class="post-row-header">
+          <span class="post-row-title">Post #${i+1}</span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <label style="font-size:11px;color:#888;">Ativo</label>
+            <label class="toggle-switch"><input type="checkbox" id="ps_on_${i}" ${post.active?'checked':''}><span class="toggle-slider"></span></label>
+            <button class="del-btn" onclick="deletePost(${i})">🗑 Deletar</button>
           </div>
-        </a>
-        <div class="post-footer" style="margin-top:10px;">
-          <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
-          <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
+        </div>
+        <div class="adm-field"><label>Tipo de Post</label>
+          <select id="ps_tp_${i}" onchange="changePostType(${i},this.value)">
+            <option value="locked" ${!isText?'selected':''}>🔒 Bloqueado (com cadeado)</option>
+            <option value="text" ${isText?'selected':''}>💬 Mensagem de texto</option>
+          </select>
+        </div>
+        <div id="ps_img_wrap_${i}" ${isText?'style="display:none"':''}>
+          <div class="adm-field"><label>URL da Imagem de Capa (opcional)</label><input type="text" id="ps_img_${i}" value="${post.image||''}" placeholder="https://...imagem.jpg"></div>
+        </div>
+        <div id="ps_txt_wrap_${i}" ${!isText?'style="display:none"':''}>
+          <div class="adm-field"><label>Texto do Post</label><textarea id="ps_txt_${i}" placeholder="Escreva aqui...">${post.text||''}</textarea></div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <div class="adm-field" style="flex:1"><label>❤️ Likes</label><input type="number" id="ps_lk_${i}" value="${post.likes}"></div>
+          <div class="adm-field" style="flex:1"><label>💬 Comentários</label><input type="number" id="ps_cm_${i}" value="${post.comments}"></div>
         </div>
       </div>`;
-    }
-    // Foto/vídeo bloqueado
-    return`<div class="post-item">
-      <div class="post-header"><div class="post-user"><div class="post-avatar">${av}</div><div><div class="post-username">${pf.name||''}</div><div class="post-handle">${pf.handle||''}</div></div></div>
-      <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></div>
-      <div class="post-body" onclick="openCheckout(999,'Acesso por 1 Mês','plan1')">
-        ${p.thumb_url?`<img class="post-body-img" src="${p.thumb_url}" alt="">`:''}
-        <div class="post-lock"><div class="lock-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div></div>
-      </div>
-      <div class="post-footer">
-        <button class="post-action like-btn" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>${p.likes||0}</span></button>
-        <button class="post-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>${p.comments||0}</button>
-        <button class="post-bookmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
-      </div>
-    </div>`;
-  }).join('');
+  });
 }
 
-// ── LOAD TEXTOS ─────────────────────────────────────────────
-async function loadTextos(){
-  const[testi,faq,trust,popups,apikey]=await Promise.all([
-    sbGetConfig('testemunhos'),sbGetConfig('faq'),
-    sbGetConfig('trust'),sbGetConfig('popups'),sbGetConfig('apikey_blackcat')
-  ]);
-  if(apikey)BCAT_KEY=apikey;
-  if(popups?.length)popupList=popups;
-  if(testi?.length){
-    document.getElementById('testi-container').innerHTML=testi.map(t=>`
-      <div class="testi-card"><div class="testi-avatar">👨</div><div class="testi-name">${t.nome||t.name||''}</div><div class="testi-text">"${t.texto||t.text||''}"</div></div>`).join('');
-  }
-  if(trust?.length){
-    document.getElementById('trust-container').innerHTML=trust.map(t=>`
-      <div class="trust-item"><span style="font-size:18px;">${t.slice(0,2)}</span><strong>${t.slice(2).trim()}</strong></div>`).join('');
-  }
-  if(faq?.length){
-    document.getElementById('faq-container').innerHTML=faq.map(f=>`
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">${f.q||''}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">${f.a||''}</div></div>
-      </div>`).join('');
-  }
-  // Inicia popup após carregar lista
-  if(popupList.length)setTimeout(()=>{showPopup();setInterval(showPopup,25000+Math.random()*15000);},8000);
+function changePostType(i, val){
+  document.getElementById('ps_img_wrap_'+i).style.display = val==='text'?'none':'block';
+  document.getElementById('ps_txt_wrap_'+i).style.display = val==='text'?'block':'none';
 }
 
-// ── POPUP ───────────────────────────────────────────────────
-let popupIdx=0;
-function showPopup(){
-  if(!popupList.length)return;
-  const p=popupList[popupIdx++%popupList.length];
-  document.getElementById('popup-avatar').textContent=(p.nome||'?').charAt(0).toUpperCase();
-  document.getElementById('popup-name').textContent=p.nome||'Usuário';
-  document.getElementById('popup-action').textContent=`acabou de assinar o ${p.plano||'Plano'}! 🔥`;
-  const el=document.getElementById('toast-popup');
-  el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),4000);
+function saveProfile(){
+  S.profile = { name:document.getElementById('adm_name').value.trim()||DEFAULTS.profile.name, handle:document.getElementById('adm_handle').value.trim()||DEFAULTS.profile.handle, bio:document.getElementById('adm_bio').value||DEFAULTS.profile.bio, avatar:document.getElementById('adm_avatar').value.trim(), cover:document.getElementById('adm_cover').value.trim() };
+  save('profile',S.profile); renderProfile(); flash('savedProfile');
 }
 
-// ── MODAL ───────────────────────────────────────────────────
-document.getElementById('modalClose').onclick=()=>document.getElementById('modalOverlay').classList.remove('active');
-document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay'))document.getElementById('modalOverlay').classList.remove('active');});
-function openCheckout(amount,title,planKey=''){
-  currentOrder={amount,title,planKey};
+function savePlans(){
+  S.plans.forEach((plan,i)=>{
+    plan.active = document.getElementById('pl_on_'+i)?.checked ?? plan.active;
+    plan.name   = document.getElementById('pl_nm_'+i)?.value || plan.name;
+    const v = parseFloat(document.getElementById('pl_pr_'+i)?.value);
+    if(!isNaN(v)) plan.price = Math.round(v*100);
+  });
+  save('plans',S.plans); renderPlans(); flash('savedPlans');
+}
+
+function savePosts(){
+  S.posts.forEach((post,i)=>{
+    post.active   = document.getElementById('ps_on_'+i)?.checked ?? post.active;
+    post.type     = document.getElementById('ps_tp_'+i)?.value || post.type;
+    post.image    = document.getElementById('ps_img_'+i)?.value.trim()||'';
+    post.text     = document.getElementById('ps_txt_'+i)?.value||'';
+    post.likes    = parseInt(document.getElementById('ps_lk_'+i)?.value)||post.likes;
+    post.comments = parseInt(document.getElementById('ps_cm_'+i)?.value)||post.comments;
+  });
+  save('posts',S.posts); renderPosts(); flash('savedPosts');
+}
+
+function addPost(){
+  S.posts.push({id:Date.now(),type:'locked',image:'',text:'',likes:100,comments:10,active:true});
+  renderAdminPosts();
+}
+function deletePost(i){
+  if(!confirm('Deletar este post?')) return;
+  S.posts.splice(i,1); save('posts',S.posts); renderPosts(); renderAdminPosts();
+}
+
+function flash(id){ const el=document.getElementById(id); el.style.display='block'; setTimeout(()=>el.style.display='none',2000); }
+
+// ══════════ CHECKOUT ══════════
+let currentOrder = {amount:0,title:""};
+
+function openCheckout(amount,title){
+  currentOrder={amount,title};
   document.getElementById('modalTitle').innerText=title;
-  document.getElementById('modalPrice').innerText='R$ '+(amount/100).toFixed(2).replace('.',',');
+  document.getElementById('modalPrice').innerHTML=`<strong>R$ ${fmt(amount)}</strong>`;
   document.getElementById('errorBox').style.display='none';
   document.getElementById('formStep').style.display='block';
   document.getElementById('loadingStep').style.display='none';
@@ -489,69 +611,70 @@ function openCheckout(amount,title,planKey=''){
   document.getElementById('modalOverlay').classList.add('active');
 }
 
-// ── CPF ─────────────────────────────────────────────────────
-function fmtCPF(v){v=v.replace(/\D/g,'');if(v.length>11)v=v.slice(0,11);if(v.length<=3)return v;if(v.length<=6)return v.slice(0,3)+'.'+v.slice(3);if(v.length<=9)return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);return v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9,11);}
-document.getElementById('custDoc').addEventListener('input',e=>{e.target.value=fmtCPF(e.target.value);});
-document.getElementById('custEmail').addEventListener('input',function(){
-  const v=this.value,dl=document.getElementById('emailSuggestions');dl.innerHTML='';
-  if(v&&!v.includes('@')){const o=document.createElement('option');o.value=v+'@gmail.com';dl.appendChild(o);}
+document.getElementById('modalClose').onclick=()=>document.getElementById('modalOverlay').classList.remove('active');
+document.getElementById('modalOverlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modalOverlay')) document.getElementById('modalOverlay').classList.remove('active'); });
+
+document.getElementById('custDoc').addEventListener('input',e=>{
+  let v=e.target.value.replace(/\D/g,'').slice(0,11);
+  if(v.length>9) v=v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9);
+  else if(v.length>6) v=v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);
+  else if(v.length>3) v=v.slice(0,3)+'.'+v.slice(3);
+  e.target.value=v;
 });
 
-// ── CHECKOUT ────────────────────────────────────────────────
-async function processOrder(){
+document.getElementById('custEmail').addEventListener('input',function(){
+  const val=this.value, dl=document.getElementById('emailSuggestions');
+  dl.innerHTML='';
+  if(val && !val.includes('@')){ const o=document.createElement('option'); o.value=val+'@gmail.com'; dl.appendChild(o); }
+});
+
+document.getElementById('generateBtn').onclick=async()=>{
   const name=document.getElementById('custName').value.trim();
   const email=document.getElementById('custEmail').value.trim();
   const doc=document.getElementById('custDoc').value.replace(/\D/g,'');
-  if(!name||!email||doc.length!==11){
-    document.getElementById('errorBox').innerText='Preencha todos os campos corretamente (CPF com 11 dígitos).';
-    document.getElementById('errorBox').style.display='block';return;
-  }
-  document.getElementById('errorBox').style.display='none';
+  const err=document.getElementById('errorBox');
+  if(!name||!email||doc.length!==11){ err.innerText="Preencha todos os campos corretamente (CPF com 11 dígitos)."; err.style.display='block'; return; }
+  err.style.display='none';
   document.getElementById('formStep').style.display='none';
   document.getElementById('loadingStep').style.display='block';
-  await sbInsert('pedidos',{name,email,cpf:doc,plan:currentOrder.title,plan_key:currentOrder.planKey,amount:(currentOrder.amount/100),status:'pending'});
-  const apiKey=BCAT_KEY||'sk_live_d34cb247f44c5759743402f875b0998dcd6004d51470a8cc8e73f54e2ecfd71a';
   try{
-    const res=await fetch('https://api.blackcatpagamentos.online/api/sales/create-sale',{
-      method:'POST',headers:{'Content-Type':'application/json','X-API-Key':apiKey},
-      body:JSON.stringify({amount:currentOrder.amount,currency:'BRL',paymentMethod:'pix',
-        items:[{title:currentOrder.title,unitPrice:currentOrder.amount,quantity:1,tangible:false}],
-        customer:{name,email,phone:'',document:{number:doc,type:'cpf'}},pix:{expiresInDays:1}})
+    const r=await fetch(`${BLACKCAT_CONFIG.BASE_URL}${BLACKCAT_CONFIG.ENDPOINTS.CREATE_SALE}`,{
+      method:'POST', headers:{'Content-Type':'application/json','X-API-Key':BLACKCAT_CONFIG.API_KEY},
+      body:JSON.stringify({amount:currentOrder.amount,currency:"BRL",paymentMethod:"pix",items:[{title:currentOrder.title,unitPrice:currentOrder.amount,quantity:1,tangible:false}],customer:{name,email,phone:"11999999999",document:{number:doc,type:"cpf"}},pix:{expiresInDays:1}})
     });
-    const result=await res.json();
-    if(result.success&&result.data?.paymentData){
-      const pix=result.data.paymentData;
-      let qr=pix.qrCodeBase64||'';
-      if(qr&&!qr.startsWith('data:image'))qr='data:image/png;base64,'+qr;
+    const res=await r.json();
+    if(res.success&&res.data&&res.data.paymentData){
+      const pix=res.data.paymentData;
+      let qr=pix.qrCodeBase64||"";
+      if(qr&&!qr.startsWith('data:image')) qr='data:image/png;base64,'+qr;
       document.getElementById('qrCodeImg').src=qr;
-      document.getElementById('pixCode').innerText=pix.copyPaste||'';
+      document.getElementById('pixCode').innerText=pix.copyPaste||"";
       document.getElementById('loadingStep').style.display='none';
       document.getElementById('pixStep').style.display='block';
       document.getElementById('copyBtn').onclick=()=>{
-        navigator.clipboard.writeText(pix.copyPaste).then(()=>{
-          const btn=document.getElementById('copyBtn');btn.textContent='✅ CÓDIGO COPIADO!';
-          setTimeout(()=>btn.textContent='📋 COPIAR CÓDIGO PIX',2500);
-        });
+        navigator.clipboard.writeText(pix.copyPaste).then(()=>{ const b=document.getElementById('copyBtn'); b.textContent='✅ CÓDIGO COPIADO!'; setTimeout(()=>b.textContent='📋 COPIAR CÓDIGO PIX',2500); });
       };
-      await sbUpdate('pedidos',{status:'paid',pix_code:pix.copyPaste},`email=eq.${encodeURIComponent(email)}&status=eq.pending`);
-    }else{throw new Error(result.message||'Erro na API');}
-  }catch(err){
+    } else throw new Error(res.message||"Erro na API");
+  } catch(e){
     document.getElementById('loadingStep').style.display='none';
     document.getElementById('formStep').style.display='block';
-    document.getElementById('errorBox').innerText='Erro ao gerar PIX: '+err.message;
+    document.getElementById('errorBox').innerText="Erro ao gerar PIX: "+e.message;
     document.getElementById('errorBox').style.display='block';
-    await sbUpdate('pedidos',{status:'failed'},`email=eq.${encodeURIComponent(email)}&status=eq.pending`);
   }
-}
-document.getElementById('generateBtn').onclick=processOrder;
+};
 
-// ── INIT — CARREGAMENTO PROGRESSIVO ─────────────────────────
-// Carrega perfil primeiro (aparece imediato), depois o resto em paralelo
-loadPerfil().then(()=>{
-  loadPosts(); // depende do perfil para mostrar avatar
-});
-loadPlanos();    // independente
-loadTextos();    // independente
+window.GoToBackCheckout=function(){ openCheckout(790,"Oferta Especial - Acesso Privacy"); };
+
+// ══════════ UTILS ══════════
+function switchTab(el){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); }
+function toggleFaq(btn){ btn.parentElement.classList.toggle('open'); }
+function toggleLike(btn){ const liked=btn.classList.toggle('liked'); const sp=btn.querySelector('span'); sp.textContent=liked?+sp.textContent+1:+sp.textContent-1; }
+
+function showToast(){ const t=document.getElementById('toast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3500); }
+setTimeout(()=>{ showToast(); setInterval(()=>showToast(),30000+Math.random()*30000); },6000);
+
+// ══════════ INIT ══════════
+renderAll();
 </script>
 </body>
 </html>
